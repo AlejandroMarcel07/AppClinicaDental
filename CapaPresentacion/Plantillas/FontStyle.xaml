@@ -1,0 +1,7 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    
+    <FontFamily x:Key="Outfit-Bold">pack://application:,,,/Resources/Font/Outfit-Bold.ttf #Outfit</FontFamily>
+    <FontFamily x:Key="Outfit-Regular">pack://application:,,,/Resources/Font/Outfit-Regular.ttf #Outfit</FontFamily>
+</ResourceDictionary>
