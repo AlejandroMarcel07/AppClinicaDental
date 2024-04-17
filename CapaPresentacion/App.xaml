@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Plantillas/ColorStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Plantillas/TextBoxStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Plantillas/ButtonStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Plantillas/ComboBoxStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Plantillas/AnimacionVentana.xaml"/>
                
             </ResourceDictionary.MergedDictionaries>

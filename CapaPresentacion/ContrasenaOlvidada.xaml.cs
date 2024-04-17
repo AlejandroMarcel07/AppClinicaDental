@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -54,31 +55,47 @@ namespace CapaPresentacion
         private void btnEnviarCorreoDeVerificacion_Click(object sender, RoutedEventArgs e)
         {
             string MensajeUsuarioIncompleto = "¡nombre de usuario!";
-            string MensajeRolIncompleto = "¡rol (admin o asistente)!";
+            string MensajeRolIncompleto = "¡gmail asociado a su cuenta!";
+            string MensajeGmailEscrito = "¡gmail invalido,comprueba nuevamente!";
+            string gmailPattern = @"\b[A-Za-z0-9._%+-]+@gmail\.com\b";
 
-            if (txtUsuario.Text == "")
+            if (!string.IsNullOrEmpty(txtUsuario.Text))
+            {
+                if (!string.IsNullOrEmpty(txtGmailAsociado.Text))
+                {
+
+                    if (!Regex.IsMatch(txtGmailAsociado.Text, gmailPattern))
+                    {
+                        textMensaje.Text = MensajeGmailEscrito;
+                        textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
+                        return; // Sale del método si el gmail no es válido
+                    }
+                    else
+                    {
+                        //Continuara
+                    }
+                }
+                else
+                {
+                    textMensaje.Text = MensajeRolIncompleto;
+                    textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
+                    return;
+                }
+            }
+            else
             {
                 textMensaje.Text = MensajeUsuarioIncompleto;
                 textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
                 return; // Sale del método si el usuario está incompleto
             }
-
-            if (txtRol.Text == "")
-            {
-                textMensaje.Text = MensajeRolIncompleto;
-                textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
-                return;
-            }
         }
-
-
 
 
         //Metodo evalucion de campos
         private void EvaluarCamposCompletos()
         {
 
-            if (!string.IsNullOrEmpty(txtUsuario.Text) && !string.IsNullOrEmpty(txtRol.Text))
+            if (!string.IsNullOrEmpty(txtUsuario.Text) && !string.IsNullOrEmpty(txtGmailAsociado.Text))
             {
                 textMensaje.Text = "Completado";
                 textMensaje.Foreground = new SolidColorBrush(Colors.Green);
@@ -95,7 +112,8 @@ namespace CapaPresentacion
             EvaluarCamposCompletos();
         }
 
-        private void txtRol_TextChanged(object sender, TextChangedEventArgs e)
+
+        private void txtGmailAsociado_TextChanged(object sender, TextChangedEventArgs e)
         {
             EvaluarCamposCompletos();
         }

@@ -96,22 +96,26 @@ namespace CapaPresentacion
             //string MensajeUsuarioNoExiste = "¡Usuario Desconocido!";
             //string MensajeContrasenaMala = "¡Contraseña mala!";
 
-            if (txtUsuario.Text == "")
+            if(!string.IsNullOrEmpty(txtUsuario.Text))
+            {
+                if(!string.IsNullOrEmpty(txtContraseña.Password))
+                {
+                    //Continuare..
+                }
+                else
+                {
+                    textMensaje.Text = MensajeContrasenaIncompleta;
+                    textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
+                    return;
+                }
+            }
+            else
             {
                 textMensaje.Text = MensajeUsuarioIncompleto;
                 textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
                 return; // Sale del método si el usuario está incompleto
             }
 
-            if (txtContraseña.Password == "")
-            {
-                textMensaje.Text = MensajeContrasenaIncompleta;
-                textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
-                return; 
-            }
-
-
-            //continuare...
         }
 
         //Metodo de Evaluacio en tiempo real

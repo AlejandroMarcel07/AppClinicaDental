@@ -128,16 +128,17 @@
                              > 
                     </TextBox>
                     <TextBox Style="{StaticResource CustomTextBoxStyle}"
-                             Tag="nombre rol (admin o asistente)"
+                             Tag="gmail asociado a su cuenta"
                              Margin="0 10 0 0"
-                             x:Name="txtRol"
-                             TextChanged="txtRol_TextChanged"
+                             x:Name="txtGmailAsociado"
+                             TextChanged="txtGmailAsociado_TextChanged"
                              >
                     </TextBox>
                     <TextBlock x:Name="textMensaje"
                                FontFamily="{StaticResource Outfit-Regular}"
                                Margin="0 7 0 0"
-                               FontSize="14">
+                               FontSize="14"
+                               TextTrimming="CharacterEllipsis">
                         
                     </TextBlock>
                     <Grid Height="35"
@@ -161,7 +162,8 @@
                                 Style="{StaticResource BtnLogin}"
                                 x:Name="btnEnviarCorreoDeVerificacion"
                                 Click="btnEnviarCorreoDeVerificacion_Click"
-                                Background="{StaticResource GlobalColor1}">
+                                Background="{StaticResource GlobalColor1}"
+                                IsDefault="True">
                              Enviar
                         </Button>
                     </Grid>
