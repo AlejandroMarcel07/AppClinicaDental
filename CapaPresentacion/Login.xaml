@@ -6,12 +6,11 @@
         mc:Ignorable="d"
         Title="Login" Height="420" Width="700"
         WindowStyle="None"
-        Background="Transparent"
-     
+        Background="Transparent" 
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         MouseDown="Window_MouseDown"
-        ResizeMode="NoResize" Cursor=""
+        ResizeMode="NoResize" 
         >
 
  
@@ -213,6 +212,8 @@
                                 FontSize="14"
                                 Grid.Column="1"
                                 TabIndex="4"
+                                x:Name="btnOlvidoContraseña"
+                                Click="btnOlvidoContraseña_Click"
                                 FontFamily="{StaticResource Outfit-Regular}"
                                 >
                             Contraseña Olvidada?

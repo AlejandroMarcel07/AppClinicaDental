@@ -35,44 +35,16 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="5"
-                                x:Name="Button"
-                                >
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="5">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Trigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="Button"
-                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                    To="#2B58C7"
-                                    Duration="0:0:0.2"/>
-                                        <!-- Duración de 0.2 segundos -->
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.EnterActions>
-                            <Trigger.ExitActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="Button"
-                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                    To="#0A3EBD"
-                                    Duration="0:0:0.2"/>
-                                        <!-- Duración de 0.2 segundos -->
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.ExitActions>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
+
 
     <Style x:Key="TransparentButton" TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>

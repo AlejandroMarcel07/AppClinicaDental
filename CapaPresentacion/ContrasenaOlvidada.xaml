@@ -1,0 +1,173 @@
+﻿<Window x:Class="CapaPresentacion.ContrasenaOlvidada"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CapaPresentacion"
+        mc:Ignorable="d"
+        Title="ContrasenaOlvidada" Height="420" Width="700"
+        WindowStyle="None"
+        Background="Transparent" 
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        MouseDown="Window_MouseDown"
+        
+        >
+    <Border Background="#FBFBFB"
+            CornerRadius="15"
+            Margin="30">
+        <Border.Effect>
+            <DropShadowEffect Opacity="0.4" ShadowDepth="5" BlurRadius="35"
+               Direction="150" Color="#545A68"/>
+        </Border.Effect>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="340"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border CornerRadius="15" 
+                    Grid.Column="0"
+                    Margin="18">
+                <Border.Background>
+                    <ImageBrush ImageSource="/Resources/Img/IMG-02.png" Stretch="UniformToFill" />
+                </Border.Background>
+                <!--<Border.Effect>
+                    <DropShadowEffect ShadowDepth="4" Direction="435" Color="Gray" Opacity="0.2"
+                                      BlurRadius="20"/>
+                </Border.Effect>-->
+
+            </Border>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0"
+                      Margin="5 10 15 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="0"/>
+                        <ColumnDefinition Width="20"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="1"
+                            x:Name="btnMinimizarAplicacion"
+                            Click="btnMinimizarAplicacion_Click"
+                            Height="12"
+                            Width="12"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                           >
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <!--<Grid>
+                                    <Image Source="/Resources/Ico/ImgMinimizar.png"/>
+                                </Grid>-->
+                                <Border CornerRadius="50"
+                                        Background="Orange"></Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button Grid.Column="3"
+                            x:Name="btnCerrarLogin"
+                            Height="12"
+                            Width="12"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            Click="btnCerrarLogin_Click"
+                           >
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <!--<Grid>
+                                    <Image Source="/Resources/Ico/ImgCerrar.png"/>
+                                </Grid>-->
+                                <Border CornerRadius="50"
+                                        Background="red"></Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                </Grid>
+
+                <StackPanel Grid.Row="1"
+                            Margin="10 13 30 20">
+                    <TextBlock FontSize="24"
+                               FontWeight="UltraBold"
+                               >
+                       <Run FontFamily="{StaticResource Outfit-Bold}">Contraseña</Run>
+                       <Run Foreground="{StaticResource GlobalColor1}"
+                            FontFamily="{StaticResource Outfit-Bold}">Olvidada?</Run>
+                    </TextBlock>
+                    <TextBlock FontFamily="{StaticResource Outfit-Regular}"                               
+                               FontSize="18"
+                               FontWeight="Medium"
+                               Margin="0 5 0 0">| Recuperala ya!</TextBlock>
+                    <TextBlock FontFamily="{StaticResource Outfit-Regular}"
+                               FontSize="15"
+                               Margin="0 20 0 0"
+                               TextWrapping="Wrap">
+                        "Se le enviara un correo electronico a su gmail
+                        asociado con su usuario"
+                    </TextBlock>
+
+                    <TextBox Style="{StaticResource CustomTextBoxStyle}"
+                             Tag="nombre de usuario"
+                             Margin="0 10 0 0"
+                             x:Name="txtUsuario"
+                             TextChanged="txtUsuario_TextChanged"
+                             
+                             > 
+                    </TextBox>
+                    <TextBox Style="{StaticResource CustomTextBoxStyle}"
+                             Tag="nombre rol (admin o asistente)"
+                             Margin="0 10 0 0"
+                             x:Name="txtRol"
+                             TextChanged="txtRol_TextChanged"
+                             >
+                    </TextBox>
+                    <TextBlock x:Name="textMensaje"
+                               FontFamily="{StaticResource Outfit-Regular}"
+                               Margin="0 7 0 0"
+                               FontSize="14">
+                        
+                    </TextBlock>
+                    <Grid Height="35"
+                          Margin="0 20 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0"
+                                Margin="0 0 5 0"
+                                Style="{StaticResource BtnLogin}"
+                                Background="#050273"
+                                Foreground="white"
+                                x:Name="btnRegresar"
+                                Click="btnRegresar_Click">
+                                
+                            Atras
+                        </Button>
+                        <Button Grid.Column="1"
+                                Margin="5 0 0 0"
+                                Style="{StaticResource BtnLogin}"
+                                x:Name="btnEnviarCorreoDeVerificacion"
+                                Click="btnEnviarCorreoDeVerificacion_Click"
+                                Background="{StaticResource GlobalColor1}">
+                             Enviar
+                        </Button>
+                    </Grid>
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

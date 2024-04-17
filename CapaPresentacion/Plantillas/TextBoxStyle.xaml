@@ -8,12 +8,12 @@
         <Setter Property="TextAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="FontFamily" Value="{StaticResource Poppins-Regular}"/>
-        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontFamily" Value="{StaticResource Outfit-Regular}"/>
+        <Setter Property="FontSize" Value="14"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
-                    <Border Background="white" BorderThickness="1" BorderBrush="#A5A3A3" CornerRadius="5">
+                    <Border Background="Transparent" BorderThickness="1" BorderBrush="#A5A3A3" CornerRadius="5">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -29,7 +29,7 @@
                                Grid.Column="1"
                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                               Foreground="#A5A3A3" FontFamily="{StaticResource Poppins-Regular}"
+                               Foreground="#A5A3A3" FontFamily="{StaticResource Outfit-Regular}"
                                FontSize="{TemplateBinding FontSize}"
                                Margin="0,0,0,0"
                                />
@@ -51,7 +51,7 @@
         <Setter Property="BorderBrush" Value="#EDEFF1"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Foreground" Value="#a5aab5"/>
-        <Setter Property="FontFamily" Value="{StaticResource Poppins-Regular}"/>
+        <Setter Property="FontFamily" Value="{StaticResource Outfit-Regular}"/>
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -65,7 +65,7 @@
                          IsHitTestVisible="False"/>
                         <ScrollViewer x:Name="PART_ContentHost" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled"/>
                         <Label x:Name="placeHolder" Content="Ingrese su contraseña" Foreground="#a5aab5"
-                       FontFamily="{StaticResource Poppins-Regular}" FontSize="13" VerticalContentAlignment="Center"
+                       FontFamily="{StaticResource Outfit-Regular}" FontSize="13" VerticalContentAlignment="Center"
                        IsHitTestVisible="False" Visibility="Collapsed" Margin="5,0,0,0"/>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -125,14 +125,4 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-
-
-
-
-
-
-
-
-
 </ResourceDictionary>

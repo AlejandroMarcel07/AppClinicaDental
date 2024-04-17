@@ -81,7 +81,7 @@ namespace CapaPresentacion
 
         private void btnCerrarLogin_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Application.Current.Shutdown();
         }
 
         private void btnMinimizarAplicacion_Click(object sender, RoutedEventArgs e)
@@ -138,6 +138,18 @@ namespace CapaPresentacion
         private void txtUsuario_TextChanged(object sender, TextChangedEventArgs e)
         {
             EvaluarCamposCompletos();
+        }
+
+        private void btnOlvidoContraseña_Click(object sender, RoutedEventArgs e)
+        {
+            // Crear una instancia de la nueva ventana
+            ContrasenaOlvidada nuevaVentana = new ContrasenaOlvidada();
+
+            // Cerrar la ventana actual
+            this.Hide();
+
+            // Mostrar la nueva ventana
+            nuevaVentana.Show();
         }
     }
 }
