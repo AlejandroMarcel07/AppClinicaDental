@@ -148,6 +148,7 @@
                             Cursor="Hand"
                             VerticalAlignment="Bottom"
                            >
+                        <!--Agregnado un comentario para probar versiones de github-->
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="50"
