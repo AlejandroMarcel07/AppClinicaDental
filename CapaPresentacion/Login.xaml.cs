@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -93,14 +94,27 @@ namespace CapaPresentacion
         {
             string MensajeContrasenaIncompleta = "¡Contraseña!";
             string MensajeUsuarioIncompleto = "¡Usuario!";
+            string MensajeContrasenaCorta = "¡Maximo 8!";
             //string MensajeUsuarioNoExiste = "¡Usuario Desconocido!";
             //string MensajeContrasenaMala = "¡Contraseña mala!";
 
-            if(!string.IsNullOrEmpty(txtUsuario.Text))
+            if (!string.IsNullOrEmpty(txtUsuario.Text))
             {
                 if(!string.IsNullOrEmpty(txtContraseña.Password))
                 {
-                    //Continuare..
+
+                    if (txtContraseña.Password.Length < 8)
+                    {
+                        textMensaje.Text = MensajeContrasenaCorta;
+                        textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
+                        return;
+                    }
+                    else
+                    {
+                        PantallaPrincipal pantallaprincipal = new PantallaPrincipal();
+                        this.Hide();
+                        pantallaprincipal.Show();
+                    }
                 }
                 else
                 {
@@ -155,5 +169,7 @@ namespace CapaPresentacion
             // Mostrar la nueva ventana
             nuevaVentana.Show();
         }
+
+
     }
 }

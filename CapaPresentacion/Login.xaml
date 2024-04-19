@@ -13,7 +13,6 @@
         ResizeMode="NoResize" 
         >
 
- 
     <Border Background="#FBFBFB"
             CornerRadius="15"
             Margin="30">

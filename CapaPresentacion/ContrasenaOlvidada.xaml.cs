@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -23,6 +24,7 @@ namespace CapaPresentacion
         public ContrasenaOlvidada()
         {
             InitializeComponent();
+
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -67,7 +69,7 @@ namespace CapaPresentacion
                     if (!Regex.IsMatch(txtGmailAsociado.Text, gmailPattern))
                     {
                         textMensaje.Text = MensajeGmailEscrito;
-                        textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
+                        textMensaje.Foreground = new SolidColorBrush(Colors.Red);
                         return; // Sale del método si el gmail no es válido
                     }
                     else
@@ -117,5 +119,8 @@ namespace CapaPresentacion
         {
             EvaluarCamposCompletos();
         }
+
+
+        
     }
 }

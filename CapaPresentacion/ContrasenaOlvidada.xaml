@@ -12,8 +12,11 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         MouseDown="Window_MouseDown"
-        
+
         >
+
+
+
     <Border Background="#FBFBFB"
             CornerRadius="15"
             Margin="30">
