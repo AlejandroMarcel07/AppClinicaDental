@@ -12,7 +12,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Plantillas/ButtonStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Plantillas/ComboBoxStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Plantillas/AnimacionVentana.xaml"/>
-               
+                <ResourceDictionary Source="pack://application:,,,/Plantillas/IcoStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

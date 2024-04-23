@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
-        Title="PantallaPrincipal" Height="650" Width="1050"
+        Title="PantallaPrincipal" Height="650" Width="1080"
         WindowStyle="None"
         Background="Transparent" 
         AllowsTransparency="True"
@@ -22,11 +23,11 @@
         </Border.Effect>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="210"/>
+                <ColumnDefinition Width="220"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Border Background="#FBFBFB"
-                    CornerRadius="20 10 10 20"
+                    CornerRadius="15 10 10 15"
                     Grid.Column="0">
                 <Border.Effect>
                     <DropShadowEffect Opacity="0.2" ShadowDepth="1" BlurRadius="35"
@@ -34,79 +35,216 @@
                 </Border.Effect>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="85"/>
+                        <RowDefinition Height="80"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="190"/>
                     </Grid.RowDefinitions>
-                    <Border Grid.Row="0"
-                            Margin="10"
-                            Background="#B1BFE9"
-                            CornerRadius="10">
+                    <Grid Grid.Row="0"
+                          Margin="20">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="40"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
                             <Border Grid.Column="0"
-                                CornerRadius="7"
-                            >
-                                <Border.Background>
-                                    <ImageBrush ImageSource="/Resources/Img/IMG-02.png" Stretch="UniformToFill" />
-                                </Border.Background>
+                                    CornerRadius="5"
+                                    Background="#3A6FEE">
+                                <TextBlock Text="M"
+                                           VerticalAlignment="Center"
+                                           FontFamily="{StaticResource Outfit-Regular}"
+                                           Foreground="white"
+                                           FontSize="15"
+                                           HorizontalAlignment="Center"/>
                             </Border>
-                            <StackPanel Grid.Column="1"
-                                    Margin="10 5 5 5"
-                                    Orientation="Vertical">
-                                <TextBlock FontSize="14"
-                                       Margin="0 5 0 0"
-                                       FontFamily="{StaticResource Outfit-Bold}">Marcel Zuniga</TextBlock>
-                                <TextBlock FontSize="14"
-                                       Margin="0 2 0 0"
-                                       FontFamily="{StaticResource Outfit-Regular}">Admin</TextBlock>
+                            <StackPanel Orientation="Vertical"
+                                        Margin="10 0 0 0"
+                                        Grid.Column="1">
+                                <TextBlock FontFamily="{StaticResource Outfit-Bold}"
+                                           FontSize="15">Marcel Zuniga</TextBlock>
+                                <TextBlock Text="Asistente"
+                                           FontFamily="{StaticResource Outfit-Regular}"
+                                           FontSize="15"/>
+                                
                             </StackPanel>
-
                         </Grid>
-                    </Border>
+                    </Grid>
                     <StackPanel Grid.Row="1"
                                 Orientation="Vertical"
-                                Margin="10 0 10 0">
-                        <Border Height="2px"
-                                Width="175"
-                                Opacity="0.3"
-                                Background="#5A76C3">
+                                >
+
+                        <Border Background="#EAEFFC"
+                                Height="35"
+                                CornerRadius="5"
+                                Margin="20">
+                            <TextBlock
+                                       VerticalAlignment="Center"
+                                       Margin="20 0 0 0"
+                                       FontFamily="{StaticResource Outfit-Regular}"
+                                       FontSize="15"
+                                       Text="| Navegación"/>
                             
                         </Border>
-                        <TextBlock FontSize="17"
-                                   Margin="0 10 0 0"
-                               >
-                       <Run FontFamily="{StaticResource Outfit-Regular}">| Navegacion</Run>
-                       <!--<Run Foreground="{StaticResource GlobalColor1}"
-                            FontFamily="{StaticResource Outfit-Bold}">Principal</Run>-->
-                        </TextBlock>
+
+                        <StackPanel Margin="20">
+
+                        <RadioButton Style="{StaticResource menuButton}"
+                                     Tag="white"
+                                     Height="35"
+                                     Cursor="Hand">
+                                
+                                <StackPanel Orientation="Horizontal"
+                                            >
+                                    <Path Data="{StaticResource IcoHome}"
+                                          Fill="Black"
+                                          Margin="15 0 15 0"/>
+                                    <TextBlock Text="Inicio" 
+                                     Foreground="Black"
+                                             
+                                     Style="{StaticResource menuButtonText}"
+                                     FontFamily="{StaticResource Outfit-Regular}"
+                                     FontSize="15" Cursor=""/>
+
+                                 </StackPanel>
+                
+                        </RadioButton>
+                            <RadioButton Style="{StaticResource menuButton}"
+                                     Tag="white"
+                                     Cursor="Hand"
+                                         Height="35"
+                                         >
+
+                                <StackPanel Orientation="Horizontal"
+                                            >
+                                    <Path Data="{StaticResource IcoStats}"
+                                          Fill="Black"
+                                          Margin="15 0 15 0"/>
+                                    <TextBlock Text="Estadisticas" 
+                                     Style="{StaticResource menuButtonText}"
+                                     Foreground="Black"
+                                     FontFamily="{StaticResource Outfit-Regular}"
+                                     FontSize="15"/>
+
+                                </StackPanel>
+
+                            </RadioButton>
+                            <RadioButton Style="{StaticResource menuButton}"
+                                     Tag="white"
+                                     Cursor="Hand"
+                                         Height="35">
+
+                                <StackPanel Orientation="Horizontal"
+                                            >
+                                    <Path Data="{StaticResource IcoPrueba}"
+                                          Fill="Black"
+                                   
+                                          
+                                          Margin="15 0 15 0"/>
+                                    <TextBlock Text="Finanza" 
+                                     Style="{StaticResource menuButtonText}"
+                                     Foreground="Black"
+                                     FontFamily="{StaticResource Outfit-Regular}"
+                                     FontSize="15"/>
+
+                                </StackPanel>
+
+
+                            </RadioButton>
+                            <RadioButton Style="{StaticResource menuButton}"
+                                     Tag="white"
+                                     Cursor="Hand"
+                                     Height="35" 
+                                     >
+
+                                <StackPanel Orientation="Horizontal"
+                                            >
+                                    <Path Data="{StaticResource IcoUser}"
+                                          Fill="Black"
+                                          Margin="15 0 15 0"/>
+                                    <TextBlock Text="usuario" 
+                                     Style="{StaticResource menuButtonText}"
+                                     Foreground="Black"
+                                     FontFamily="{StaticResource Outfit-Regular}"
+                                     FontSize="15"/>
+
+                                </StackPanel>
+
+                            </RadioButton>
+                            <RadioButton Style="{StaticResource menuButton}"
+                                     Tag="white"
+                                     Cursor="Hand"
+                                     Height="35">
+
+                                <StackPanel Orientation="Horizontal"
+                                            >
+                                    <Path Data="{StaticResource IcoBook}"
+                                          Fill="Black"
+                                          Margin="15 0 15 0"/>
+                                    <TextBlock Text="Manual" 
+                                     Style="{StaticResource menuButtonText}"
+                                     Foreground="Black"
+                                     FontFamily="{StaticResource Outfit-Regular}"
+                                     FontSize="15"/>
+
+                                </StackPanel>
+
+                            </RadioButton>
+                            <RadioButton Style="{StaticResource menuButton}"
+                                     Tag="white"
+                                     Cursor="Hand"
+                                     Height="35">
+
+                                <StackPanel Orientation="Horizontal"
+                                            >
+                                    <Path Data="{StaticResource  IcoSettings}"
+                                          Fill="Black"
+                                          Margin="15 0 15 0"/>
+                                    <TextBlock Text="Configuracion" 
+                                     Style="{StaticResource menuButtonText}"
+                                     Foreground="Black"
+                                     FontFamily="{StaticResource Outfit-Regular}"
+                                     FontSize="15"/>
+
+                                </StackPanel>
+
+                            </RadioButton>
+                            <RadioButton Style="{StaticResource menuButton}"
+                                     Tag="white"
+                                     Height="35"
+                                     Cursor="Hand"
+                                     >
+
+                                <StackPanel Orientation="Horizontal"
+                                            >
+                                    <Path Data="{StaticResource IcoSignOut}"
+                                          Fill="Black"
+                                          Margin="15 0 15 0"/>
+                                    <TextBlock Text="Cerrar Sesion" 
+                                     Style="{StaticResource menuButtonText}"
+                                     Foreground="Black"
+                                     FontFamily="{StaticResource Outfit-Regular}"
+                                     FontSize="15"/>
+
+                                </StackPanel>
+
+                            </RadioButton>
+
+
+
+
+
+
+
+
+
+
+
+                        </StackPanel>
+                     
                     </StackPanel>
 
-                    <Border Grid.Row="2"
-                            Margin="10"
-                            Background="#E2E2EA"
-                            CornerRadius="10">
-                        <Grid>
-                            <Image Source="/Resources/Img/IMG-04.png"
-                                   Margin="0 0 0 5"/>
-                            <Button Grid.Row="1"
-                                    FontSize="14"
-                                    Height="35"
-                                    Width="130"
-                                    Background="#050273"
-                                    VerticalAlignment="Bottom"
-                                    Style="{StaticResource BtnLogin}"
-                                    x:Name="btnVolverALoguear"
-                                    Click="btnVolverALoguear_Click"
-                                    FontFamily="{StaticResource Outfit-Regular}">
-                                Salir
-                            </Button>
-                        </Grid>
-                    </Border>
+
+
+
                 </Grid>
             </Border>
             <Grid Grid.Column="1">
