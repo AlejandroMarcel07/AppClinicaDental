@@ -22,6 +22,8 @@ namespace CapaPresentacion
         public PantallaPrincipal()
         {
             InitializeComponent();
+            this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+            this.MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -47,6 +49,20 @@ namespace CapaPresentacion
             login.Show();
         }
 
-       
+        //private void btnExpandir_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (this.WindowState == WindowState.Normal)
+        //    {
+
+        //        BordePrincipalSombra.Margin = new Thickness(0);
+        //        this.WindowState = WindowState.Maximized;
+                
+        //    }
+        //    else {
+        //        BordePrincipalSombra.Margin = new Thickness(30);
+        //        this.WindowState = WindowState.Normal;
+               
+        //    }
+        //}
     }
 }

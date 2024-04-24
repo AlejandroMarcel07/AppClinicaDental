@@ -2,10 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
     <!--Colores Globales-->
-    <SolidColorBrush x:Key="GlobalColor1" Color="#0A3EBD" />
-    <SolidColorBrush x:Key="GlobalColor2" Color="#000000" />
-    <SolidColorBrush x:Key="GlobalColor3" Color="#FFFFFF" />
-    <SolidColorBrush x:Key="GlobalColor4" Color="#B4A4A4" />
-    <SolidColorBrush x:Key="GlobalColor5" Color="#ED2626" />
+    <SolidColorBrush x:Key="ColorCeleste" Color="#0A3EBD" />
+    <SolidColorBrush x:Key="ColorCelesteBajo" Color="#F2F3FB" />
+    <SolidColorBrush x:Key="ColorBlack" Color="black" />
+    <SolidColorBrush x:Key="ColorNaranja" Color="#FFA500" />
+    <SolidColorBrush x:Key="ColorRojo" Color="#FF0000" />
+    <SolidColorBrush x:Key="ColorAzulon" Color="#080657" />
     
 </ResourceDictionary>

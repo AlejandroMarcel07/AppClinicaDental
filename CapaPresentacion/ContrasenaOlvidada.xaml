@@ -12,7 +12,6 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         MouseDown="Window_MouseDown"
-
         >
 
 
@@ -74,7 +73,7 @@
                                     <Image Source="/Resources/Ico/ImgMinimizar.png"/>
                                 </Grid>-->
                                 <Border CornerRadius="50"
-                                        Background="Orange"></Border>
+                                        Background="{StaticResource ColorNaranja}"></Border>
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
@@ -94,7 +93,7 @@
                                     <Image Source="/Resources/Ico/ImgCerrar.png"/>
                                 </Grid>-->
                                 <Border CornerRadius="50"
-                                        Background="red"></Border>
+                                        Background="{StaticResource ColorRojo}"></Border>
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
@@ -107,11 +106,11 @@
                                FontWeight="UltraBold"
                                >
                        <Run FontFamily="{StaticResource Outfit-Bold}">Contraseña</Run>
-                       <Run Foreground="{StaticResource GlobalColor1}"
+                       <Run Foreground="{StaticResource ColorCeleste}"
                             FontFamily="{StaticResource Outfit-Bold}">Olvidada?</Run>
                     </TextBlock>
                     <TextBlock FontFamily="{StaticResource Outfit-Regular}"                               
-                               FontSize="18"
+                               FontSize="17"
                                FontWeight="Medium"
                                Margin="0 5 0 0">| Recuperala ya!</TextBlock>
                     <TextBlock FontFamily="{StaticResource Outfit-Regular}"
@@ -128,7 +127,7 @@
                              x:Name="txtUsuario"
                              TextChanged="txtUsuario_TextChanged"
                              
-                             > 
+                             >
                     </TextBox>
                     <TextBox Style="{StaticResource CustomTextBoxStyle}"
                              Tag="gmail asociado a su cuenta"
@@ -142,7 +141,7 @@
                                Margin="0 7 0 0"
                                FontSize="14"
                                TextTrimming="CharacterEllipsis">
-                        
+
                     </TextBlock>
                     <Grid Height="35"
                           Margin="0 20 0 0">
@@ -151,13 +150,13 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Button Grid.Column="0"
-                                Margin="0 0 5 0"
+                                Margin="0,0,5,0"
                                 Style="{StaticResource BtnLogin}"
-                                Background="#050273"
+                                Background="{StaticResource ColorAzulon}"
                                 Foreground="white"
                                 x:Name="btnRegresar"
                                 Click="btnRegresar_Click">
-                                
+
                             Atras
                         </Button>
                         <Button Grid.Column="1"
@@ -165,9 +164,9 @@
                                 Style="{StaticResource BtnLogin}"
                                 x:Name="btnEnviarCorreoDeVerificacion"
                                 Click="btnEnviarCorreoDeVerificacion_Click"
-                                Background="{StaticResource GlobalColor1}"
+                                Background="{StaticResource ColorCeleste}"
                                 IsDefault="True">
-                             Enviar
+                            Enviar
                         </Button>
                     </Grid>
                 </StackPanel>

@@ -27,7 +27,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Border CornerRadius="15" 
+            <Border CornerRadius="10" 
                     Grid.Column="0"
                     Margin="18">
                 <Border.Background>
@@ -68,7 +68,7 @@
                                     <Image Source="/Resources/Ico/ImgMinimizar.png"/>
                                 </Grid>-->
                                 <Border CornerRadius="50"
-                                        Background="Orange"></Border>
+                                        Background="{StaticResource ColorNaranja}"></Border>
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
@@ -88,7 +88,7 @@
                                     <Image Source="/Resources/Ico/ImgCerrar.png"/>
                                 </Grid>-->
                                 <Border CornerRadius="50"
-                                        Background="red"></Border>
+                                        Background="{StaticResource ColorRojo}"></Border>
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
@@ -97,14 +97,14 @@
                 <StackPanel Grid.Row="1"
                             Margin="10 13 30 20">
                     <TextBlock FontSize="24"
-                               FontWeight="UltraBold"
+                          
                                >
                        <Run FontFamily="{StaticResource Outfit-Bold}">Bienvenido a</Run>
-                       <Run Foreground="{StaticResource GlobalColor1}"
+                       <Run Foreground="{StaticResource ColorCeleste}"
                             FontFamily="{StaticResource Outfit-Bold}">Densy</Run>
                     </TextBlock>
                     <TextBlock FontFamily="{StaticResource Outfit-Regular}"                               
-                               FontSize="18"
+                               FontSize="17"
                                FontWeight="Medium"
                                Margin="0 5 0 0">| Sistema Clinico Dental</TextBlock>
                     <TextBlock FontFamily="{StaticResource Outfit-Regular}"
@@ -206,7 +206,7 @@
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
                         <Button Style="{StaticResource TransparentButton}"
-                                Foreground="#0A3EBD"
+                                Foreground="{StaticResource ColorCeleste}"
                                 Cursor="Hand"
                                 FontSize="14"
                                 Grid.Column="1"

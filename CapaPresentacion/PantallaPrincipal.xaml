@@ -4,9 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion"
-        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
-        Title="PantallaPrincipal" Height="650" Width="1080"
+        Title="PantallaPrincipal" Height="660" Width="1100"
         WindowStyle="None"
         Background="Transparent" 
         AllowsTransparency="True"
@@ -16,7 +15,8 @@
         >
     <Border Background="#FBFBFB"
             CornerRadius="15"
-            Margin="30">
+            Margin="30"
+            x:Name="BordePrincipalSombra">
         <Border.Effect>
             <DropShadowEffect Opacity="0.4" ShadowDepth="5" BlurRadius="35"
                Direction="150" Color="#545A68"/>
@@ -39,7 +39,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0"
-                          Margin="20">
+                          Margin="20 20 20 20">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="40"/>
@@ -48,7 +48,7 @@
 
                             <Border Grid.Column="0"
                                     CornerRadius="5"
-                                    Background="#3A6FEE">
+                                    Background="{StaticResource ColorCeleste}">
                                 <TextBlock Text="M"
                                            VerticalAlignment="Center"
                                            FontFamily="{StaticResource Outfit-Regular}"
@@ -72,10 +72,13 @@
                                 Orientation="Vertical"
                                 >
 
-                        <Border Background="#EAEFFC"
+                        <Border Background="{StaticResource ColorCelesteBajo}"
                                 Height="35"
-                                CornerRadius="5"
-                                Margin="20">
+                                CornerRadius="2 5 5 2"
+                                Margin="20"
+                                BorderThickness="4 0 0 0"
+                                BorderBrush="Orange" Cursor=""
+                                >
                             <TextBlock
                                        VerticalAlignment="Center"
                                        Margin="20 0 0 0"
@@ -149,26 +152,7 @@
 
 
                             </RadioButton>
-                            <RadioButton Style="{StaticResource menuButton}"
-                                     Tag="white"
-                                     Cursor="Hand"
-                                     Height="35" 
-                                     >
 
-                                <StackPanel Orientation="Horizontal"
-                                            >
-                                    <Path Data="{StaticResource IcoUser}"
-                                          Fill="Black"
-                                          Margin="15 0 15 0"/>
-                                    <TextBlock Text="usuario" 
-                                     Style="{StaticResource menuButtonText}"
-                                     Foreground="Black"
-                                     FontFamily="{StaticResource Outfit-Regular}"
-                                     FontSize="15"/>
-
-                                </StackPanel>
-
-                            </RadioButton>
                             <RadioButton Style="{StaticResource menuButton}"
                                      Tag="white"
                                      Cursor="Hand"
@@ -211,6 +195,8 @@
                                      Tag="white"
                                      Height="35"
                                      Cursor="Hand"
+                                     Margin="0 155 0 0"
+                                     Click="btnVolverALoguear_Click"
                                      >
 
                                 <StackPanel Orientation="Horizontal"
@@ -256,14 +242,14 @@
                             Orientation="Horizontal"
                             FlowDirection="RightToLeft">
                     <Button 
-                            Height="12"
-                            Width="12"
+                            Height="10"
+                            Width="10"
                             x:Name="btnCerrarAplicacion"
                             Click="btnCerrarAplicacion_Click"
                             Background="Transparent"
                             BorderThickness="0"
                             Cursor="Hand"
-                            Margin="20 0 10 0"
+                            Margin="20 0 7 0"
                             VerticalAlignment="Bottom"
                            >
                         <Button.Template>
@@ -276,11 +262,30 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+                    <!--<Button 
+                            x:Name="btnExpandir"
+                            Click="btnExpandir_Click"
+                            Margin="0 0 7 0"
+                            Height="10"
+                            Width="10"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            VerticalAlignment="Bottom"
+                           >
+                        --><!--Agregnado un comentario para probar versiones de github--><!--
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="50"
+                                        Background="#10B70D"></Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>-->
                     <Button 
                             x:Name="btnMinimizarAplicacion"
                             Click="btnMinimizarAplicacion_Click"
-                            Height="12"
-                            Width="12"
+                            Height="10"
+                            Width="10"
                             Background="Transparent"
                             BorderThickness="0"
                             Cursor="Hand"
