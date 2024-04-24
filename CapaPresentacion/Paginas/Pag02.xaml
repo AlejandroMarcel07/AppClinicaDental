@@ -1,0 +1,21 @@
+﻿<Page x:Class="CapaPresentacion.Paginas.Pag02"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CapaPresentacion.Paginas"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="820"
+      Style="{StaticResource Page_Style2}"
+      Title="Pag02">
+
+    <Border Background="#FBFBFB"
+            CornerRadius="10">
+        <TextBlock VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontFamily="{StaticResource Outfit-Regular}"
+                   FontSize="50">
+            Page02
+        </TextBlock>
+    </Border>
+</Page>

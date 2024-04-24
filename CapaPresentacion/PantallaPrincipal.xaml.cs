@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaPresentacion.Paginas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
@@ -24,6 +26,11 @@ namespace CapaPresentacion
         public PantallaPrincipal()
         {
             InitializeComponent();
+
+            //Inicializar frame
+            PagO1.IsChecked = true;
+
+            //Parametros de extender
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             this.MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
 
@@ -63,6 +70,52 @@ namespace CapaPresentacion
             login.Show();
         }
 
+
+        //Metodo de mostrar y evaluar pagina
+        private void MostrarPagina<T>(T pagina) where T : Page
+        {
+            if (!(FrmPrincipal.Content is T))
+            {
+                OcultarPaginaActual();
+                FrmPrincipal.Content = pagina;
+            }
+        }
+
+        //Si se encuentra una pagina en el frame la colapsara
+        private void OcultarPaginaActual()
+        {
+            if (FrmPrincipal.Content is Page paginaActual)
+            {
+                paginaActual.Visibility = Visibility.Collapsed;
+            }
+        }
+
+
+        private void Pag01_Click(object sender, RoutedEventArgs e)
+        {
+            MostrarPagina(new Pag01());
+        }
+
+        private void Pag02_Click(object sender, RoutedEventArgs e)
+        {
+            MostrarPagina(new Pag02());
+        }
+
+        private void Pag03_Click(object sender, RoutedEventArgs e)
+        {
+            MostrarPagina(new Page3());
+        }
+
+        private void Pag04_Click(object sender, RoutedEventArgs e)
+        {
+            MostrarPagina(new Page4());
+        }
+
+        private void Pag05_Click(object sender, RoutedEventArgs e)
+        {
+            MostrarPagina(new Page5());
+        }
+
         //private void btnExpandir_Click(object sender, RoutedEventArgs e)
         //{
         //    if (this.WindowState == WindowState.Normal)
@@ -70,12 +123,12 @@ namespace CapaPresentacion
 
         //        BordePrincipalSombra.Margin = new Thickness(0);
         //        this.WindowState = WindowState.Maximized;
-                
+
         //    }
         //    else {
         //        BordePrincipalSombra.Margin = new Thickness(30);
         //        this.WindowState = WindowState.Normal;
-               
+
         //    }
         //}
     }

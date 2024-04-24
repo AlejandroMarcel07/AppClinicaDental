@@ -22,4 +22,41 @@
             </EventTrigger>
         </Style.Triggers>
     </Style>
+    <Style x:Key="Page_Style2"
+       TargetType="{x:Type Page}">
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TranslateTransform  X="0"
+                                 Y="30"/>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Visibility"
+                 Value="Collapsed">
+                <Setter Property="Opacity"
+                    Value="0"/>
+
+
+            </Trigger>
+            <EventTrigger RoutedEvent="Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                     Duration="0:0:0.2"
+                                     From="0"
+                                     To="1"
+                                     />
+                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                                     From="30"
+                                     To="0"
+                                     Duration="0:0:0.2"
+                                     DecelerationRatio="0.1"/>
+                    </Storyboard>
+                </BeginStoryboard>
+
+            </EventTrigger>
+
+        </Style.Triggers>
+
+    </Style>
 </ResourceDictionary>

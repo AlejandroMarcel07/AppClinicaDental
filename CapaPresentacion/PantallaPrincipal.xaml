@@ -12,6 +12,7 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         MouseDown="Window_MouseDown"
+        
         >
     <Border Background="#FBFBFB"
             CornerRadius="15"
@@ -85,15 +86,17 @@
                                        FontFamily="{StaticResource Outfit-Regular}"
                                        FontSize="15"
                                        Text="| Navegación"/>
-                            
+
                         </Border>
 
                         <StackPanel Margin="20">
 
-                        <RadioButton Style="{StaticResource menuButton}"
+                            <RadioButton Style="{StaticResource menuButton}"
                                      Tag="white"
                                      Height="35"
-                                     Cursor="Hand">
+                                     Cursor="Hand"
+                                     x:Name="PagO1"
+                                     Click="Pag01_Click">
                                 
                                 <StackPanel Orientation="Horizontal"
                                             >
@@ -107,13 +110,15 @@
                                      FontFamily="{StaticResource Outfit-Regular}"
                                      FontSize="15" Cursor=""/>
 
-                                 </StackPanel>
-                
-                        </RadioButton>
+                                </StackPanel>
+
+                            </RadioButton>
                             <RadioButton Style="{StaticResource menuButton}"
                                      Tag="white"
                                      Cursor="Hand"
-                                         Height="35"
+                                     Height="35"
+                                     x:Name="Pag02"
+                                     Click="Pag02_Click"
                                          >
 
                                 <StackPanel Orientation="Horizontal"
@@ -133,7 +138,9 @@
                             <RadioButton Style="{StaticResource menuButton}"
                                      Tag="white"
                                      Cursor="Hand"
-                                         Height="35">
+                                         Height="35"
+                                         x:Name="Pag03"
+                                         Click="Pag03_Click">
 
                                 <StackPanel Orientation="Horizontal"
                                             >
@@ -156,7 +163,9 @@
                             <RadioButton Style="{StaticResource menuButton}"
                                      Tag="white"
                                      Cursor="Hand"
-                                     Height="35">
+                                     Height="35"
+                                         x:Name="Pag04"
+                                         Click="Pag04_Click">
 
                                 <StackPanel Orientation="Horizontal"
                                             >
@@ -175,7 +184,9 @@
                             <RadioButton Style="{StaticResource menuButton}"
                                      Tag="white"
                                      Cursor="Hand"
-                                     Height="35">
+                                     Height="35"
+                                         x:Name="Pag05"
+                                         Click="Pag05_Click">
 
                                 <StackPanel Orientation="Horizontal"
                                             >
@@ -195,7 +206,7 @@
                                      Tag="white"
                                      Height="35"
                                      Cursor="Hand"
-                                     Margin="0 155 0 0"
+                                     Margin="0 160 0 0"
                                      Click="btnVolverALoguear_Click"
                                      >
 
@@ -214,22 +225,9 @@
 
                             </RadioButton>
 
-
-
-
-
-
-
-
-
-
-
                         </StackPanel>
-                     
+
                     </StackPanel>
-
-
-
 
                 </Grid>
             </Border>
@@ -247,7 +245,7 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0"
                                 VerticalAlignment="Bottom"
-                                Margin="20 0">
+                                Margin="30 0">
                         <TextBlock FontFamily="{StaticResource Outfit-Regular}"
                                    FontSize="14"
                                    x:Name="txtTextBlokTiempo">
@@ -333,6 +331,10 @@
 
                 </Grid>
                 <Frame Grid.Row="1"
+                       x:Name="FrmPrincipal"
+                       NavigationUIVisibility="Hidden"
+                       Source="/Paginas/Pag01.xaml"
+                       Margin="30"
                        >
                 </Frame>
             </Grid>

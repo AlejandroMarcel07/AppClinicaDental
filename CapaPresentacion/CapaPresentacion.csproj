@@ -67,6 +67,21 @@
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Pag01.xaml.cs">
+      <DependentUpon>Pag01.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Pag02.xaml.cs">
+      <DependentUpon>Pag02.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Page3.xaml.cs">
+      <DependentUpon>Page3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Page4.xaml.cs">
+      <DependentUpon>Page4.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Page5.xaml.cs">
+      <DependentUpon>Page5.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PantallaPrincipal.xaml.cs">
       <DependentUpon>PantallaPrincipal.xaml</DependentUpon>
     </Compile>
@@ -107,6 +122,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Paginas\Pag01.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Pag02.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Page3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Page4.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Page5.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PantallaPrincipal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -142,7 +177,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controles\" />
-    <Folder Include="Paginas\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Img\IMG_01.png" />
