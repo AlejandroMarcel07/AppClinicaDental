@@ -238,10 +238,38 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0"
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+
+                        <ColumnDefinition Width="70"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0"
+                                VerticalAlignment="Bottom"
+                                Margin="20 0">
+                        <TextBlock FontFamily="{StaticResource Outfit-Regular}"
+                                   FontSize="14"
+                                   x:Name="txtTextBlokTiempo">
+                            | Fecha
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1"
+                                VerticalAlignment="Bottom"
+                                Margin="20 0"
+                                Orientation="Horizontal"
+                                FlowDirection="RightToLeft">
+                        <TextBlock FontFamily="{StaticResource Outfit-Regular}"
+                                   FontSize="14"
+                                   x:Name="textBlockFecha">
+                           | Hora
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2"
                             Orientation="Horizontal"
                             FlowDirection="RightToLeft">
-                    <Button 
+                        <Button 
                             Height="10"
                             Width="10"
                             x:Name="btnCerrarAplicacion"
@@ -252,17 +280,17 @@
                             Margin="20 0 7 0"
                             VerticalAlignment="Bottom"
                            >
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <!--<Grid>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <!--<Grid>
                                     <Image Source="/Resources/Ico/ImgMinimizar.png"/>
                                 </Grid>-->
-                                <Border CornerRadius="50"
+                                    <Border CornerRadius="50"
                                         Background="red"></Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <!--<Button 
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <!--<Button 
                             x:Name="btnExpandir"
                             Click="btnExpandir_Click"
                             Margin="0 0 7 0"
@@ -273,7 +301,9 @@
                             Cursor="Hand"
                             VerticalAlignment="Bottom"
                            >
-                        --><!--Agregnado un comentario para probar versiones de github--><!--
+                        -->
+                        <!--Agregnado un comentario para probar versiones de github-->
+                        <!--
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="50"
@@ -281,7 +311,7 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>-->
-                    <Button 
+                        <Button 
                             x:Name="btnMinimizarAplicacion"
                             Click="btnMinimizarAplicacion_Click"
                             Height="10"
@@ -291,15 +321,20 @@
                             Cursor="Hand"
                             VerticalAlignment="Bottom"
                            >
-                        <!--Agregnado un comentario para probar versiones de github-->
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border CornerRadius="50"
+                            <!--Agregnado un comentario para probar versiones de github-->
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border CornerRadius="50"
                                         Background="Orange"></Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                </StackPanel>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+
+                </Grid>
+                <Frame Grid.Row="1"
+                       >
+                </Frame>
             </Grid>
         </Grid>
     </Border>

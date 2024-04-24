@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace CapaPresentacion
 {
@@ -19,13 +20,26 @@ namespace CapaPresentacion
     /// </summary>
     public partial class PantallaPrincipal : Window
     {
+        private DispatcherTimer timer;
         public PantallaPrincipal()
         {
             InitializeComponent();
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             this.MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
+
+            // Inicializar el timer para actualizar la hora cada segundo
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Timer_Tick;
+            timer.Start();
         }
 
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            // Actualizar el TextBlock con la hora actual en formato de 12 horas (con AM/PM)
+            txtTextBlokTiempo.Text = DateTime.Now.ToString("| "+"hh:mm tt");
+            textBlockFecha.Text = DateTime.Now.ToString("| "+ "dddd dd 'de' MMMM 'del' yyyy");
+        }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)

@@ -69,29 +69,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="BtnHome" TargetType="Button">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="FontSize" Value="15"/>
-        <Setter Property="FontFamily" Value="{StaticResource Outfit-Regular}"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}"
-                    BorderBrush="{TemplateBinding BorderBrush}"
-                    BorderThickness="{TemplateBinding BorderThickness}"
-                    CornerRadius="5">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <fa:FontAwesome Icon="Home" FontSize="18" Margin="15 0 15 0" />
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+
 
 
 
