@@ -38,22 +38,45 @@
                     <TextBox Height="35"
                              Style="{StaticResource CustomTextBoxStyle}"
                              Tag="usuario"
+                             TextChanged="txtUsuarioVerificar_TextChanged"
+                             x:Name="txtUsuarioVerificar"
                              Margin="0 10 0 0"/>
                     <TextBox Height="35"
                              Style="{StaticResource CustomTextBoxStyle}"
                              Tag="Contraseña"
-                             Margin="0 10 0 0"/>
-                    <StackPanel Height="35"
-                                Margin="0 10 0 0">
-                        <Button Height="30"
+                             TextChanged="txtContrasenaVerificar_TextChanged"
+                             x:Name="txtContrasenaVerificar"
+                             Margin="0 10 0 0" />
+                    <Grid    
+                             
+                             Margin="0 10 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Width="205"
+                                   VerticalAlignment="Center"
+                                   FontSize="14"
+                                   x:Name="txtMensaje"
+                                   FontFamily="{StaticResource Outfit-Regular}"
+                                   >
+
+                        </TextBlock>
+
+                        <Button Height="25"
+                                 Grid.Column="1"
                                 Style="{StaticResource BtnLogin}"
-                                Width="80"
+                                Width="70"
+                                x:Name="btnVerificarIdentidad"
+                                Click="btnVerificarIdentidad_Click"
                                 FontFamily="{StaticResource Outfit-Regular}"
-                                HorizontalAlignment="Right"
-                                Content="Verificar">
-                            
+                                HorizontalAlignment="Left"
+                                Content="Verificar"
+                                IsDefault="True"
+                                Background="#B9B9B9" Cursor="Hand" >
+
                         </Button>
-                    </StackPanel>
+                    </Grid>
 
                     <!--Cuenta de Administrador-->
                     <TextBlock Text="Cuenta de Administrador"
@@ -94,6 +117,8 @@
                              Style="{StaticResource CustomTextBoxStyle}"
                              Tag="Contraseña"
                              Margin="0 10 0 0"/>
+                    <Separator Height="20"
+                               Background="Transparent"/>
                 </StackPanel>
             </ScrollViewer>
             <Grid Grid.Column="1">
@@ -123,12 +148,12 @@
                     </Border>
                 </StackPanel>
                 <Grid Grid.Row="1">
-                    <Button Height="30"
-                            Width="130"
+                    <Button Height="35"
+                            Width="120"
                             Style="{StaticResource BtnLogin}"
                             Content="Guardar cambios"
                             VerticalAlignment="Bottom"
-                            HorizontalAlignment="Right"/>
+                            HorizontalAlignment="Right" Cursor="Hand"/>
                 </Grid>
             </Grid>
         </Grid>
