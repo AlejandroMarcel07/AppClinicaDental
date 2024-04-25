@@ -1,6 +1,7 @@
 ﻿using CapaPresentacion.Paginas;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,7 +46,8 @@ namespace CapaPresentacion
         {
             // Actualizar el TextBlock con la hora actual en formato de 12 horas (con AM/PM)
             txtTextBlokTiempo.Text = DateTime.Now.ToString("| "+"hh:mm tt");
-            textBlockFecha.Text = DateTime.Now.ToString("| "+ "dddd dd 'de' MMMM 'del' yyyy");
+            textBlockFecha.Text = CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek).ToUpper().Substring(0, 1) + CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek).Substring(1) + " " + DateTime.Now.ToString("dd 'de' MMMM 'del' yyyy");
+
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {

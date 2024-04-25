@@ -154,13 +154,17 @@
                                 Style="{StaticResource BtnLogin}"
                                 Background="{StaticResource ColorAzulon}"
                                 Foreground="white"
+                            
                                 x:Name="btnRegresar"
+                                FontFamily="{StaticResource Outfit-Regular}"
                                 Click="btnRegresar_Click">
 
                             Atras
                         </Button>
                         <Button Grid.Column="1"
+                                FontFamily="{StaticResource Outfit-Regular}"
                                 Margin="5 0 0 0"
+                               
                                 Style="{StaticResource BtnLogin}"
                                 x:Name="btnEnviarCorreoDeVerificacion"
                                 Click="btnEnviarCorreoDeVerificacion_Click"

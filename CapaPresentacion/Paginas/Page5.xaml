@@ -6,16 +6,131 @@
       xmlns:local="clr-namespace:CapaPresentacion.Paginas"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="820"
-      Style="{StaticResource Page_Style2}"
       Title="Page5">
 
     <Border Background="#FBFBFB"
             CornerRadius="10">
-        <TextBlock VerticalAlignment="Center"
-                   HorizontalAlignment="Center"
-                   FontFamily="{StaticResource Outfit-Regular}"
-                   FontSize="50">
-            Page05
-        </TextBlock>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ScrollViewer FlowDirection="RightToLeft"
+                          Grid.Column="0"
+                         >
+                <StackPanel Margin="0 0 10 0"
+                            FlowDirection="LeftToRight">
+                    <TextBlock Text="| Configuración"
+                               FontFamily="{StaticResource Outfit-Bold}"
+                               FontSize="22"
+                               />
+                    <!--Paso de acceso-->
+                    <TextBlock Text="Acceso (Administras tus cuentas)"
+                               FontFamily="{StaticResource Outfit-Bold}"
+                               FontSize="17"
+                               Margin="0 20 0 0"/>
+                    <TextBlock
+                        FontFamily="{StaticResource Outfit-Regular}"
+                        FontSize="15"
+                        TextWrapping="Wrap"
+                        Margin="0 5 0 0"
+                        Text="Ingresa tu usuario y contraseña para validar que eres tu el administrador"/>
+                    <TextBox Height="35"
+                             Style="{StaticResource CustomTextBoxStyle}"
+                             Tag="usuario"
+                             Margin="0 10 0 0"/>
+                    <TextBox Height="35"
+                             Style="{StaticResource CustomTextBoxStyle}"
+                             Tag="Contraseña"
+                             Margin="0 10 0 0"/>
+                    <StackPanel Height="35"
+                                Margin="0 10 0 0">
+                        <Button Height="30"
+                                Style="{StaticResource BtnLogin}"
+                                Width="80"
+                                FontFamily="{StaticResource Outfit-Regular}"
+                                HorizontalAlignment="Right"
+                                Content="Verificar">
+                            
+                        </Button>
+                    </StackPanel>
+
+                    <!--Cuenta de Administrador-->
+                    <TextBlock Text="Cuenta de Administrador"
+                               FontFamily="{StaticResource Outfit-Bold}"
+                               FontSize="17"
+                               Margin="0 30 0 0"/>
+                    <TextBlock
+                        FontFamily="{StaticResource Outfit-Regular}"
+                        FontSize="15"
+                        TextWrapping="Wrap"
+                        Margin="0 5 0 0"
+                        Text="Actualiza informacion del perfil de Administrador"/>
+                    <TextBox Height="35"
+                             Style="{StaticResource CustomTextBoxStyle}"
+                             Tag="usuario"
+                             Margin="0 10 0 0"/>
+                    <TextBox Height="35"
+                             Style="{StaticResource CustomTextBoxStyle}"
+                             Tag="Contraseña"
+                             Margin="0 10 0 0"/>
+
+                    <!--Cuenta de Asistente-->
+                    <TextBlock Text="Cuenta de Asistente"
+                               FontFamily="{StaticResource Outfit-Bold}"
+                               FontSize="17"
+                               Margin="0 30 0 0"/>
+                    <TextBlock
+                        FontFamily="{StaticResource Outfit-Regular}"
+                        FontSize="15"
+                        TextWrapping="Wrap"
+                        Margin="0 5 0 0"
+                        Text="Actualiza informacion del perfil de Asistente"/>
+                    <TextBox Height="35"
+                             Style="{StaticResource CustomTextBoxStyle}"
+                             Tag="usuario"
+                             Margin="0 10 0 0"/>
+                    <TextBox Height="35"
+                             Style="{StaticResource CustomTextBoxStyle}"
+                             Tag="Contraseña"
+                             Margin="0 10 0 0"/>
+                </StackPanel>
+            </ScrollViewer>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0"
+                            Orientation="Vertical">
+                    <Border Width="200"
+                            Height="200"
+                            HorizontalAlignment="Right"
+                            BorderBrush="Black"
+                            BorderThickness="1"
+                            CornerRadius="5">
+                        <StackPanel Orientation="Vertical"
+                                    Margin="10">
+                            <TextBlock Text="Nota:"
+                                       FontFamily="{StaticResource Outfit-Bold}"
+                                       FontSize="15"/>
+                            <TextBlock Text=" Ten en cuenta que cambiar tu contraseña y nombre de usuario afectará el acceso a tu cuenta. Asegúrate de recordar la nueva información y de mantenerla segura. ¿Estás seguro de continuar con estos cambios?"
+                                       FontFamily="{StaticResource Outfit-Regular}"
+                                       FontSize="14"
+                                       TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+                <Grid Grid.Row="1">
+                    <Button Height="30"
+                            Width="130"
+                            Style="{StaticResource BtnLogin}"
+                            Content="Guardar cambios"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Right"/>
+                </Grid>
+            </Grid>
+        </Grid>
     </Border>
 </Page>

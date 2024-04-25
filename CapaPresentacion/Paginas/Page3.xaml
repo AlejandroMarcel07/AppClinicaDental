@@ -6,7 +6,6 @@
       xmlns:local="clr-namespace:CapaPresentacion.Paginas"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="820"
-      Style="{StaticResource Page_Style2}"
       Title="Page3">
 
     <Border Background="#FBFBFB"
