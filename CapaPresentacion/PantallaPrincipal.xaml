@@ -38,6 +38,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="80"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="90"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0"
                           Margin="20 20 20 20">
@@ -202,30 +203,34 @@
                                 </StackPanel>
 
                             </RadioButton>
-                            <RadioButton Style="{StaticResource menuButton}"
+
+                        </StackPanel>
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="2"
+                                Margin="20">
+
+                        <RadioButton Style="{StaticResource menuButton}"
                                      Tag="white"
                                      Height="35"
                                      Cursor="Hand"
-                                     Margin="0 160 0 0"
                                      Click="btnVolverALoguear_Click"
                                      >
 
-                                <StackPanel Orientation="Horizontal"
+                            <StackPanel Orientation="Horizontal"
                                             >
-                                    <Path Data="{StaticResource IcoSignOut}"
+                                <Path Data="{StaticResource IcoSignOut}"
                                           Fill="Black"
                                           Margin="15 0 15 0"/>
-                                    <TextBlock Text="Cerrar Sesion" 
+                                <TextBlock Text="Cerrar Sesion" 
                                      Style="{StaticResource menuButtonText}"
                                      Foreground="Black"
                                      FontFamily="{StaticResource Outfit-Regular}"
                                      FontSize="15"/>
 
-                                </StackPanel>
+                            </StackPanel>
 
-                            </RadioButton>
-
-                        </StackPanel>
+                        </RadioButton>
 
                     </StackPanel>
 
@@ -285,7 +290,7 @@
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
-                        <!--<Button 
+                        <Button 
                             x:Name="btnExpandir"
                             Click="btnExpandir_Click"
                             Margin="0 0 7 0"
@@ -296,16 +301,16 @@
                             Cursor="Hand"
                             VerticalAlignment="Bottom"
                            >
-                        -->
+                        
                         <!--Agregnado un comentario para probar versiones de github-->
-                        <!--
+                        
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="50"
                                         Background="#10B70D"></Border>
                             </ControlTemplate>
                         </Button.Template>
-                    </Button>-->
+                    </Button>
                         <Button 
                             x:Name="btnMinimizarAplicacion"
                             Click="btnMinimizarAplicacion_Click"
