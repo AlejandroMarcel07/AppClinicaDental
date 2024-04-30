@@ -66,7 +66,7 @@
                                 <TextBlock Text="Asistente"
                                            FontFamily="{StaticResource Outfit-Regular}"
                                            FontSize="15"/>
-                                
+
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -98,7 +98,7 @@
                                      Cursor="Hand"
                                      x:Name="PagO1"
                                      Click="Pag01_Click">
-                                
+
                                 <StackPanel Orientation="Horizontal"
                                             >
                                     <Path Data="{StaticResource IcoHome}"
@@ -280,7 +280,7 @@
                             Background="Transparent"
                             BorderThickness="0"
                             Cursor="Hand"
-                            Margin="20 0 7 0"
+                            Margin="20 0 6 0"
                             VerticalAlignment="Bottom"
                            >
                             <Button.Template>
@@ -293,7 +293,7 @@
                         <Button 
                             x:Name="btnExpandir"
                             Click="btnExpandir_Click"
-                            Margin="0 0 7 0"
+                            Margin="0 0 6 0"
                             Height="10"
                             Width="10"
                             Background="Transparent"
@@ -301,16 +301,16 @@
                             Cursor="Hand"
                             VerticalAlignment="Bottom"
                            >
-                        
-                        <!--Agregnado un comentario para probar versiones de github-->
-                        
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border CornerRadius="50"
+
+                            <!--Agregnado un comentario para probar versiones de github-->
+
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border CornerRadius="50"
                                         Background="#10B70D"></Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
                         <Button 
                             x:Name="btnMinimizarAplicacion"
                             Click="btnMinimizarAplicacion_Click"

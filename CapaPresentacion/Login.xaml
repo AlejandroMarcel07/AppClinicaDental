@@ -131,6 +131,7 @@
                                        Foreground="#A5A3A3"
                                        x:Name="EtiquetaUsuario"
                                        Cursor="IBeam"   
+
                                        FontSize="14"
                                        FontFamily="{StaticResource Outfit-Regular}"
                                        Grid.Column="1"

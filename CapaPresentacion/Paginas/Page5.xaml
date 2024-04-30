@@ -151,8 +151,10 @@
                     <Button Height="35"
                             Width="120"
                             Style="{StaticResource BtnLogin}"
+                            FontFamily="{StaticResource Outfit-Regular}"
                             Content="Guardar cambios"
                             VerticalAlignment="Bottom"
+                            FontSize="12"
                             HorizontalAlignment="Right" Cursor="Hand"/>
                 </Grid>
             </Grid>

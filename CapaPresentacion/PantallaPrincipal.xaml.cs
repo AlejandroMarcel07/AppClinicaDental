@@ -45,7 +45,7 @@ namespace CapaPresentacion
         private void Timer_Tick(object sender, EventArgs e)
         {
             // Actualizar el TextBlock con la hora actual en formato de 12 horas (con AM/PM)
-            txtTextBlokTiempo.Text = DateTime.Now.ToString("| "+"hh:mm tt");
+            txtTextBlokTiempo.Text = DateTime.Now.ToString("| " + "hh:mm tt");
             textBlockFecha.Text = CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek).ToUpper().Substring(0, 1) + CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek).Substring(1) + " " + DateTime.Now.ToString("dd 'de' MMMM 'del' yyyy");
 
         }
