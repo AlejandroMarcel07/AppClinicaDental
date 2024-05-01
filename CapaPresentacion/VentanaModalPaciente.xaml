@@ -11,7 +11,7 @@
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        MouseDown="Window_MouseDown" Cursor=""
+        MouseDown="Window_MouseDown" 
         >
     <Border Background="#FBFBFB"
             CornerRadius="10"
@@ -39,7 +39,7 @@
                             Background="Transparent"
                             BorderThickness="0"
                             Cursor="Hand"
-                            Margin="15 0 8 0"
+                            Margin="15 0 7 0"
                             VerticalAlignment="Bottom"
                            >
                     <Button.Template>

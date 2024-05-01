@@ -67,9 +67,8 @@ namespace CapaPresentacion
 
         private void btnVolverALoguear_Click(object sender, RoutedEventArgs e)
         {
-            Login login = new Login();
-            this.Close();
-            login.Show();
+            VentanEmergente ventanaemergente = new VentanEmergente(this);
+            ventanaemergente.ShowDialog();
         }
 
 

@@ -62,6 +62,9 @@
     <Compile Include="VentanaModalPaciente.xaml.cs">
       <DependentUpon>VentanaModalPaciente.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VentanEmergente.xaml.cs">
+      <DependentUpon>VentanEmergente.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContrasenaOlvidada.xaml.cs">
@@ -178,6 +181,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VentanaModalPaciente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanEmergente.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
