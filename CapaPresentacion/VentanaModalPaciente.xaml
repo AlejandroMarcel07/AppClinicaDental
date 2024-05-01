@@ -5,8 +5,141 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion"
         mc:Ignorable="d"
-        Title="VentanaModalPaciente" Height="450" Width="800">
-    <Grid>
+        Title="VentanaModalPaciente" Height="525" Width="350"
+        WindowStyle="None"
+        Background="Transparent" 
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        MouseDown="Window_MouseDown" Cursor=""
+        >
+    <Border Background="#FBFBFB"
+            CornerRadius="10"
+            Margin="30">
         
-    </Grid>
+        <Border.Effect>
+            <DropShadowEffect Opacity="0.4" ShadowDepth="5" BlurRadius="35"
+               Direction="150" Color="#545A68"/>
+        </Border.Effect>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Column="2"
+                            Orientation="Horizontal"
+                            FlowDirection="RightToLeft">
+                <Button 
+                            Height="10"
+                            Width="10"
+                            x:Name="btnCerrarAplicacion"
+                            Click="btnCerrarAplicacion_Click"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            Margin="15 0 8 0"
+                            VerticalAlignment="Bottom"
+                           >
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="50"
+                                        Background="red"></Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button 
+                            x:Name="btnMinimizarAplicacion"
+                            Height="10"
+                            Click="btnMinimizarAplicacion_Click"
+                            Width="10"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            VerticalAlignment="Bottom"
+                           >
+                    <!--Agregnado un comentario para probar versiones de github-->
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="50"
+                                        Background="Orange"></Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Vertical"
+                        Margin="20 0 20 10">
+                
+                <!--Paso de acceso-->
+                <TextBlock Text="| Nuevo paciente"
+                               FontFamily="{StaticResource Outfit-Bold}"
+                               FontSize="17"
+                               Margin="0 10 0 0"/>
+                <TextBlock
+                        FontFamily="{StaticResource Outfit-Regular}"
+                        FontSize="15"
+                        TextWrapping="Wrap"
+                        Margin="0 10 0 0"
+                        Text="Por favor, completa todos los campos ya que son obligatorios para continuar."/>
+                <TextBlock Text="Completado*" Foreground="Green" HorizontalAlignment="Left"
+                           Margin="0 5 0 0"
+                                   FontFamily="{StaticResource Outfit-Regular}" FontSize="15"
+                                   />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="240"/>
+                        <RowDefinition Height="60"/>
+                    </Grid.RowDefinitions>
+                    <ScrollViewer Grid.Row="0" Margin="0 20 0 0">
+                        <StackPanel Orientation="Vertical"  Margin="0 0 10 0">
+                            <TextBox Style="{StaticResource CustomTextBoxStyle}"
+                         Tag="nombre completo" Margin="0 0 0 0"/>
+                            <TextBox Style="{StaticResource CustomTextBoxStyle}"
+                         Tag="edad" Margin="0 10 0 0"/>
+                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}"                                   
+                                      Height="35"
+                                      FontSize="14"                                
+                                      Name="txtEstado"
+                                      FontFamily="{StaticResource Outfit-Regular}"
+                                      Margin="0,10,0,0"
+                                    >
+                                <ComboBoxItem Content="Masculino" FontFamily="{StaticResource Outfit-Regular}" Foreground="#A59EA5" FontSize="12"/>
+                                <ComboBoxItem Content="Feminino" FontFamily="{StaticResource Outfit-Regular}" Foreground="#A59EA5" FontSize="12"/>
+
+
+                            </ComboBox>
+                            <TextBox Style="{StaticResource CustomTextBoxStyle}"
+                         Tag="direccion" Margin="0 10 0 0"/>
+                            <TextBox Style="{StaticResource CustomTextBoxStyle}"
+                         Tag="cedula" Margin="0 10 0 0"/>
+                            <TextBox Style="{StaticResource CustomTextBoxStyle}"
+                         Tag="telefono" Margin="0 10 0 0"/>
+                            <TextBox Style="{StaticResource CustomTextBoxStyle}"
+                         Tag="gmail" Margin="0 10 0 0"/>
+                            <TextBox Style="{StaticResource CustomTextBoxStyle}"
+                         Tag="ocupación" Margin="0 10 0 0"/>
+
+                        </StackPanel>
+                    </ScrollViewer>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" FlowDirection="RightToLeft">
+                        <Button Style="{StaticResource BtnLogin}" Width="70" Height="25"
+                                
+                                Content="Guardar" FontFamily="{StaticResource Outfit-Regular}"
+                                Margin="0 0 10 0" VerticalAlignment="Bottom" Cursor="Hand"/>
+                        <Button Style="{StaticResource BtnLogin}" Width="70" Height="25"
+                                Content="Cancelar" FontFamily="{StaticResource Outfit-Regular}"
+                                Background="{StaticResource ColorAzulon}"
+                                VerticalAlignment="Bottom" Margin="0 0 15 0" x:Name="btnCancelar"
+                                Click="btnCancelar_Click"/>
+
+                    </StackPanel>
+                       
+                </Grid>
+
+            </StackPanel>
+
+        </Grid>
+   
+    </Border>
 </Window>

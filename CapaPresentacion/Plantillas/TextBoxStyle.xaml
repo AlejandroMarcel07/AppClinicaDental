@@ -48,7 +48,7 @@
     <Style x:Key="CustomPasswordBoxStyle" TargetType="{x:Type PasswordBox}">
         <Setter Property="Height" Value="35"/>
         <Setter Property="Background" Value="#EDEFF1"/>
-        <Setter Property="BorderBrush" Value="#EDEFF1"/>
+        <Setter Property="BorderBrush" Value="#A5A3A3"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Foreground" Value="#a5aab5"/>
         <Setter Property="FontFamily" Value="{StaticResource Outfit-Regular}"/>

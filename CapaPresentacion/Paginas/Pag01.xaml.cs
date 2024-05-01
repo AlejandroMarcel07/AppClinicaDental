@@ -49,6 +49,7 @@ namespace CapaPresentacion.Paginas
             }
         }
 
+        //Btn PRINCIPAL
         private void AgregarPaciennte_Click(object sender, RoutedEventArgs e)
         {
             VentanaModalPaciente ventanamodal = new VentanaModalPaciente();
