@@ -11,7 +11,7 @@ namespace CapaDatos
     public class ConexionCD
     {
 
-        private SqlConnection Conexion = new SqlConnection("Data Source= DESKTOP-E77K5U7\\SQLEXPRESS; Database= NombreBaseDeDatos; Integrated Security = True");
+        private SqlConnection Conexion = new SqlConnection("Data Source= DESKTOP-E77K5U7\\SQLEXPRESS; Database= BD_Densy; Integrated Security = True");
 
         public SqlConnection AbrirConexiono()
         {

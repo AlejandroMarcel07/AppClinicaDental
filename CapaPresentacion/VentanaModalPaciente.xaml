@@ -82,7 +82,7 @@
                         TextWrapping="Wrap"
                         Margin="0 10 0 0"
                         Text="Por favor, completa todos los campos ya que son obligatorios para continuar."/>
-                <TextBlock Text="Completado*" Foreground="Green" HorizontalAlignment="Left"
+                <TextBlock x:Name="textMensaje" HorizontalAlignment="Left"
                            Margin="0 5 0 0"
                                    FontFamily="{StaticResource Outfit-Regular}" FontSize="15"
                                    />
@@ -93,14 +93,15 @@
                     </Grid.RowDefinitions>
                     <ScrollViewer Grid.Row="0" Margin="0 20 0 0">
                         <StackPanel Orientation="Vertical"  Margin="0 0 10 0">
+                            <TextBox Style="{StaticResource CustomTextBoxStyle}" TextChanged="txtNombreCompleto_TextChanged"
+                         Tag="nombre completo" Margin="0 0 0 0" x:Name="txtNombreCompleto"/>
                             <TextBox Style="{StaticResource CustomTextBoxStyle}"
-                         Tag="nombre completo" Margin="0 0 0 0"/>
-                            <TextBox Style="{StaticResource CustomTextBoxStyle}"
-                         Tag="edad" Margin="0 10 0 0"/>
+                         Tag="edad" Margin="0 10 0 0" x:Name="txtEdad" TextChanged="txtEdad_TextChanged"/>
                             <ComboBox Style="{StaticResource ComboBoxFlatStyle}"                                   
                                       Height="35"
+                                      SelectionChanged="cmbGenero_SelectionChanged"
+                                      x:Name="cmbGenero"
                                       FontSize="14"                                
-                                      Name="txtEstado"
                                       FontFamily="{StaticResource Outfit-Regular}"
                                       Margin="0,10,0,0"
                                     >
@@ -110,23 +111,23 @@
 
                             </ComboBox>
                             <TextBox Style="{StaticResource CustomTextBoxStyle}"
-                         Tag="direccion" Margin="0 10 0 0"/>
-                            <TextBox Style="{StaticResource CustomTextBoxStyle}"
-                         Tag="cedula" Margin="0 10 0 0"/>
-                            <TextBox Style="{StaticResource CustomTextBoxStyle}"
-                         Tag="telefono" Margin="0 10 0 0"/>
-                            <TextBox Style="{StaticResource CustomTextBoxStyle}"
-                         Tag="gmail" Margin="0 10 0 0"/>
-                            <TextBox Style="{StaticResource CustomTextBoxStyle}"
-                         Tag="ocupación" Margin="0 10 0 0"/>
+                         Tag="direccion" Margin="0 10 0 0" x:Name="txtDireccion" TextChanged="txtDireccion_TextChanged"/>
+                            <TextBox Style="{StaticResource CustomTextBoxStyle}" TextChanged="txtCedula_TextChanged"
+                         Tag="cedula" Margin="0 10 0 0" x:Name="txtCedula"/>
+                            <TextBox Style="{StaticResource CustomTextBoxStyle}" TextChanged="txtTelefono_TextChanged"
+                         Tag="telefono" Margin="0 10 0 0" x:Name="txtTelefono"/>
+                            <TextBox Style="{StaticResource CustomTextBoxStyle}" TextChanged="txtGmail_TextChanged"
+                         Tag="gmail" Margin="0 10 0 0" x:Name="txtGmail"/>
+                            <TextBox Style="{StaticResource CustomTextBoxStyle}" TextChanged="txtOcupacion_TextChanged"
+                         Tag="ocupación" Margin="0 10 0 0" x:Name="txtOcupacion"/>
 
                         </StackPanel>
                     </ScrollViewer>
                     <StackPanel Grid.Row="1" Orientation="Horizontal" FlowDirection="RightToLeft">
                         <Button Style="{StaticResource BtnLogin}" Width="70" Height="25"
-                                
+                                Click="btnGuardarPaciente_Click" 
                                 Content="Guardar" FontFamily="{StaticResource Outfit-Regular}"
-                                Margin="0 0 10 0" VerticalAlignment="Bottom" Cursor="Hand"/>
+                                Margin="0 0 10 0" VerticalAlignment="Bottom" Cursor="Hand" x:Name="btnGuardarPaciente"/>
                         <Button Style="{StaticResource BtnLogin}" Width="70" Height="25"
                                 Content="Cancelar" FontFamily="{StaticResource Outfit-Regular}"
                                 Background="{StaticResource ColorAzulon}"

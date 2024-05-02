@@ -44,5 +44,68 @@ namespace CapaPresentacion
         {
             this.Close();
         }
+
+
+        private void EvaluarCamposCompletos()
+        {
+
+            if (!string.IsNullOrEmpty(txtNombreCompleto.Text) && !string.IsNullOrEmpty(txtEdad.Text) && cmbGenero.SelectedItem != null
+                && !string.IsNullOrEmpty(txtDireccion.Text) && !string.IsNullOrEmpty(txtCedula.Text) && !string.IsNullOrEmpty(txtTelefono.Text)
+                && !string.IsNullOrEmpty(txtGmail.Text) && !string.IsNullOrEmpty(txtOcupacion.Text))
+            {
+                textMensaje.Text = "Completado*";
+                textMensaje.Foreground = new SolidColorBrush(Colors.Green);
+            }
+            else
+            {
+                textMensaje.Text = "Incompleto*";
+                textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
+            }
+        }
+
+        private void btnGuardarPaciente_Click(object sender, RoutedEventArgs e)
+        {
+            EvaluarCamposCompletos();
+        }
+
+        private void txtNombreCompleto_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            EvaluarCamposCompletos();
+        }
+
+        private void txtEdad_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            EvaluarCamposCompletos();
+        }
+
+        private void cmbGenero_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            EvaluarCamposCompletos();
+        }
+
+        private void txtDireccion_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            EvaluarCamposCompletos();
+        }
+
+        private void txtCedula_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            EvaluarCamposCompletos();
+        }
+
+        private void txtTelefono_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            EvaluarCamposCompletos();
+        }
+
+        private void txtGmail_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            EvaluarCamposCompletos();
+        }
+
+        private void txtOcupacion_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            EvaluarCamposCompletos();
+        }
     }
 }

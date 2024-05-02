@@ -31,7 +31,7 @@
                     Grid.Column="0"
                     Margin="18">
                 <Border.Background>
-                    <ImageBrush ImageSource="/Resources/Img/IMG_01.png" Stretch="UniformToFill" />
+                    <ImageBrush ImageSource="/Resources/Img/IMG-05.png" Stretch="UniformToFill" />
                 </Border.Background>
                 <!--<Border.Effect>
                     <DropShadowEffect ShadowDepth="4" Direction="435" Color="Gray" Opacity="0.2"
