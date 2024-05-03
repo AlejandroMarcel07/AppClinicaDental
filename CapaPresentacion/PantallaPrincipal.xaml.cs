@@ -23,8 +23,11 @@ namespace CapaPresentacion
     /// </summary>
     public partial class PantallaPrincipal : Window
     {
+        private string nombreUsuario;
+        private string tipoAdministrador;
+
         private DispatcherTimer timer;
-        public PantallaPrincipal()
+        public PantallaPrincipal(string nombreUsuario, string tipoAdministrador)
         {
             InitializeComponent();
 
@@ -34,6 +37,15 @@ namespace CapaPresentacion
             //Parametros de extender
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             this.MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
+
+            //Valores por parametros 
+            this.nombreUsuario = nombreUsuario;
+            this.tipoAdministrador = tipoAdministrador;
+
+            EtiquetaNombreUsuario.Text = nombreUsuario;
+            EtiquetaTipoRol.Text = tipoAdministrador;
+
+            
 
             // Inicializar el timer para actualizar la hora cada segundo
             timer = new DispatcherTimer();

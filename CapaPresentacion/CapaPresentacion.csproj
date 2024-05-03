@@ -196,12 +196,6 @@
     <Resource Include="Resources\Img\IMG_01.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Ico\ImgCerrar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Ico\ImgMinimizar.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Ico\ImgContrasena.png" />
   </ItemGroup>
   <ItemGroup>
@@ -209,12 +203,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Img\IMG-02.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Img\IMG-03.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Img\IMG-04.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CapaNegocio\CapaNegocio.csproj">

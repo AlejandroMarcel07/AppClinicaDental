@@ -11,25 +11,11 @@ namespace CapaDatos
     public class ConexionCD
     {
 
-        private SqlConnection Conexion = new SqlConnection("Data Source= DESKTOP-E77K5U7\\SQLEXPRESS; Database= BD_Densy; Integrated Security = True");
+        private static readonly string cadenaConexion = "Data Source=DESKTOP-E77K5U7\\SQLEXPRESS;Initial Catalog=BD_Densy;Integrated Security=True";
 
-        public SqlConnection AbrirConexiono()
+        public SqlConnection ObtenerConexion()
         {
-            if (Conexion.State == ConnectionState.Closed)
-
-                Conexion.Open();
-            return Conexion;
-
+            return new SqlConnection(cadenaConexion);
         }
-
-        public SqlConnection CerrarConexionn()
-        {
-            if (Conexion.State == ConnectionState.Open)
-
-                Conexion.Close();
-            return Conexion;
-
-        }
-
     }
 }

@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using CapaNegocio;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -90,6 +91,9 @@ namespace CapaPresentacion
             this.WindowState = WindowState.Minimized;
         }
 
+
+        private UsuarioAdministradorCN usuairoadministradorCN = new UsuarioAdministradorCN();
+        
         private void btnIniciarSesion_Click(object sender, RoutedEventArgs e)
         {
             string MensajeContrasenaIncompleta = "¡Contraseña!";
@@ -111,9 +115,24 @@ namespace CapaPresentacion
                     }
                     else
                     {
-                        PantallaPrincipal pantallaprincipal = new PantallaPrincipal();
-                        this.Hide();
-                        pantallaprincipal.Show();
+                        string nombreUsuario = txtUsuario.Text;
+                        string contrasena = txtContraseña.Password;
+                        string tipoRol;
+                        bool inicioSesionExitoso = usuairoadministradorCN.ValidarInicioSesion(nombreUsuario, contrasena, out tipoRol);
+
+                        if (inicioSesionExitoso)
+                        {
+                            PantallaPrincipal pantallaprincipal = new PantallaPrincipal(nombreUsuario, tipoRol);
+                            this.Hide();
+                            pantallaprincipal.Show();
+                        }
+                        else
+                        {
+                            textMensaje.Text = "¡Desconocido!";
+                            textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
+                            return;
+                        }
+
                     }
                 }
                 else
