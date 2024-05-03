@@ -45,13 +45,34 @@ namespace CapaPresentacion
             EtiquetaNombreUsuario.Text = nombreUsuario;
             EtiquetaTipoRol.Text = tipoAdministrador;
 
-            
+            char primeraLetra = ObtenerPrimeraLetra(nombreUsuario);
+            string primerLetraToString = primeraLetra.ToString();
 
+            EtiquetaLetraPerfil.Text = primerLetraToString;
+
+            if (tipoAdministrador == "Asistente")
+            {
+                Pag05.Visibility = Visibility.Collapsed;
+            }
+
+           
             // Inicializar el timer para actualizar la hora cada segundo
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
             timer.Start();
+        }
+
+        char ObtenerPrimeraLetra(string texto)
+        {
+            foreach (char c in texto)
+            {
+                if (char.IsLetter(c))
+                {
+                    return c;
+                }
+            }
+            return 'D'; // Retornar un carácter nulo si no se encuentra ninguna letra
         }
 
         private void Timer_Tick(object sender, EventArgs e)
