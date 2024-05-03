@@ -20,25 +20,35 @@ namespace CapaDatos.CRUD
 
             using (SqlConnection connection = conexionbd.ObtenerConexion())
             {
-                using (SqlCommand command = new SqlCommand(queryString, connection))
+                //Manejamos la conexion por si encuentra un error de conexion con nuestra base de datos
+                try
                 {
-                    command.Parameters.AddWithValue("@nombreUsuario", nombreUsuario);
-                    command.Parameters.AddWithValue("@contrasena", contrasena);
-
-                    connection.Open();
-                    int count = (int)command.ExecuteScalar();
-                    inicioSesionExitoso = count > 0;
-
-                    if (inicioSesionExitoso)
+                    using (SqlCommand command = new SqlCommand(queryString, connection))
                     {
-                        // Obtener el tipo de rol del usuario
-                        string queryStringRol = "SELECT TipoRol FROM Tb_Rol WHERE Id = (SELECT IdRol FROM Tb_UsuarioAdministrador WHERE NombreUsuario = @nombreUsuario)";
-                        using (SqlCommand commandRol = new SqlCommand(queryStringRol, connection))
+                        command.Parameters.AddWithValue("@nombreUsuario", nombreUsuario);
+                        command.Parameters.AddWithValue("@contrasena", contrasena);
+
+                        connection.Open();
+                        int count = (int)command.ExecuteScalar();
+                        inicioSesionExitoso = count > 0;
+
+                        if (inicioSesionExitoso)
                         {
-                            commandRol.Parameters.AddWithValue("@nombreUsuario", nombreUsuario);
-                            tipoRol = commandRol.ExecuteScalar()?.ToString();
+                            // Obtener el tipo de rol del usuario
+                            string queryStringRol = "SELECT TipoRol FROM Tb_Rol WHERE Id = (SELECT IdRol FROM Tb_UsuarioAdministrador WHERE NombreUsuario = @nombreUsuario)";
+                            using (SqlCommand commandRol = new SqlCommand(queryStringRol, connection))
+                            {
+                                commandRol.Parameters.AddWithValue("@nombreUsuario", nombreUsuario);
+                                tipoRol = commandRol.ExecuteScalar()?.ToString();
+                            }
                         }
+
+
                     }
+                }
+                catch (Exception ex)
+                {
+                    string ms = ex.ToString();
                 }
             }
 

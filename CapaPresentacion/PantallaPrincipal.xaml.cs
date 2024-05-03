@@ -41,15 +41,18 @@ namespace CapaPresentacion
             //Valores por parametros 
             this.nombreUsuario = nombreUsuario;
             this.tipoAdministrador = tipoAdministrador;
-
+            
+            //Etiquetas de perfil
             EtiquetaNombreUsuario.Text = nombreUsuario;
             EtiquetaTipoRol.Text = tipoAdministrador;
 
+            //Variable de metodo obtener primera letra
             char primeraLetra = ObtenerPrimeraLetra(nombreUsuario);
             string primerLetraToString = primeraLetra.ToString();
-
             EtiquetaLetraPerfil.Text = primerLetraToString;
 
+
+            //Verificar si es un asistente para bloquear algunas funciones
             if (tipoAdministrador == "Asistente")
             {
                 Pag05.Visibility = Visibility.Collapsed;
@@ -63,6 +66,7 @@ namespace CapaPresentacion
             timer.Start();
         }
 
+        //Metodo de obtener la primera letra de la palbra de un nombre de usuario
         char ObtenerPrimeraLetra(string texto)
         {
             foreach (char c in texto)
