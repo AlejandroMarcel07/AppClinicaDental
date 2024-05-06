@@ -30,7 +30,7 @@ namespace CapaDatos.CRUD
 
                         connection.Open();
                         int count = (int)command.ExecuteScalar();
-                        inicioSesionExitoso = count > 0;
+                        inicioSesionExitoso = count > 0; 
 
                         if (inicioSesionExitoso)
                         {
@@ -43,7 +43,6 @@ namespace CapaDatos.CRUD
                             }
                         }
 
-
                     }
                 }
                 catch (Exception ex)
@@ -54,6 +53,10 @@ namespace CapaDatos.CRUD
 
             return inicioSesionExitoso;
         }
+
+
+
+        
 
 
 

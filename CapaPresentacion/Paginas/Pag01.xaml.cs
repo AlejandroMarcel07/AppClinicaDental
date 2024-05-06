@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using CapaNegocio;
+using CapaEntidad;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data;
 
 namespace CapaPresentacion.Paginas
 {
@@ -20,11 +23,13 @@ namespace CapaPresentacion.Paginas
     /// </summary>
     public partial class Pag01 : Page
     {
+
+        private PacienteCN pacientenegocio = new PacienteCN();
+
         public Pag01()
         {
             InitializeComponent();
-
-
+            MostrarPaciente();
         }
 
         private void EtiquetaBusquedad_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -55,5 +60,12 @@ namespace CapaPresentacion.Paginas
             VentanaModalPaciente ventanamodal = new VentanaModalPaciente();
             ventanamodal.ShowDialog();
         }
+
+        private void MostrarPaciente()
+        {
+            List<Paciente> pacientes = pacientenegocio.ObtenerPaciente();
+            ListBoxPacientes.ItemsSource = pacientes;
+        }
+
     }
 }

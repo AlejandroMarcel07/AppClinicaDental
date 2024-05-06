@@ -91,11 +91,19 @@
                         Text="Actualiza la información del perfil de administrador."/>
                     <TextBox Height="35"
                              Style="{StaticResource CustomTextBoxStyle}"
-                             Tag="usuario"
+                             Tag="nombre completo"
+                             Margin="0 10 0 0"/>
+                    <TextBox Height="35"
+                             Style="{StaticResource CustomTextBoxStyle}"
+                             Tag="nombre de usuario"
                              Margin="0 10 0 0"/>
                     <TextBox Height="35"
                              Style="{StaticResource CustomTextBoxStyle}"
                              Tag="Contraseña"
+                             Margin="0 10 0 0"/>
+                    <TextBox Height="35"
+                             Style="{StaticResource CustomTextBoxStyle}"
+                             Tag="gmail"
                              Margin="0 10 0 0"/>
 
                     <!--Cuenta de Asistente-->
@@ -111,11 +119,19 @@
                         Text="Actualiza la información del perfil de asistente."/>
                     <TextBox Height="35"
                              Style="{StaticResource CustomTextBoxStyle}"
-                             Tag="usuario"
+                             Tag="nombre completo"
+                             Margin="0 10 0 0"/>
+                    <TextBox Height="35"
+                             Style="{StaticResource CustomTextBoxStyle}"
+                             Tag="nombre de usuario"
                              Margin="0 10 0 0"/>
                     <TextBox Height="35"
                              Style="{StaticResource CustomTextBoxStyle}"
                              Tag="Contraseña"
+                             Margin="0 10 0 0"/>
+                    <TextBox Height="35"
+                             Style="{StaticResource CustomTextBoxStyle}"
+                             Tag="gmail"
                              Margin="0 10 0 0"/>
                     <Separator Height="20"
                                Background="Transparent"/>

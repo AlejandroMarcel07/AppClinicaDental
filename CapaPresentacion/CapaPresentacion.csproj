@@ -205,6 +205,10 @@
     <Resource Include="Resources\Img\IMG-02.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CapaEntidad\CapaEntidad.csproj">
+      <Project>{5071b9ab-0bbf-4940-a27c-8c9b0d251007}</Project>
+      <Name>CapaEntidad</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CapaNegocio\CapaNegocio.csproj">
       <Project>{bc16d744-b027-47d2-a7ef-fe0424cd59e6}</Project>
       <Name>CapaNegocio</Name>

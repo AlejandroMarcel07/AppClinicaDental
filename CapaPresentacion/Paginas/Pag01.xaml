@@ -6,12 +6,15 @@
       xmlns:local="clr-namespace:CapaPresentacion.Paginas"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="820"
-      Title="Pag01">
+      Title="Pag01"
+      >
+
     <Border Background="#FBFBFB"
             CornerRadius="10">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="40"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
@@ -133,42 +136,50 @@
 
                 </StackPanel>
             </Grid>
+            <Border Grid.Row="1" Background="White" BorderBrush="{StaticResource ColorCelesteBajo}" BorderThickness="0 0 0 2" CornerRadius="5" Margin="5">
+                <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Nombre" FontSize="14" FontFamily="{StaticResource  Outfit-Regular}" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10 0 0 0"/>
+                    <TextBlock Grid.Column="1"  Text="Edad"  FontSize="14" FontFamily="{StaticResource  Outfit-Regular}" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10 0 0 0"/>
+                    <TextBlock Grid.Column="2" Text="Direccion"  FontSize="14" FontFamily="{StaticResource  Outfit-Regular}" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10 0 0 0"/>
+                    <TextBlock Grid.Column="3" Text="Telefono"  FontSize="14" FontFamily="{StaticResource  Outfit-Regular}" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10 0 0 0"/>
+                    <TextBlock Grid.Column="4" Text="Gmail"  FontSize="14" FontFamily="{StaticResource  Outfit-Regular}" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10 0 0 0"/>
+                    <TextBlock Grid.Column="5" Text="Ocupacion"  FontSize="14" FontFamily="{StaticResource  Outfit-Regular}" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10 0 0 0"/>
+            </Grid>
+            </Border>
+            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Grid.Row="2" Background="Transparent" BorderThickness="0" FontFamily="{StaticResource Outfit-Regular}" FontSize="14"
+         x:Name="ListBoxPacientes" BorderBrush="Gray">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Background="white" Width="{Binding ActualWidth, ElementName=ListBoxPacientes}"
+                             >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding NombreCompleto1}" Margin="5" Grid.Column="0"/>
+                            <TextBlock Text="{Binding Edad1}"  Margin="5"  Grid.Column="1"/>
+                            <TextBlock Text="{Binding Direccino1}" Margin="5" Grid.Column="2"/>
+                            <TextBlock Text="{Binding Telefono1}" Margin="5" Grid.Column="3"/>
+                            <TextBlock Text="{Binding Gmail1}" Margin="5" Grid.Column="4"/>
+                            <TextBlock Text="{Binding Ocupacion1}" Margin="5" Grid.Column="5"/>
+                            <!-- Agrega más TextBlocks según las propiedades que quieras mostrar -->
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
-            <DataGrid AutoGenerateColumns="False" Grid.Row="1" Background="Transparent" BorderThickness="0" FontFamily="{StaticResource Outfit-Regular}" FontSize="14">
-                <DataGrid.Resources>
-                    <!-- Estilo para las celdas -->
-                    <Style TargetType="DataGridCell">
-                        <Setter Property="BorderThickness" Value="0 1 0 0"/>
-                        <Setter Property="BorderBrush" Value="Gray"/>
-                        <Setter Property="Padding" Value="10"/>
-                    </Style>
-                    <!-- Estilo para las filas alternas (para un efecto zebra) -->
-                    <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
-                        <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="Foreground" Value="Black"/>
-                    </Style>
-                    <!-- Estilo para el encabezado de las columnas -->
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Height" Value="35"/>
-                        <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="Foreground" Value="Black"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
-        
-                        <Setter Property="Padding" Value="10"/>
-                    </Style>
-                </DataGrid.Resources>
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Nombre" Width="*" Binding="{Binding Columna1}" CanUserResize="False" CanUserReorder="False"/>
-                    <DataGridTextColumn Header="Edad" Width="*" Binding="{Binding Columna2}" CanUserResize="False" CanUserReorder="False"/>
-                    <DataGridTextColumn Header="Género" Width="*" Binding="{Binding Columna3}" CanUserResize="False" CanUserReorder="False"/>
-                    <DataGridTextColumn Header="Dirección" Width="*" Binding="{Binding Columna4}" CanUserResize="False" CanUserReorder="False"/>
-                    <DataGridTextColumn Header="Cedula" Width="*" Binding="{Binding Columna5}" CanUserResize="False" CanUserReorder="False"/>
-                    <DataGridTextColumn Header="Teléfono" Width="*" Binding="{Binding Columna6}" CanUserResize="False" CanUserReorder="False"/>
-                    <DataGridTextColumn Header="Gmail" Width="*" Binding="{Binding Columna7}" CanUserResize="False" CanUserReorder="False"/>
-                    <DataGridTextColumn Header="Ocupación" Width="*" Binding="{Binding Columna8}" CanUserResize="False" CanUserReorder="False"/>
-                    <DataGridTextColumn Header="Acciones" Width="*" Binding="{Binding Columna8}" CanUserResize="False" CanUserReorder="False"/>
-                </DataGrid.Columns>
-            </DataGrid>
 
         </Grid>
     </Border>
