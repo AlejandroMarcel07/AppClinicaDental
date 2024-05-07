@@ -22,14 +22,15 @@ namespace CapaNegocio
             {
                 Paciente paciente = new Paciente
                 {
-                    Id1 = Convert.ToInt32(fila["Id"]),
-                    NombreCompleto1 = fila["NombreCompleto"].ToString(),
-                    Edad1 = Convert.ToInt32(fila["Edad"]),
-                    IdGenero1 = Convert.ToInt32(fila["IdGenero"]),
-                    Direccino1 = fila["Direccion"].ToString(),
-                    Telefono1 = Convert.ToInt32(fila["Telefono"]),
-                    Gmail1 = fila["Gmail"].ToString(),
-                    Ocupacion1 = fila["Ocupacion"].ToString()
+                    Id = Convert.ToInt32(fila["Id"]),
+                    NombreCompleto = fila["NombreCompleto"].ToString(),
+                    Cedula = fila["Cedula"].ToString(),
+                    Edad = Convert.ToInt32(fila["Edad"]),
+                    IdGenero = Convert.ToInt32(fila["IdGenero"]),
+                    Direccino = fila["Direccion"].ToString(),
+                    Telefono = Convert.ToInt32(fila["Telefono"]),
+                    Gmail = fila["Gmail"].ToString(),
+                    Ocupacion = fila["Ocupacion"].ToString()
                 };
 
             pacientes.Add(paciente);

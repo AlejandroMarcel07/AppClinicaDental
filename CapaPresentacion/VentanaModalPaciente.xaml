@@ -95,6 +95,8 @@
                         <StackPanel Orientation="Vertical"  Margin="0 0 10 0">
                             <TextBox Style="{StaticResource CustomTextBoxStyle}" TextChanged="txtNombreCompleto_TextChanged"
                          Tag="nombre completo" Margin="0 0 0 0" x:Name="txtNombreCompleto"/>
+                            <TextBox Style="{StaticResource CustomTextBoxStyle}" TextChanged="txtCedula_TextChanged"
+                         Tag="cedula" Margin="0 10 0 0" x:Name="txtCedula"/>
                             <TextBox Style="{StaticResource CustomTextBoxStyle}"
                          Tag="edad" Margin="0 10 0 0" x:Name="txtEdad" TextChanged="txtEdad_TextChanged"/>
                             <ComboBox Style="{StaticResource ComboBoxFlatStyle}"                                   
@@ -112,8 +114,6 @@
                             </ComboBox>
                             <TextBox Style="{StaticResource CustomTextBoxStyle}"
                          Tag="direccion" Margin="0 10 0 0" x:Name="txtDireccion" TextChanged="txtDireccion_TextChanged"/>
-                            <TextBox Style="{StaticResource CustomTextBoxStyle}" TextChanged="txtCedula_TextChanged"
-                         Tag="cedula" Margin="0 10 0 0" x:Name="txtCedula"/>
                             <TextBox Style="{StaticResource CustomTextBoxStyle}" TextChanged="txtTelefono_TextChanged"
                          Tag="telefono" Margin="0 10 0 0" x:Name="txtTelefono"/>
                             <TextBox Style="{StaticResource CustomTextBoxStyle}" TextChanged="txtGmail_TextChanged"

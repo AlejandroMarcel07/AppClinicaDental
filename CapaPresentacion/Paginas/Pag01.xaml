@@ -25,7 +25,7 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0" Margin="5 0 0 15">
-                    <TextBlock Text="| Inicio Densy"
+                    <TextBlock Text="| Pacientes"
                                FontFamily="{StaticResource Outfit-Bold}"
                                FontSize="20"
                                />
@@ -145,20 +145,25 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="95"/>
+                    </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="Nombre" FontSize="14" FontFamily="{StaticResource  Outfit-Regular}" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10 0 0 0"/>
-                    <TextBlock Grid.Column="1"  Text="Edad"  FontSize="14" FontFamily="{StaticResource  Outfit-Regular}" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10 0 0 0"/>
-                    <TextBlock Grid.Column="2" Text="Direccion"  FontSize="14" FontFamily="{StaticResource  Outfit-Regular}" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10 0 0 0"/>
-                    <TextBlock Grid.Column="3" Text="Telefono"  FontSize="14" FontFamily="{StaticResource  Outfit-Regular}" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10 0 0 0"/>
-                    <TextBlock Grid.Column="4" Text="Gmail"  FontSize="14" FontFamily="{StaticResource  Outfit-Regular}" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10 0 0 0"/>
+                    <TextBlock Grid.Column="1"  Text="Cedula"  FontSize="14" FontFamily="{StaticResource  Outfit-Regular}" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10 0 0 0"/>
+                    <TextBlock Grid.Column="2"  Text="Edad"  FontSize="14" FontFamily="{StaticResource  Outfit-Regular}" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10 0 0 0"/>
+                    <TextBlock Grid.Column="3" Text="Direccion"  FontSize="14" FontFamily="{StaticResource  Outfit-Regular}" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10 0 0 0"/>
+                    <TextBlock Grid.Column="4" Text="Telefono"  FontSize="14" FontFamily="{StaticResource  Outfit-Regular}" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10 0 0 0"/>
                     <TextBlock Grid.Column="5" Text="Ocupacion"  FontSize="14" FontFamily="{StaticResource  Outfit-Regular}" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10 0 0 0"/>
-            </Grid>
+                    <TextBlock Grid.Column="6" Text="Acciones"  FontSize="14" FontFamily="{StaticResource  Outfit-Regular}" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10 0 0 0"/>
+                </Grid>
             </Border>
             <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Grid.Row="2" Background="Transparent" BorderThickness="0" FontFamily="{StaticResource Outfit-Regular}" FontSize="14"
          x:Name="ListBoxPacientes" BorderBrush="Gray">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Background="white" Width="{Binding ActualWidth, ElementName=ListBoxPacientes}"
+                        <Border Background="White" CornerRadius="5"
+                                BorderThickness="0 0 0 2" BorderBrush="{StaticResource ColorCelesteBajo}"
+                                Width="{Binding ActualWidth, ElementName=ListBoxPacientes}">
+                        <Grid  
                              >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -167,15 +172,58 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="95"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding NombreCompleto1}" Margin="5" Grid.Column="0"/>
-                            <TextBlock Text="{Binding Edad1}"  Margin="5"  Grid.Column="1"/>
-                            <TextBlock Text="{Binding Direccino1}" Margin="5" Grid.Column="2"/>
-                            <TextBlock Text="{Binding Telefono1}" Margin="5" Grid.Column="3"/>
-                            <TextBlock Text="{Binding Gmail1}" Margin="5" Grid.Column="4"/>
-                            <TextBlock Text="{Binding Ocupacion1}" Margin="5" Grid.Column="5"/>
+                            <TextBlock Text="{Binding NombreCompleto}" Margin="5" Grid.Column="0"/>
+                            <TextBlock Text="{Binding Cedula}"  Margin="5"  Grid.Column="1"/>
+                            <TextBlock Text="{Binding Edad}"  Margin="5"  Grid.Column="2"/>
+                            <TextBlock Text="{Binding Direccino}" Margin="5" Grid.Column="3"/>
+                            <TextBlock Text="{Binding Telefono}" Margin="5" Grid.Column="4"/>
+                            <TextBlock Text="{Binding Ocupacion}" Margin="5" Grid.Column="5"/>
+                            <StackPanel Grid.Column="6" Orientation="Horizontal"
+                                    >
+                                <Button Height="30"
+                                 Width="30"
+                                 Style="{StaticResource BtnLogin1}">
+                                    <StackPanel Height="35"
+                                        Orientation="Horizontal"
+                                        Width="40"
+                                        >
+
+                                        <Path Data="{StaticResource IcoDelete}"
+                                          Fill="#E26262"
+                                          VerticalAlignment="Center"
+                                              Stretch="Fill"
+                                              Width="13"
+                                              Height="15"
+                                              Margin="8 0 0 4"
+                                         />
+
+                                    </StackPanel>
+                                </Button>
+                                <Button Height="30"
+                                 Width="30"
+                                 Margin="0 0 0 0"
+                                 Style="{StaticResource BtnLogin1}">
+                                     <StackPanel Height="35"
+                                        Orientation="Horizontal"
+                                        Width="40"
+                                        >
+
+                                        <Path Data="{StaticResource IcoVerMas}"
+                                          Fill="#6562E2"
+                                          VerticalAlignment="Center"
+                                          Stretch="Fill"
+                                          Width="15"
+                                          Height="15"
+                                          Margin="6 0 0 5"/>
+
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
                             <!-- Agrega más TextBlocks según las propiedades que quieras mostrar -->
                         </Grid>
+                        </Border>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

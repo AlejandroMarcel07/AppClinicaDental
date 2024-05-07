@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion"
         mc:Ignorable="d"
-        Title="PantallaPrincipal" Height="660" Width="1100"
+        Title="PantallaPrincipal" Height="660" Width="1140"
         WindowStyle="None"
         Background="Transparent" 
         AllowsTransparency="True"
@@ -104,16 +104,14 @@
 
                                 <StackPanel Orientation="Horizontal"
                                             >
-                                    <Path Data="{StaticResource IcoHome}"
+                                    <Path Data="{StaticResource IcoPatient}"
                                           Fill="Black"
                                           Margin="15 0 15 0"/>
-                                    <TextBlock Text="Inicio" 
-                                     Foreground="Black"
-                                             
+                                    <TextBlock Text="Pacientes" 
+                                     Foreground="Black"                                       
                                      Style="{StaticResource menuButtonText}"
                                      FontFamily="{StaticResource Outfit-Regular}"
                                      FontSize="15" Cursor=""/>
-
                                 </StackPanel>
 
                             </RadioButton>
@@ -127,10 +125,10 @@
 
                                 <StackPanel Orientation="Horizontal"
                                             >
-                                    <Path Data="{StaticResource IcoStats}"
+                                    <Path Data="{StaticResource IcoCita}"
                                           Fill="Black"
                                           Margin="15 0 15 0"/>
-                                    <TextBlock Text="Estadisticas" 
+                                    <TextBlock Text="Citas" 
                                      Style="{StaticResource menuButtonText}"
                                      Foreground="Black"
                                      FontFamily="{StaticResource Outfit-Regular}"
