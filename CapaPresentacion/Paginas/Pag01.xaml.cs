@@ -28,7 +28,10 @@ namespace CapaPresentacion.Paginas
 
         public Pag01()
         {
+
             InitializeComponent();
+
+            //Cuando este incialize mostrar la lista de datos de lo paciente en la tabla 
             MostrarPaciente();
         }
 

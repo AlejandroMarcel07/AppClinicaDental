@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaEntidad;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -12,7 +13,6 @@ namespace CapaDatos.CRUD
     {
         private ConexionCD conexioncd = new ConexionCD();
         DataTable Tabla = new DataTable();
-        private string querystring = "Select * From Tb_Paciente";
 
         public DataTable ObtenerPacientes()
         {
@@ -20,7 +20,7 @@ namespace CapaDatos.CRUD
             {
                 try
                 {
-                    using (SqlCommand command = new SqlCommand(querystring, connection))
+                    using (SqlCommand command = new SqlCommand("Select * From Tb_Paciente", connection))
                     {
                         connection.Open();
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -36,5 +36,38 @@ namespace CapaDatos.CRUD
                 return Tabla;
             }
         }
+
+        public  bool RegistrarPaciente(Paciente paciente)
+        {
+            bool agregado = false;
+            using (SqlConnection connectio = conexioncd.ObtenerConexion())
+            {
+                try
+                {
+                    using (SqlCommand  command = new SqlCommand("INSERT INTO Tb_Paciente (NombreCompleto, Cedula, Edad, IdGenero, Direccion, Telefono, Gmail, Ocupacion) VALUES (@nombrecompleto, @cedula, @edad , @genero, @direccion, @telefono, @gmail, @ocupacion)", connectio))
+                    {
+                        connectio.Open();
+                        command.Parameters.AddWithValue("@nombrecompleto", paciente.NombreCompleto);
+                        command.Parameters.AddWithValue("@cedula", paciente.Cedula);
+                        command.Parameters.AddWithValue("@edad", paciente.Edad);
+                        command.Parameters.AddWithValue("@genero", paciente.IdGenero);
+                        command.Parameters.AddWithValue("@direccion", paciente.Direccino);
+                        command.Parameters.AddWithValue("@telefono", paciente.Telefono);
+                        command.Parameters.AddWithValue("@gmail", paciente.Gmail);
+                        command.Parameters.AddWithValue("@ocupacion", paciente.Ocupacion);
+                        agregado = command.ExecuteNonQuery() > 0;
+                        command.Parameters.Clear();
+                        return agregado;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string msj = ex.ToString();
+                    return false;
+                }
+            }
+        }
+
+         
     }
 }

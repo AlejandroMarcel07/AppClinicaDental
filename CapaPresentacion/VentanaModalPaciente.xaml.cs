@@ -1,4 +1,7 @@
-﻿using System;
+﻿using CapaEntidad;
+using CapaNegocio;
+using CapaPresentacion.Paginas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace CapaPresentacion
 {
@@ -20,6 +24,8 @@ namespace CapaPresentacion
     /// </summary>
     public partial class VentanaModalPaciente : Window
     {
+        private PacienteCN pacientenegocio = new PacienteCN();
+
         public VentanaModalPaciente()
         {
             InitializeComponent();
@@ -102,11 +108,59 @@ namespace CapaPresentacion
                                                     textMensaje.Foreground = new SolidColorBrush(Colors.Red);
                                                     return; // Sale del método si el gmail no es válido
                                                 }
+
                                                 else
                                                 {
                                                     if (!string.IsNullOrEmpty(txtOcupacion.Text))
                                                     {
-                                                        //Continuara
+                                                        PacienteCN pacientecn = new PacienteCN();
+
+                                                        string generoSeleccionado = cmbGenero.SelectedValue.ToString();
+                                                        int valorAlmacenado;
+
+                                                        if (generoSeleccionado == "Masculino")
+                                                        {
+                                                            valorAlmacenado = 1;
+                                                        }
+                                                        else
+                                                        {
+                                                            valorAlmacenado = 2;
+                                                        }
+
+                                                        Paciente paciente = new Paciente();
+                                                        paciente.NombreCompleto = txtNombreCompleto.Text;
+                                                        paciente.Cedula = txtCedula.Text;
+                                                        paciente.Edad = int.Parse(txtEdad.Text);
+                                                        paciente.IdGenero = valorAlmacenado;
+                                                        paciente.Direccino = txtDireccion.Text;
+                                                        paciente.Telefono = int.Parse(txtTelefono.Text);
+                                                        paciente.Gmail = txtGmail.Text;
+                                                        paciente.Ocupacion = txtOcupacion.Text;
+                                                        //Inserta los datos y tenemos la respuesta boleana
+                                                        bool registroExitoso = pacientecn.RegistrarPaciente(paciente);
+
+                                                        if(registroExitoso)
+                                                        {
+                                                            //Llamamos al meotodo actulizar paciente y los almacenmos en tipos lis
+                                                            List<Paciente> pacientes = pacientenegocio.ObtenerPaciente();
+                                                            //Limpiar campos
+                                                            LimpiarCampos();
+
+                                                            EtiquetaExitoso.Text = "¡Registro Exitoso!";
+                                                            EtiquetaExitoso.Foreground = Brushes.Red;
+
+                                                            MostrarMensaje("¡Registro Exitoso!", Colors.Green, 3);
+
+                                                        }
+                                                        else
+                                                        {
+                                                            MostrarMensaje("¡Error al registrar paciente!", Colors.Red, 3);
+
+                                                        }
+
+
+
+
                                                     }
                                                     else
                                                     {
@@ -183,6 +237,34 @@ namespace CapaPresentacion
             }
 
             EvaluarCamposCompletos();
+        }
+
+        public void MostrarMensaje(string texto, Color color, int duracionSegundos)
+        {
+            EtiquetaExitoso.Text = texto;
+            EtiquetaExitoso.Foreground = new SolidColorBrush(color);
+
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(duracionSegundos);
+            timer.Tick += (sender, args) =>
+            {
+                EtiquetaExitoso.Text = "";
+                timer.Stop();
+            };
+            timer.Start();
+        }
+
+
+        private void LimpiarCampos()
+        {
+            txtNombreCompleto.Clear();
+            txtEdad.Clear();
+            cmbGenero.SelectedIndex = -1;
+            txtDireccion.Clear();
+            txtCedula.Clear();
+            txtTelefono.Clear();
+            txtGmail.Clear();
+            txtOcupacion.Clear();
         }
 
         private void txtNombreCompleto_TextChanged(object sender, TextChangedEventArgs e)

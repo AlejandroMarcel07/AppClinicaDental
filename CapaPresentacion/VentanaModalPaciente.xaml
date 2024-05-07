@@ -89,7 +89,8 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="240"/>
-                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="25"/>
                     </Grid.RowDefinitions>
                     <ScrollViewer Grid.Row="0" Margin="0 20 0 0">
                         <StackPanel Orientation="Vertical"  Margin="0 0 10 0">
@@ -123,7 +124,16 @@
 
                         </StackPanel>
                     </ScrollViewer>
-                    <StackPanel Grid.Row="1" Orientation="Horizontal" FlowDirection="RightToLeft">
+                    <Grid Grid.Row="1">
+
+                        <TextBlock VerticalAlignment="top"
+                                   x:Name="EtiquetaExitoso"  
+                                   Margin="0 5 0 0"
+                                   FontFamily="{StaticResource Outfit-Regular}" FontSize="12"
+                                   />
+                    </Grid>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" FlowDirection="RightToLeft">
+
                         <Button Style="{StaticResource BtnLogin}" Width="70" Height="25"
                                 Click="btnGuardarPaciente_Click" 
                                 Content="Guardar" FontFamily="{StaticResource Outfit-Regular}"
@@ -131,9 +141,9 @@
                         <Button Style="{StaticResource BtnLogin}" Width="70" Height="25"
                                 Content="Cancelar" FontFamily="{StaticResource Outfit-Regular}"
                                 Background="{StaticResource ColorAzulon}"
+                                IsDefault="True"
                                 VerticalAlignment="Bottom" Margin="0 0 15 0" x:Name="btnCancelar"
                                 Click="btnCancelar_Click"/>
-
                     </StackPanel>
                        
                 </Grid>

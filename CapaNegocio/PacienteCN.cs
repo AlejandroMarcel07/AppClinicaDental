@@ -38,5 +38,10 @@ namespace CapaNegocio
 
             return pacientes;
         }
+
+        public bool RegistrarPaciente(Paciente paciente)
+        {
+            return pacienteccd.RegistrarPaciente(paciente);
+        }
     }
 }
