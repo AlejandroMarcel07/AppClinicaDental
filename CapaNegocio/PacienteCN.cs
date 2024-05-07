@@ -13,35 +13,23 @@ namespace CapaNegocio
     {
         private PacienteCD pacienteccd = new PacienteCD();
 
-        public List<Paciente> ObtenerPaciente()
+
+        public DataTable ObtenerPacientes()
         {
-            List<Paciente> pacientes = new List<Paciente>();
-            DataTable tabla = pacienteccd.ObtenerPacientes();
-
-            foreach (DataRow fila in tabla.Rows)
-            {
-                Paciente paciente = new Paciente
-                {
-                    Id = Convert.ToInt32(fila["Id"]),
-                    NombreCompleto = fila["NombreCompleto"].ToString(),
-                    Cedula = fila["Cedula"].ToString(),
-                    Edad = Convert.ToInt32(fila["Edad"]),
-                    IdGenero = Convert.ToInt32(fila["IdGenero"]),
-                    Direccino = fila["Direccion"].ToString(),
-                    Telefono = Convert.ToInt32(fila["Telefono"]),
-                    Gmail = fila["Gmail"].ToString(),
-                    Ocupacion = fila["Ocupacion"].ToString()
-                };
-
-            pacientes.Add(paciente);
-            }
-
-            return pacientes;
+            DataTable Tabla = new DataTable();
+            Tabla = pacienteccd.ObtenerPacientes();
+            return Tabla;
+                
         }
 
         public bool RegistrarPaciente(Paciente paciente)
         {
             return pacienteccd.RegistrarPaciente(paciente);
+        }
+
+        public bool ValidarExistente (Paciente paciente)
+        {
+            return pacienteccd.ValidarExistente(paciente);
         }
     }
 }

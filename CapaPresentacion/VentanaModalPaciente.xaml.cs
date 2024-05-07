@@ -25,10 +25,12 @@ namespace CapaPresentacion
     public partial class VentanaModalPaciente : Window
     {
         private PacienteCN pacientenegocio = new PacienteCN();
-
-        public VentanaModalPaciente()
+        private Pag01 _pag01;
+        public VentanaModalPaciente(Pag01 pag)
         {
+
             InitializeComponent();
+            _pag01 = pag;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -36,7 +38,7 @@ namespace CapaPresentacion
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
         }
-
+        
         private void btnCerrarAplicacion_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -137,29 +139,42 @@ namespace CapaPresentacion
                                                         paciente.Gmail = txtGmail.Text;
                                                         paciente.Ocupacion = txtOcupacion.Text;
                                                         //Inserta los datos y tenemos la respuesta boleana
-                                                        bool registroExitoso = pacientecn.RegistrarPaciente(paciente);
 
-                                                        if(registroExitoso)
+
+                                                        bool ValidarExistente = pacientecn.ValidarExistente(paciente);
+                                                        if (ValidarExistente)
                                                         {
-                                                            //Llamamos al meotodo actulizar paciente y los almacenmos en tipos lis
-                                                            List<Paciente> pacientes = pacientenegocio.ObtenerPaciente();
-                                                            //Limpiar campos
-                                                            LimpiarCampos();
+                                                            bool registroExitoso = pacientecn.RegistrarPaciente(paciente);
 
-                                                            EtiquetaExitoso.Text = "¡Registro Exitoso!";
-                                                            EtiquetaExitoso.Foreground = Brushes.Red;
+                                                            if (registroExitoso)
+                                                            {
 
-                                                            MostrarMensaje("¡Registro Exitoso!", Colors.Green, 3);
+                                                                //Limpiar campos
+                                                                LimpiarCampos();
 
+                                                                //Registro exitoso
+                                                                EtiquetaExitoso.Text = "¡Registro Exitoso!";
+                                                                EtiquetaExitoso.Foreground = Brushes.Red;
+
+                                                                //Pagina01
+                                                                _pag01.ObtenerPacientes();
+
+
+
+                                                                MostrarMensaje("¡Registro Exitoso!", Colors.Green, 3);
+
+                                                            }
+                                                            else
+                                                            {
+                                                                MostrarMensaje("¡Error al registrar paciente!", Colors.Red, 3);
+
+                                                            }
                                                         }
                                                         else
                                                         {
-                                                            MostrarMensaje("¡Error al registrar paciente!", Colors.Red, 3);
-
+                                                            MostrarMensaje("¡Paciente ya existe!", Colors.Red, 5);
                                                         }
-
-
-
+                                                        
 
                                                     }
                                                     else
@@ -253,7 +268,6 @@ namespace CapaPresentacion
             };
             timer.Start();
         }
-
 
         private void LimpiarCampos()
         {

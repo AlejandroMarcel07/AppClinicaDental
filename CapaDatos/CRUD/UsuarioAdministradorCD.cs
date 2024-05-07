@@ -20,6 +20,7 @@ namespace CapaDatos.CRUD
 
             using (SqlConnection connection = conexionbd.ObtenerConexion())
             {
+
                 //Manejamos la conexion por si encuentra un error de conexion con nuestra base de datos
                 try
                 {

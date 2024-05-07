@@ -24,15 +24,11 @@ namespace CapaPresentacion.Paginas
     public partial class Pag01 : Page
     {
 
-        private PacienteCN pacientenegocio = new PacienteCN();
 
         public Pag01()
         {
 
             InitializeComponent();
-
-            //Cuando este incialize mostrar la lista de datos de lo paciente en la tabla 
-            MostrarPaciente();
         }
 
         private void EtiquetaBusquedad_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -60,15 +56,33 @@ namespace CapaPresentacion.Paginas
         //Btn PRINCIPAL
         private void AgregarPaciennte_Click(object sender, RoutedEventArgs e)
         {
-            VentanaModalPaciente ventanamodal = new VentanaModalPaciente();
+            VentanaModalPaciente ventanamodal = new VentanaModalPaciente(this);
             ventanamodal.ShowDialog();
         }
 
-        private void MostrarPaciente()
+        public void ObtenerPacientes()
         {
-            List<Paciente> pacientes = pacientenegocio.ObtenerPaciente();
-            ListBoxPacientes.ItemsSource = pacientes;
+
+
+            PacienteCN pacientecn = new PacienteCN();
+            DataTable tabla = new DataTable();
+
+            tabla = pacientecn.ObtenerPacientes();
+
+            DataView dataview = new DataView(tabla);
+
+            ListBoxPacientes.ItemsSource = dataview;
+        }
+        public void RefrescarListbox()
+        {
+            ListBoxPacientes.Items.Refresh();
         }
 
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Cuando este incialize mostrar la lista de datos de lo paciente en la tabla 
+            ObtenerPacientes();
+        }
     }
 }

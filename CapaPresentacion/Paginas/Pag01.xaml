@@ -7,6 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="820"
       Title="Pag01"
+      Loaded="Page_Loaded"
       >
 
     <Border Background="#FBFBFB"
@@ -136,12 +137,12 @@
 
                 </StackPanel>
             </Grid>
-            <Border Grid.Row="1" Background="White" BorderBrush="{StaticResource ColorCelesteBajo}" BorderThickness="0 0 0 2" CornerRadius="5" Margin="5">
+            <Border Grid.Row="1" Background="{StaticResource ColorCelesteBajo}" BorderBrush="{StaticResource ColorCeleste}" BorderThickness="0 0 0 1" CornerRadius="5" Margin="5">
                 <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -160,7 +161,7 @@
          x:Name="ListBoxPacientes" BorderBrush="Gray">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Border Background="White" CornerRadius="5"
+                        <Border Background="Transparent" CornerRadius="5"
                                 BorderThickness="0 0 0 2" BorderBrush="{StaticResource ColorCelesteBajo}"
                                 Width="{Binding ActualWidth, ElementName=ListBoxPacientes}">
                         <Grid  
@@ -168,7 +169,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="100"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
@@ -177,7 +178,7 @@
                             <TextBlock Text="{Binding NombreCompleto}" Margin="5" Grid.Column="0"/>
                             <TextBlock Text="{Binding Cedula}"  Margin="5"  Grid.Column="1"/>
                             <TextBlock Text="{Binding Edad}"  Margin="5"  Grid.Column="2"/>
-                            <TextBlock Text="{Binding Direccino}" Margin="5" Grid.Column="3"/>
+                            <TextBlock Text="{Binding Direccion}" Margin="5" Grid.Column="3"/>
                             <TextBlock Text="{Binding Telefono}" Margin="5" Grid.Column="4"/>
                             <TextBlock Text="{Binding Ocupacion}" Margin="5" Grid.Column="5"/>
                             <StackPanel Grid.Column="6" Orientation="Horizontal"

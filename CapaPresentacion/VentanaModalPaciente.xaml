@@ -128,20 +128,20 @@
 
                         <TextBlock VerticalAlignment="top"
                                    x:Name="EtiquetaExitoso"  
-                                   Margin="0 5 0 0"
-                                   FontFamily="{StaticResource Outfit-Regular}" FontSize="12"
+                                   Margin="0 10 0 0"
+                                   FontFamily="{StaticResource Outfit-Regular}" FontSize="14"
                                    />
                     </Grid>
                     <StackPanel Grid.Row="2" Orientation="Horizontal" FlowDirection="RightToLeft">
 
                         <Button Style="{StaticResource BtnLogin}" Width="70" Height="25"
-                                Click="btnGuardarPaciente_Click" 
+                                Click="btnGuardarPaciente_Click"
+                                  IsDefault="True"
                                 Content="Guardar" FontFamily="{StaticResource Outfit-Regular}"
                                 Margin="0 0 10 0" VerticalAlignment="Bottom" Cursor="Hand" x:Name="btnGuardarPaciente"/>
                         <Button Style="{StaticResource BtnLogin}" Width="70" Height="25"
                                 Content="Cancelar" FontFamily="{StaticResource Outfit-Regular}"
                                 Background="{StaticResource ColorAzulon}"
-                                IsDefault="True"
                                 VerticalAlignment="Bottom" Margin="0 0 15 0" x:Name="btnCancelar"
                                 Click="btnCancelar_Click"/>
                     </StackPanel>
