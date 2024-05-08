@@ -13,6 +13,15 @@ namespace CapaNegocio
     {
         private PacienteCD pacienteccd = new PacienteCD();
 
+        public DataTable BuscarPorNombre(Paciente paciente)
+        {
+            return pacienteccd.BuscarPorNombre(paciente);
+        }
+
+        public DataTable BuscarPorCedula(Paciente paciente)
+        {
+            return pacienteccd.BuscarPorCedula(paciente);
+        }
 
         public DataTable ObtenerPacientes()
         {

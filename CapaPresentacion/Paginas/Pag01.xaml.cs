@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
+using System.Text.RegularExpressions;
 
 namespace CapaPresentacion.Paginas
 {
@@ -23,6 +24,7 @@ namespace CapaPresentacion.Paginas
     /// </summary>
     public partial class Pag01 : Page
     {
+        private PacienteCN pacientecn = new PacienteCN();
 
 
         public Pag01()
@@ -63,16 +65,51 @@ namespace CapaPresentacion.Paginas
         public void ObtenerPacientes()
         {
 
-
-            PacienteCN pacientecn = new PacienteCN();
             DataTable tabla = new DataTable();
-
             tabla = pacientecn.ObtenerPacientes();
-
             DataView dataview = new DataView(tabla);
 
             ListBoxPacientes.ItemsSource = dataview;
         }
+
+        //private void BuscarPorNombre()
+        //{
+        //    if (!string.IsNullOrEmpty(txtBarraBusquedad.Text))
+        //    {
+        //        Paciente pacienteNombre = new Paciente();
+        //        pacienteNombre.NombreCompleto = txtBarraBusquedad.Text;
+
+        //        DataTable tabla = new DataTable();
+        //        tabla = pacientecn.BuscarPorNombre(pacienteNombre);
+        //        DataView dataview = new DataView(tabla);
+        //        ListBoxPacientes.ItemsSource = null;
+        //        ListBoxPacientes.ItemsSource = dataview;
+        //    }
+        //    else
+        //    {
+        //        ObtenerPacientes();
+        //    }
+        //}
+
+        //private void BuscarPorCedula()
+        //{
+        //    if (!string.IsNullOrEmpty(txtBarraBusquedad.Text))
+        //    {
+        //        Paciente pacienteCedula = new Paciente();
+        //        pacienteCedula.Cedula = txtBarraBusquedad.Text;
+
+        //        DataTable tabla = new DataTable();
+        //        tabla = pacientecn.BuscarPorCedula(pacienteCedula);
+        //        DataView dataview = new DataView(tabla);
+        //        ListBoxPacientes.ItemsSource = null;
+        //        ListBoxPacientes.ItemsSource = dataview;
+        //    }
+        //    else
+        //    {
+        //        ObtenerPacientes();
+        //    }
+        //}
+
         public void RefrescarListbox()
         {
             ListBoxPacientes.Items.Refresh();
@@ -84,5 +121,35 @@ namespace CapaPresentacion.Paginas
             //Cuando este incialize mostrar la lista de datos de lo paciente en la tabla 
             ObtenerPacientes();
         }
+
+        private void txtBarraBusquedad_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtBarraBusquedad.Text))
+            {
+                Paciente pacienteNombre = new Paciente();
+                pacienteNombre.NombreCompleto = txtBarraBusquedad.Text;
+
+                DataTable tablaNombre = pacientecn.BuscarPorNombre(pacienteNombre);
+
+                Paciente pacienteCedula = new Paciente();
+                pacienteCedula.Cedula = txtBarraBusquedad.Text;
+
+                DataTable tablaCedula = pacientecn.BuscarPorCedula(pacienteCedula);
+
+                // Combinar los resultados en una sola tabla
+                DataTable tablaCombinada = new DataTable();
+                tablaCombinada.Merge(tablaNombre);
+                tablaCombinada.Merge(tablaCedula);
+
+                DataView dataview = new DataView(tablaCombinada);
+                ListBoxPacientes.ItemsSource = null;
+                ListBoxPacientes.ItemsSource = dataview;
+            }
+            else
+            {
+                ObtenerPacientes();
+            }
+        }
+
     }
 }

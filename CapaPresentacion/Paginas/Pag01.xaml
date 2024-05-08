@@ -97,6 +97,7 @@
                                      Background="{x:Null}"
                                      BorderBrush="Transparent"
                                      x:Name="txtBarraBusquedad"
+                                     TextChanged="txtBarraBusquedad_TextChanged"
                                      Visibility="Collapsed"
                                      Style="{StaticResource NoFocusVisualStyleTextBox}"
                                      Padding="9 6 20 0"

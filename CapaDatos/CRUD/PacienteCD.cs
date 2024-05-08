@@ -13,10 +13,11 @@ namespace CapaDatos.CRUD
     public class PacienteCD
     {
         private ConexionCD conexioncd = new ConexionCD();
-        DataTable Tabla = new DataTable();
+
 
         public DataTable ObtenerPacientes()
         {
+            DataTable Tabla = new DataTable();
             using (SqlConnection connection = conexioncd.ObtenerConexion())
             {
                 connection.Open();
@@ -27,7 +28,7 @@ namespace CapaDatos.CRUD
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             Tabla.Load(reader);
-                        }                   
+                        }
                     }
                 }
                 catch (Exception)
@@ -38,20 +39,75 @@ namespace CapaDatos.CRUD
             }
         }
 
+        public DataTable BuscarPorNombre(Paciente paciente)
+        {
+            DataTable Tabla = new DataTable();
+            using (SqlConnection connection = conexioncd.ObtenerConexion())
+            {
+                connection.Open();
+                try
+                {
+                    using (SqlCommand command = new SqlCommand("SELECT * FROM Tb_Paciente WHERE NombreCompleto LIKE @Nombre", connection))
+                    {
+
+                        command.Parameters.AddWithValue("@Nombre", "%" + paciente.NombreCompleto + "%");
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            Tabla.Load(reader);
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
+                return Tabla;
+            }
+        }
+
+        public DataTable BuscarPorCedula(Paciente paciente)
+        {
+            DataTable Tabla = new DataTable();
+            using (SqlConnection connection = conexioncd.ObtenerConexion())
+            {
+                connection.Open();
+                try
+                {
+                    using (SqlCommand command = new SqlCommand("SELECT * FROM Tb_Paciente WHERE Cedula LIKE @Cedula", connection))
+                    {
+
+                        command.Parameters.AddWithValue("@Cedula", "%" + paciente.Cedula + "%");
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            Tabla.Load(reader);
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
+                return Tabla;
+            }
+        }
+
+
         public bool ValidarExistente(Paciente paciente)
         {
-            bool ExistePaciente = false;
+            bool validcionCedula = false;
 
             using (SqlConnection connection = conexioncd.ObtenerConexion())
             {
                 try
                 {
-                    using (SqlCommand comandovalidar = new SqlCommand("SELECT * FROM Tb_Paciente WHERE Cedula = @Cedula", connection))
+                    connection.Open();
+                    using (SqlCommand comandovalidar = new SqlCommand("SELECT COUNT(*) FROM Tb_Paciente WHERE Cedula = @Cedula", connection))
                     {
                         comandovalidar.Parameters.AddWithValue("@Cedula", paciente.Cedula);
-                        ExistePaciente = comandovalidar.ExecuteNonQuery() > 0;
-                        comandovalidar.Parameters.Clear();
-                        return ExistePaciente;
+                        int count = (int)comandovalidar.ExecuteScalar();
+                        validcionCedula = count > 0;
                     }
                 }
                 catch (Exception ex)
@@ -62,9 +118,10 @@ namespace CapaDatos.CRUD
                 }
             }
 
+            return validcionCedula;
         }
 
-        public  bool RegistrarPaciente(Paciente paciente)
+        public bool RegistrarPaciente(Paciente paciente)
         {
             bool agregado = false;
             using (SqlConnection connectio = conexioncd.ObtenerConexion())
@@ -73,7 +130,7 @@ namespace CapaDatos.CRUD
 
                 try
                 {
-                    using (SqlCommand  command = new SqlCommand("INSERT INTO Tb_Paciente (NombreCompleto, Cedula, Edad, IdGenero, Direccion, Telefono, Gmail, Ocupacion) VALUES (@nombrecompleto, @cedula, @edad , @genero, @direccion, @telefono, @gmail, @ocupacion)", connectio))
+                    using (SqlCommand command = new SqlCommand("INSERT INTO Tb_Paciente (NombreCompleto, Cedula, Edad, IdGenero, Direccion, Telefono, Gmail, Ocupacion) VALUES (@nombrecompleto, @cedula, @edad , @genero, @direccion, @telefono, @gmail, @ocupacion)", connectio))
                     {
                         command.Parameters.AddWithValue("@nombrecompleto", paciente.NombreCompleto);
                         command.Parameters.AddWithValue("@cedula", paciente.Cedula);
@@ -96,6 +153,7 @@ namespace CapaDatos.CRUD
             }
         }
 
-         
+
     }
 }
+

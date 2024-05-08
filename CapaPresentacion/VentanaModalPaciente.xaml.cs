@@ -38,7 +38,7 @@ namespace CapaPresentacion
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
         }
-        
+
         private void btnCerrarAplicacion_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -115,67 +115,57 @@ namespace CapaPresentacion
                                                 {
                                                     if (!string.IsNullOrEmpty(txtOcupacion.Text))
                                                     {
+
                                                         PacienteCN pacientecn = new PacienteCN();
 
-                                                        string generoSeleccionado = cmbGenero.SelectedValue.ToString();
-                                                        int valorAlmacenado;
 
-                                                        if (generoSeleccionado == "Masculino")
+
+                                                            //Si sale todo bien el proceso continuara
+                                                            string generoSeleccionado = cmbGenero.SelectedValue.ToString();
+                                                            int valorAlmacenado;
+
+                                                            if (generoSeleccionado == "Masculino")
+                                                            {
+                                                                valorAlmacenado = 1;
+                                                            }
+                                                            else
+                                                            {
+                                                                valorAlmacenado = 2;
+                                                            }
+
+                                                            Paciente paciente = new Paciente();
+                                                            paciente.NombreCompleto = txtNombreCompleto.Text;
+                                                            paciente.Cedula = txtCedula.Text;
+                                                            paciente.Edad = int.Parse(txtEdad.Text);
+                                                            paciente.IdGenero = valorAlmacenado;
+                                                            paciente.Direccino = txtDireccion.Text;
+                                                            paciente.Telefono = int.Parse(txtTelefono.Text);
+                                                            paciente.Gmail = txtGmail.Text;
+                                                            paciente.Ocupacion = txtOcupacion.Text;
+                                                        //Inserta los datos y tenemos la respuesta boleana
+
+                                                        bool pacienteExiste = pacientecn.ValidarExistente(paciente);
+                                                        if (pacienteExiste)
                                                         {
-                                                            valorAlmacenado = 1;
+                                                            MostrarMensaje("¡Paciente ya existe!", Colors.Red, 5);
+                                                            return;
                                                         }
                                                         else
                                                         {
-                                                            valorAlmacenado = 2;
-                                                        }
-
-                                                        Paciente paciente = new Paciente();
-                                                        paciente.NombreCompleto = txtNombreCompleto.Text;
-                                                        paciente.Cedula = txtCedula.Text;
-                                                        paciente.Edad = int.Parse(txtEdad.Text);
-                                                        paciente.IdGenero = valorAlmacenado;
-                                                        paciente.Direccino = txtDireccion.Text;
-                                                        paciente.Telefono = int.Parse(txtTelefono.Text);
-                                                        paciente.Gmail = txtGmail.Text;
-                                                        paciente.Ocupacion = txtOcupacion.Text;
-                                                        //Inserta los datos y tenemos la respuesta boleana
-
-
-                                                        bool ValidarExistente = pacientecn.ValidarExistente(paciente);
-                                                        if (ValidarExistente)
-                                                        {
                                                             bool registroExitoso = pacientecn.RegistrarPaciente(paciente);
-
                                                             if (registroExitoso)
                                                             {
-
-                                                                //Limpiar campos
                                                                 LimpiarCampos();
-
-                                                                //Registro exitoso
                                                                 EtiquetaExitoso.Text = "¡Registro Exitoso!";
                                                                 EtiquetaExitoso.Foreground = Brushes.Red;
-
-                                                                //Pagina01
                                                                 _pag01.ObtenerPacientes();
-
-
-
-                                                                MostrarMensaje("¡Registro Exitoso!", Colors.Green, 3);
-
+                                                                MostrarMensaje("¡Registro Exitoso!", Colors.Green, 1);
                                                             }
                                                             else
                                                             {
                                                                 MostrarMensaje("¡Error al registrar paciente!", Colors.Red, 3);
-
                                                             }
                                                         }
-                                                        else
-                                                        {
-                                                            MostrarMensaje("¡Paciente ya existe!", Colors.Red, 5);
-                                                        }
-                                                        
-
                                                     }
                                                     else
                                                     {
@@ -265,6 +255,7 @@ namespace CapaPresentacion
             {
                 EtiquetaExitoso.Text = "";
                 timer.Stop();
+                this.Close();
             };
             timer.Start();
         }
