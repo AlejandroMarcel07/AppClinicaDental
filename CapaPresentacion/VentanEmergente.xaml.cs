@@ -37,6 +37,7 @@ namespace CapaPresentacion
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            _pantallaprincipal.btnCerraSesion.IsChecked = false; 
         }
 
         private void btnAceptarCerrarSesion_Click(object sender, RoutedEventArgs e)

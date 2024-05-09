@@ -72,44 +72,6 @@ namespace CapaPresentacion.Paginas
             ListBoxPacientes.ItemsSource = dataview;
         }
 
-        //private void BuscarPorNombre()
-        //{
-        //    if (!string.IsNullOrEmpty(txtBarraBusquedad.Text))
-        //    {
-        //        Paciente pacienteNombre = new Paciente();
-        //        pacienteNombre.NombreCompleto = txtBarraBusquedad.Text;
-
-        //        DataTable tabla = new DataTable();
-        //        tabla = pacientecn.BuscarPorNombre(pacienteNombre);
-        //        DataView dataview = new DataView(tabla);
-        //        ListBoxPacientes.ItemsSource = null;
-        //        ListBoxPacientes.ItemsSource = dataview;
-        //    }
-        //    else
-        //    {
-        //        ObtenerPacientes();
-        //    }
-        //}
-
-        //private void BuscarPorCedula()
-        //{
-        //    if (!string.IsNullOrEmpty(txtBarraBusquedad.Text))
-        //    {
-        //        Paciente pacienteCedula = new Paciente();
-        //        pacienteCedula.Cedula = txtBarraBusquedad.Text;
-
-        //        DataTable tabla = new DataTable();
-        //        tabla = pacientecn.BuscarPorCedula(pacienteCedula);
-        //        DataView dataview = new DataView(tabla);
-        //        ListBoxPacientes.ItemsSource = null;
-        //        ListBoxPacientes.ItemsSource = dataview;
-        //    }
-        //    else
-        //    {
-        //        ObtenerPacientes();
-        //    }
-        //}
-
         public void RefrescarListbox()
         {
             ListBoxPacientes.Items.Refresh();
@@ -122,13 +84,15 @@ namespace CapaPresentacion.Paginas
             ObtenerPacientes();
         }
 
-        private void txtBarraBusquedad_TextChanged(object sender, TextChangedEventArgs e)
+        private void BuscarNombreCedula()
         {
             if (!string.IsNullOrEmpty(txtBarraBusquedad.Text))
             {
+
                 Paciente pacienteNombre = new Paciente();
                 pacienteNombre.NombreCompleto = txtBarraBusquedad.Text;
 
+                //Resivimos el return
                 DataTable tablaNombre = pacientecn.BuscarPorNombre(pacienteNombre);
 
                 Paciente pacienteCedula = new Paciente();
@@ -141,6 +105,7 @@ namespace CapaPresentacion.Paginas
                 tablaCombinada.Merge(tablaNombre);
                 tablaCombinada.Merge(tablaCedula);
 
+                // Compatible con Listbox
                 DataView dataview = new DataView(tablaCombinada);
                 ListBoxPacientes.ItemsSource = null;
                 ListBoxPacientes.ItemsSource = dataview;
@@ -149,6 +114,12 @@ namespace CapaPresentacion.Paginas
             {
                 ObtenerPacientes();
             }
+        }
+
+
+        private void txtBarraBusquedad_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            BuscarNombreCedula();
         }
 
     }

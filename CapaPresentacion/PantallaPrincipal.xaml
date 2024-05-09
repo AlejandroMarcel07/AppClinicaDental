@@ -215,6 +215,7 @@
                                      Tag="white"
                                      Height="35"
                                      Cursor="Hand"
+                                     x:Name="btnCerraSesion"
                                      Click="btnVolverALoguear_Click"
                                      >
 

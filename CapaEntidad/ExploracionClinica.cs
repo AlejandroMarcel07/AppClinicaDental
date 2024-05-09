@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
-    internal class ExploracionClinica
+    public class ExploracionClinica
     {
+        //Clase aun no utilizada
     }
 }

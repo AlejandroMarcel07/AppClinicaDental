@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
-    internal class Cuota
+    public class Cuota
     {
+        //Clase aun no utilizada
     }
 }

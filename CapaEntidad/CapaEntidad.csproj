@@ -49,7 +49,6 @@
     <Compile Include="Paciente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecetaMedica.cs" />
-    <Compile Include="Rol.cs" />
     <Compile Include="TipoDePago.cs" />
     <Compile Include="UsuarioAdministrador.cs" />
   </ItemGroup>
