@@ -122,5 +122,10 @@ namespace CapaPresentacion.Paginas
             BuscarNombreCedula();
         }
 
+        private void btnMostrarRegistroPaciente_Click(object sender, RoutedEventArgs e)
+        {
+            VentanaRegistroPaciente ventaregistro = new VentanaRegistroPaciente();
+            ventaregistro.ShowDialog();
+        }
     }
 }

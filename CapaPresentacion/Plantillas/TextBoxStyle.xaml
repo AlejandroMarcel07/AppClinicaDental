@@ -21,7 +21,7 @@
                             </Grid.ColumnDefinitions>
                             <Separator Width="10" Background="Transparent"/>
                             <ScrollViewer x:Name="PART_ContentHost" Grid.Column="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled"/>
-
+                            <Separator Width="10" Background="Transparent"/>
                             <Label IsHitTestVisible="False"
                                Visibility="Collapsed"
                                Name="placeHolder"

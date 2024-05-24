@@ -22,13 +22,12 @@ namespace CapaNegocio
         {
             return pacienteccd.BuscarPorCedula(paciente);
         }
-
+  
         public DataTable ObtenerPacientes()
         {
             DataTable Tabla = new DataTable();
             Tabla = pacienteccd.ObtenerPacientes();
-            return Tabla;
-                
+            return Tabla;              
         }
 
         public bool RegistrarPaciente(Paciente paciente)

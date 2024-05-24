@@ -8,6 +8,11 @@ namespace CapaEntidad
 {
     public class Cita
     {
-        //Clase aun no utilizada
+       public int Id { get; set; }
+       public int IdPaciente { get; set; }
+       public DateTime Fecha { get; set; }
+       public DateTime Hora { get; set; }
+
+        
     }
 }

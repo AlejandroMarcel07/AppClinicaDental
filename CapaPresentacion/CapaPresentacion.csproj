@@ -62,6 +62,9 @@
     <Compile Include="VentanaModalPaciente.xaml.cs">
       <DependentUpon>VentanaModalPaciente.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VentanaRegistroPaciente.xaml.cs">
+      <DependentUpon>VentanaRegistroPaciente.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VentanEmergente.xaml.cs">
       <DependentUpon>VentanEmergente.xaml</DependentUpon>
     </Compile>
@@ -184,6 +187,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="VentanaRegistroPaciente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="VentanEmergente.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -216,6 +223,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Img\IMG-05.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Img\IMG-F.png" />
+    <Resource Include="Resources\Img\IMG-M.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

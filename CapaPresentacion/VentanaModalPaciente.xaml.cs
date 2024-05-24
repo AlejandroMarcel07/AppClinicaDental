@@ -152,7 +152,10 @@ namespace CapaPresentacion
                                                         }
                                                         else
                                                         {
+                                                            //Mandamos los datos
                                                             bool registroExitoso = pacientecn.RegistrarPaciente(paciente);
+
+                                                            //Verificamos si hubo error al registrar el paciente
                                                             if (registroExitoso)
                                                             {
                                                                 LimpiarCampos();

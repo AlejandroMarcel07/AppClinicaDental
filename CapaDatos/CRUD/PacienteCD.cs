@@ -92,7 +92,6 @@ namespace CapaDatos.CRUD
                     bool validcionCedula = false;
                     validcionCedula = count > 0;
                     return validcionCedula;
-
                 }
                 catch (Exception ex)
                 {
