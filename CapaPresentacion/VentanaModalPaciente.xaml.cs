@@ -82,9 +82,7 @@ namespace CapaPresentacion
             string MensajeTelefono = "¡Telefono!";
             string MensajeTelefono1 = "¡Numero Invalido!";
             string MensajeEmail = "¡Gmail!";
-            string MensajeEmail1 = "¡Gmail invalido!";
             string MensajeOcupacion = "¡Ocupación!";
-            string gmailPattern = @"\b[A-Za-z0-9._%+-]+@gmail\.com\b";
 
             if (!string.IsNullOrEmpty(txtNombreCompleto.Text))
             {
@@ -92,131 +90,114 @@ namespace CapaPresentacion
                 {
                     if (!string.IsNullOrEmpty(txtEdad.Text))
                     {
-                        if (int.Parse(txtEdad.Text) <= 99)
+                        if (cmbGenero.SelectedItem != null)
                         {
-                            if (cmbGenero.SelectedItem != null)
+                            if (!string.IsNullOrEmpty(txtDireccion.Text))
                             {
-                                if (!string.IsNullOrEmpty(txtDireccion.Text))
+                                if (!string.IsNullOrEmpty(txtTelefono.Text))
                                 {
-                                    if (!string.IsNullOrEmpty(txtTelefono.Text))
+                                    if (txtTelefono.Text.All(char.IsDigit))
                                     {
-                                        if (txtTelefono.Text.Length == 8 && txtTelefono.Text.All(char.IsDigit))
+                                        if (!string.IsNullOrEmpty(txtGmail.Text))
                                         {
-                                            if (!string.IsNullOrEmpty(txtGmail.Text))
+                                            if (!string.IsNullOrEmpty(txtOcupacion.Text))
                                             {
-                                                if (!Regex.IsMatch(txtGmail.Text, gmailPattern))
-                                                {
-                                                    textMensaje.Text = MensajeEmail1;
-                                                    textMensaje.Foreground = new SolidColorBrush(Colors.Red);
-                                                    return; // Sale del método si el gmail no es válido
-                                                }
 
+                                                PacienteCN pacientecn = new PacienteCN();
+
+                                                //Si sale todo bien el proceso continuara
+                                                string generoSeleccionado = cmbGenero.SelectedValue.ToString();
+                                                int valorAlmacenado;
+
+                                                if (generoSeleccionado == "Masculino")
+                                                {
+                                                    valorAlmacenado = 1;
+                                                }
                                                 else
                                                 {
-                                                    if (!string.IsNullOrEmpty(txtOcupacion.Text))
+                                                    valorAlmacenado = 2;
+                                                }
+
+                                                Paciente paciente = new Paciente();
+                                                paciente.NombreCompleto = txtNombreCompleto.Text;
+                                                paciente.Cedula = txtCedula.Text;
+                                                paciente.Edad = int.Parse(txtEdad.Text);
+                                                paciente.IdGenero = valorAlmacenado;
+                                                paciente.Direccino = txtDireccion.Text;
+                                                paciente.Telefono = int.Parse(txtTelefono.Text);
+                                                paciente.Gmail = txtGmail.Text;
+                                                paciente.Ocupacion = txtOcupacion.Text;
+
+                                                try
+                                                {
+                                                    //Validamos reglas de campos
+                                                    pacientecn.ValidacionCamposReglas(paciente);
+
+                                                    //Mandamos los datos y se validara existencia de este usuario
+                                                    bool registroExitoso = pacientecn.RegistrarPaciente(paciente);
+
+                                                    //Verificamos si hubo error al registrar el paciente
+                                                    if (registroExitoso)
                                                     {
-
-                                                        PacienteCN pacientecn = new PacienteCN();
-
-
-
-                                                            //Si sale todo bien el proceso continuara
-                                                            string generoSeleccionado = cmbGenero.SelectedValue.ToString();
-                                                            int valorAlmacenado;
-
-                                                            if (generoSeleccionado == "Masculino")
-                                                            {
-                                                                valorAlmacenado = 1;
-                                                            }
-                                                            else
-                                                            {
-                                                                valorAlmacenado = 2;
-                                                            }
-
-                                                            Paciente paciente = new Paciente();
-                                                            paciente.NombreCompleto = txtNombreCompleto.Text;
-                                                            paciente.Cedula = txtCedula.Text;
-                                                            paciente.Edad = int.Parse(txtEdad.Text);
-                                                            paciente.IdGenero = valorAlmacenado;
-                                                            paciente.Direccino = txtDireccion.Text;
-                                                            paciente.Telefono = int.Parse(txtTelefono.Text);
-                                                            paciente.Gmail = txtGmail.Text;
-                                                            paciente.Ocupacion = txtOcupacion.Text;
-                                                        //Inserta los datos y tenemos la respuesta boleana
-
-                                                        bool pacienteExiste = pacientecn.ValidarExistente(paciente);
-                                                        if (pacienteExiste)
-                                                        {
-                                                            MostrarMensaje("¡Paciente ya existe!", Colors.Red, 5);
-                                                            return;
-                                                        }
-                                                        else
-                                                        {
-                                                            //Mandamos los datos
-                                                            bool registroExitoso = pacientecn.RegistrarPaciente(paciente);
-
-                                                            //Verificamos si hubo error al registrar el paciente
-                                                            if (registroExitoso)
-                                                            {
-                                                                LimpiarCampos();
-                                                                EtiquetaExitoso.Text = "¡Registro Exitoso!";
-                                                                EtiquetaExitoso.Foreground = Brushes.Red;
-                                                                _pag01.ObtenerPacientes();
-                                                                MostrarMensaje("¡Registro Exitoso!", Colors.Green, 1);
-                                                            }
-                                                            else
-                                                            {
-                                                                MostrarMensaje("¡Error al registrar paciente!", Colors.Red, 3);
-                                                            }
-                                                        }
+                                                        LimpiarCampos();
+                                                        EtiquetaExitoso.Text = "¡Registro Exitoso!";
+                                                        EtiquetaExitoso.Foreground = Brushes.Red;
+                                                        _pag01.ObtenerPacientes();
+                                                        MostrarMensaje("¡Registro Exitoso!", Colors.Green, 1);
                                                     }
                                                     else
                                                     {
-                                                        textMensaje.Text = MensajeOcupacion;
-                                                        textMensaje.Foreground = new SolidColorBrush(Colors.Red);
-                                                        return; // Sale del método si el gmail no es válido
+                                                        MostrarMensaje("¡Error al registrar paciente!", Colors.Red, 3);
                                                     }
+                                                }
+                                                catch (ArgumentException ex)
+                                                {
+
+                                                    textMensaje.Text = ex.Message;
+                                                    textMensaje.Foreground = new SolidColorBrush(Colors.Red);
+                                                    return; // Sale del método si el gmail no es válido
                                                 }
                                             }
                                             else
                                             {
-                                                textMensaje.Text = MensajeEmail;
-                                                textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
-                                                return;
-
+                                                textMensaje.Text = MensajeOcupacion;
+                                                textMensaje.Foreground = new SolidColorBrush(Colors.Red);
+                                                return; // Sale del método si el gmail no es válido
                                             }
+
                                         }
                                         else
                                         {
-                                            textMensaje.Text = MensajeTelefono1;
+                                            textMensaje.Text = MensajeEmail;
                                             textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
                                             return;
+
                                         }
                                     }
                                     else
                                     {
-                                        textMensaje.Text = MensajeTelefono;
+                                        textMensaje.Text = MensajeTelefono1;
                                         textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
                                         return;
                                     }
                                 }
                                 else
                                 {
-                                    textMensaje.Text = MensajeDireccion;
+                                    textMensaje.Text = MensajeTelefono;
                                     textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
                                     return;
                                 }
                             }
                             else
                             {
-                                textMensaje.Text = MensajeGenero;
+                                textMensaje.Text = MensajeDireccion;
                                 textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
                                 return;
                             }
                         }
                         else
                         {
-                            textMensaje.Text = MensajeEdad;
+                            textMensaje.Text = MensajeGenero;
                             textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
                             return;
                         }

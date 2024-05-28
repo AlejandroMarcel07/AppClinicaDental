@@ -22,7 +22,8 @@ namespace CapaDatos.CRUD
                 try
                 {
                     connection.Open();
-                    SqlCommand command = new SqlCommand("SELECT * FROM Tb_Paciente ORDER BY Id DESC", connection);
+                    SqlCommand command = new SqlCommand("ObtenerPacientesOrdenadosPorId", connection);
+                    command.CommandType = CommandType.StoredProcedure;
                     SqlDataReader reader = command.ExecuteReader();
                     DataTable Tabla = new DataTable();
                     Tabla.Load(reader);
@@ -42,8 +43,8 @@ namespace CapaDatos.CRUD
                 try
                 {
                     connection.Open();
-                    SqlCommand command = new SqlCommand("SELECT * FROM Tb_Paciente WHERE NombreCompleto LIKE @Nombre", connection);
-                    command.CommandType = CommandType.Text;
+                    SqlCommand command = new SqlCommand("BuscarPacientesPorNombre", connection);
+                    command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@Nombre", "%" + paciente.NombreCompleto + "%");
                     SqlDataReader reader = command.ExecuteReader();
                     DataTable Tabla = new DataTable();
@@ -65,7 +66,8 @@ namespace CapaDatos.CRUD
                 try
                 {
                     connection.Open();
-                    SqlCommand command = new SqlCommand("SELECT * FROM Tb_Paciente WHERE Cedula LIKE @Cedula", connection);
+                    SqlCommand command = new SqlCommand("BuscarPacientesPorCedula", connection);
+                    command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@Cedula", "%" + paciente.Cedula + "%");
                     SqlDataReader reader = command.ExecuteReader();
                     DataTable Tabla = new DataTable();
@@ -85,8 +87,8 @@ namespace CapaDatos.CRUD
                 try
                 {
                     connection.Open();
-                    SqlCommand comandovalidar = new SqlCommand("SELECT COUNT(*) FROM Tb_Paciente WHERE Cedula = @Cedula", connection);
-                    comandovalidar.CommandType = CommandType.Text;
+                    SqlCommand comandovalidar = new SqlCommand("ContarPacientesPorCedula", connection);
+                    comandovalidar.CommandType = CommandType.StoredProcedure;
                     comandovalidar.Parameters.AddWithValue("@Cedula", paciente.Cedula);
                     int count = (int)comandovalidar.ExecuteScalar();
                     bool validcionCedula = false;
@@ -109,6 +111,7 @@ namespace CapaDatos.CRUD
                 {
                     connectio.Open();
                     SqlCommand command = new SqlCommand("INSERT INTO Tb_Paciente (NombreCompleto, Cedula, Edad, IdGenero, Direccion, Telefono, Gmail, Ocupacion) VALUES (@nombrecompleto, @cedula, @edad , @genero, @direccion, @telefono, @gmail, @ocupacion)", connectio);
+                    command.CommandType = CommandType.Text;
                     command.Parameters.AddWithValue("@nombrecompleto", paciente.NombreCompleto);
                     command.Parameters.AddWithValue("@cedula", paciente.Cedula);
                     command.Parameters.AddWithValue("@edad", paciente.Edad);
@@ -130,6 +133,10 @@ namespace CapaDatos.CRUD
                 }
             }
         }
+
+
+        //Mostrar informacion
+        //Editar informacion
     }
 }
 
