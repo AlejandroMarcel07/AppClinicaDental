@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion"
         mc:Ignorable="d"
-        Title="PantallaPrincipal" Height="660" Width="1140"
+        Title="PantallaPrincipal" Height="670" Width="1150"
         WindowStyle="None"
         Background="Transparent" 
         AllowsTransparency="True"
@@ -14,7 +14,7 @@
         MouseDown="Window_MouseDown"
         
         >
-    <Border Background="#FBFBFB"
+    <Border Background="#f2f2f2"
             CornerRadius="15"
             Margin="30"
             x:Name="BordePrincipalSombra">
@@ -28,12 +28,10 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Border Background="#FBFBFB"
-                    CornerRadius="15 10 10 15"
+                     BorderThickness="1" BorderBrush="#d4d5d6"
+                    CornerRadius="15 0 0 15"
                     Grid.Column="0">
-                <Border.Effect>
-                    <DropShadowEffect Opacity="0.2" ShadowDepth="1" BlurRadius="35"
-               Direction="150" Color="#545A68"/>
-                </Border.Effect>
+
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="80"/>
@@ -60,7 +58,7 @@
                                            HorizontalAlignment="Center"/>
                             </Border>
                             <StackPanel Orientation="Vertical"
-                                        Margin="10 0 0 0"
+                                        Margin="10 4 0 0"
                                         Grid.Column="1">
                                 <TextBlock FontFamily="{StaticResource Outfit-Bold}"
                                            x:Name="EtiquetaNombreUsuario"
@@ -68,7 +66,7 @@
                                 <TextBlock Text="Asistente"
                                            x:Name="EtiquetaTipoRol"
                                            FontFamily="{StaticResource Outfit-Regular}"
-                                           FontSize="15"/>
+                                           FontSize="14"/>
 
                             </StackPanel>
                         </Grid>
@@ -105,7 +103,7 @@
                                 <StackPanel Orientation="Horizontal"
                                             >
                                     <Path Data="{StaticResource IcoPatient}"
-                                          Fill="Black"
+                                          Fill="Black"                                       
                                           Margin="15 0 15 0"/>
                                     <TextBlock Text="Pacientes" 
                                      Foreground="Black"                                       
@@ -240,10 +238,12 @@
             </Border>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
+                <Border Grid.Row="0" Background="#FBFBFB" CornerRadius="0 10 0 0"
+                        BorderThickness="0 0 0 1" BorderBrush="#d4d5d6">
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -251,7 +251,7 @@
                         <ColumnDefinition Width="70"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0"
-                                VerticalAlignment="Bottom"
+                                VerticalAlignment="Center"
                                 Margin="30 0">
                         <TextBlock FontFamily="{StaticResource Outfit-Regular}"
                                    FontSize="14"
@@ -261,7 +261,7 @@
                     </StackPanel>
 
                     <StackPanel Grid.Column="1"
-                                VerticalAlignment="Bottom"
+                                VerticalAlignment="Center"
                                 Margin="20 0"
                                 Orientation="Horizontal"
                                 FlowDirection="RightToLeft">
@@ -283,7 +283,7 @@
                             BorderThickness="0"
                             Cursor="Hand"
                             Margin="20 0 6 0"
-                            VerticalAlignment="Bottom"
+                            VerticalAlignment="Center"
                            >
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
@@ -301,7 +301,7 @@
                             Background="Transparent"
                             BorderThickness="0"
                             Cursor="Hand"
-                            VerticalAlignment="Bottom"
+                            VerticalAlignment="Center"
                            >
 
                             <!--Agregnado un comentario para probar versiones de github-->
@@ -321,7 +321,7 @@
                             Background="Transparent"
                             BorderThickness="0"
                             Cursor="Hand"
-                            VerticalAlignment="Bottom"
+                            VerticalAlignment="Center"
                            >
                             <!--Agregnado un comentario para probar versiones de github-->
                             <Button.Template>
@@ -334,11 +334,12 @@
                     </StackPanel>
 
                 </Grid>
+                </Border>
                 <Frame Grid.Row="1"
                        x:Name="FrmPrincipal"
                        NavigationUIVisibility="Hidden"
-                       Source="/Paginas/Pag01.xaml"
-                       Margin="30"
+                       Source="/Paginas/PagCentral.xaml"
+                       Margin="0"
                        >
                 </Frame>
             </Grid>

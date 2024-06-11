@@ -1,4 +1,5 @@
 ﻿using CapaNegocio;
+using CapaPresentacion.Paginas;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -21,10 +22,10 @@ namespace CapaPresentacion
     /// </summary>
     public partial class VentanaRegistroPaciente : Window
     {
+
         public VentanaRegistroPaciente()
         {
             InitializeComponent();
-            ObtenerPacientes();
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -43,26 +44,10 @@ namespace CapaPresentacion
             this.WindowState = WindowState.Minimized;
         }
 
-        private void btnAtras_Click(object sender, RoutedEventArgs e)
+
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Close();
-        }
-
-        private void btnGuardarCambios_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private PacienteCN pacientecn = new PacienteCN();
-
-        public void ObtenerPacientes()
-        {
-
-            DataTable tabla = new DataTable();
-            tabla = pacientecn.ObtenerPacientes();
-            DataView dataview = new DataView(tabla);
-
-            ListBoxPacientes.ItemsSource = dataview;
         }
     }
 }

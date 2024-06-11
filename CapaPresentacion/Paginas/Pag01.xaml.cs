@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
 using System.Text.RegularExpressions;
+using System.Windows.Controls.Primitives;
 
 namespace CapaPresentacion.Paginas
 {
@@ -122,10 +123,54 @@ namespace CapaPresentacion.Paginas
             BuscarNombreCedula();
         }
 
+        private Paciente pacienteSeleccionado;
+
+        private void toggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            // Obtener el ToggleButton que fue clicado
+            ToggleButton toggleButton = sender as ToggleButton;
+
+            // Obtener el DataContext del ToggleButton (que es el objeto del paciente)
+            DataRowView selecItem = toggleButton.DataContext as DataRowView;
+
+
+            if (selecItem != null)
+            {
+                // Accede a las propiedades del DataRowView y crea un objeto Paciente
+                pacienteSeleccionado = new Paciente
+                {
+                    //Obtenemos los atributos de objeto por la seleccion y se los pasamos a un nuevo objeto
+                    Id = Convert.ToInt32(selecItem["Id"]),
+                    NombreCompleto = selecItem["NombreCompleto"].ToString(),
+                    Cedula = selecItem["Cedula"].ToString(),
+                    Edad = Convert.ToInt32(selecItem["Edad"]),
+                    IdGenero = Convert.ToInt32(selecItem["IdGenero"]),
+                    Direccino = selecItem["Direccion"].ToString(),
+                    Telefono = Convert.ToInt32(selecItem["Telefono"]),
+                    Gmail = selecItem["Gmail"].ToString(),
+                    Ocupacion = selecItem["Ocupacion"].ToString()
+                };
+            }
+
+            popup.IsOpen = true;
+        }
+
         private void btnMostrarRegistroPaciente_Click(object sender, RoutedEventArgs e)
         {
-            VentanaRegistroPaciente ventaregistro = new VentanaRegistroPaciente();
-            ventaregistro.ShowDialog();
+            if (pacienteSeleccionado != null)
+            {
+                this.NavigationService.Navigate(new PagPerfilPaciente(pacienteSeleccionado));
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un paciente de la lista.");
+            }
         }
+
+        private void toggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            popup.IsOpen = false;
+        }
+
     }
 }

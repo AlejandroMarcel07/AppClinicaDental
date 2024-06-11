@@ -22,6 +22,54 @@
             </EventTrigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="AnimacionDerechaIzquierda" TargetType="{x:Type Border}">
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TranslateTransform X="20" Y="0"/>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <!-- Animación de movimiento -->
+                        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
+                                     From="20"
+                                     To="0"
+                                     Duration="0:0:0.2"
+                                     DecelerationRatio="0.8"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="CalendarEdi" TargetType="{x:Type Calendar}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Calendar}">
+                    <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                        <!-- Contenido del Calendar -->
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Button x:Name="PreviousButton" Content="&lt;" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <Button x:Name="NextButton" Content="&gt;" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                            <CalendarItem x:Name="CalendarItem" Grid.Row="1"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
     <Style x:Key="Page_Style2"
        TargetType="{x:Type Page}">
         <Setter Property="RenderTransform">
@@ -59,4 +107,5 @@
         </Style.Triggers>
 
     </Style>
+
 </ResourceDictionary>

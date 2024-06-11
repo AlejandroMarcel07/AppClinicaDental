@@ -131,7 +131,7 @@ namespace CapaPresentacion
 
         private void Pag01_Click(object sender, RoutedEventArgs e)
         {
-            MostrarPagina(new Pag01());
+            MostrarPagina(new PagCentral());
         }
 
         private void Pag02_Click(object sender, RoutedEventArgs e)
