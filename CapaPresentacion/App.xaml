@@ -135,7 +135,7 @@
                                 <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
                                 <Rectangle x:Name="HighlightBackground" Fill="#c7cdff" Opacity="0" RadiusX="30" RadiusY="30"/>
                                 <ContentPresenter x:Name="NormalText" TextElement.Foreground="#FF333333" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="5,1,5,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                                <Rectangle x:Name="Blackout" Fill="red" Opacity="0" RadiusX="40" RadiusY="30"/>
+                                <Rectangle x:Name="Blackout" Fill="Transparent" Opacity="0" RadiusX="40" RadiusY="30"/>
                                 <!--<Path x:Name="Blackout" Data="M8.1772461,11.029181 L10.433105,11.029181 L11.700684,12.801641 L12.973633,11.029181 L15.191895,11.029181 L12.844727,13.999395 L15.21875,17.060919 L12.962891,17.060919 L11.673828,15.256231 L10.352539,17.060919 L8.1396484,17.060919 L10.519043,14.042364 z" Fill="{StaticResource ColorCeleste}" HorizontalAlignment="Stretch" Margin="3" Opacity="0" RenderTransformOrigin="0.5,0.5" Stretch="Fill" VerticalAlignment="Stretch"/>-->
                                 <Rectangle x:Name="DayButtonFocusVisual" IsHitTestVisible="false" RadiusX="1" RadiusY="1" Stroke="Transparent" Visibility="Collapsed"/>
                             </Grid>

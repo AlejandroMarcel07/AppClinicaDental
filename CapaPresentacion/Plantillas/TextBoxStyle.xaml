@@ -46,7 +46,8 @@
     </Style>
 
     <Style  x:Key="CustomTextBoxStylePequeño" TargetType="{x:Type TextBox}">
-        <Setter Property="Height" Value="25"/>
+        <Setter Property="Height" Value="auto"/>
+        <Setter Property="MaxHeight" Value="70"/>
         <Setter Property="Background" Value="#EDEFF1"/>
         <Setter Property="BorderBrush" Value="#EDEFF1"/>
         <Setter Property="TextAlignment" Value="Left"/>
@@ -54,10 +55,11 @@
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontFamily" Value="{StaticResource Outfit-Regular}"/>
         <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Padding" Value="0 5 4 5"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
-                    <Border Background="Transparent" BorderThickness="1" BorderBrush="#d4d5d6" CornerRadius="2">
+                    <Border Background="Transparent" BorderThickness="1" BorderBrush="LightGray" CornerRadius="2">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -74,6 +76,53 @@
                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                Foreground="#d4d5d6" FontFamily="{StaticResource Outfit-Regular}"
+                               FontSize="{TemplateBinding FontSize}"
+                               Padding="0 0 0 0"
+                               Margin="0,0,0,0" Cursor=""
+                               />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Text" Value="">
+                            <Setter Property="Visibility" TargetName="placeHolder" Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style  x:Key="CustomTextBoxStylePequeño01" TargetType="{x:Type TextBox}">
+        <Setter Property="Height" Value="auto"/>
+        <Setter Property="MaxHeight" Value="70"/>
+        <Setter Property="Background" Value="#EDEFF1"/>
+        <Setter Property="BorderBrush" Value="#EDEFF1"/>
+        <Setter Property="TextAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontFamily" Value="{StaticResource Outfit-Regular}"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Padding" Value="-5 5 10 5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border Background="Transparent" BorderThickness="0 0 0 1" BorderBrush="LightGray" CornerRadius="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Separator Width="10" Background="Transparent"/>
+                            <ScrollViewer x:Name="PART_ContentHost" Grid.Column="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled"/>
+                            <Separator Width="10" Background="Transparent"/>
+                            <Label IsHitTestVisible="False" 
+                               Visibility="Collapsed"
+                               Name="placeHolder"
+                               Content="{TemplateBinding Tag}"
+                               Grid.Column="1"
+                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                               Foreground="#c7c7c7" FontFamily="{StaticResource Outfit-Regular}"
                                FontSize="{TemplateBinding FontSize}"
                                Padding="0 0 0 0"
                                Margin="0,0,0,0" Cursor=""

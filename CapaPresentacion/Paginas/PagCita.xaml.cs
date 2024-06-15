@@ -43,7 +43,7 @@ namespace CapaPresentacion.Paginas
         private void MostrarDatosPaciente()
         {
             // Ejemplo: Mostrar los datos del paciente en los controles de la página
-            NombreTextBlock.Text = paciente.NombreCompleto;
+            NombreTextBlock.Text = "Nombre: " + paciente.NombreCompleto;
             CedulaTextBlock.Text = "Cedula: " + paciente.Cedula;
         }
 
@@ -95,6 +95,24 @@ namespace CapaPresentacion.Paginas
 
             // Bloquear todas las fechas anteriores a hoy
             ClendarName.BlackoutDates.AddDatesInPast();
+        }
+
+        private void btnCrearCitaYA_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new PagHistorialClinico(paciente));
+        }
+
+
+        //Obtener la fecha seleccionada en el caledario y comvertirla en otro tipo de formato y mostrarla en un textbox
+        private void ClendarName_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ClendarName.SelectedDate.HasValue)
+            {
+                DateTime selectedDate = ClendarName.SelectedDate.Value;
+                string formattedDate = selectedDate.ToString("dd 'de' MMMM 'de' yyyy", new CultureInfo("es-ES"));
+
+                txtFechaSeleccionada.Text = formattedDate;
+            }
         }
     }
 }
