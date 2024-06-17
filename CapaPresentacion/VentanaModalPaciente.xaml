@@ -76,17 +76,17 @@
                 <!--Paso de acceso-->
                 <TextBlock Text="| Nuevo paciente"
                                FontFamily="{StaticResource Outfit-Bold}"
-                               FontSize="17"
+                               FontSize="15"
                                Margin="0 10 0 0"/>
                 <TextBlock
                         FontFamily="{StaticResource Outfit-Regular}"
-                        FontSize="15"
+                        FontSize="13"
                         TextWrapping="Wrap"
                         Margin="0 10 0 0"
                         Text="Por favor, completa todos los campos ya que son obligatorios para continuar."/>
                 <TextBlock x:Name="textMensaje" HorizontalAlignment="Left"
                            Margin="0 5 0 0"
-                                   FontFamily="{StaticResource Outfit-Regular}" FontSize="15"
+                                   FontFamily="{StaticResource Outfit-Regular}" FontSize="13"
                                    />
                 <Grid>
                     <Grid.RowDefinitions>
@@ -96,32 +96,30 @@
                     </Grid.RowDefinitions>
                     <ScrollViewer Grid.Row="0" Margin="0 20 0 0">
                         <StackPanel Orientation="Vertical"  Margin="0 0 10 0">
-                            <TextBox Style="{StaticResource CustomTextBoxStyle}" TextChanged="txtNombreCompleto_TextChanged"
+                            <TextBox Style="{StaticResource CustomTextBoxStylePequeño}" TextChanged="txtNombreCompleto_TextChanged"
                          Tag="nombre completo" Margin="0 0 0 0" x:Name="txtNombreCompleto"/>
-                            <TextBox Style="{StaticResource CustomTextBoxStyle}" TextChanged="txtCedula_TextChanged"
+                            <TextBox Style="{StaticResource CustomTextBoxStylePequeño}" TextChanged="txtCedula_TextChanged"
                          Tag="cedula" Margin="0 10 0 0" x:Name="txtCedula"/>
-                            <TextBox Style="{StaticResource CustomTextBoxStyle}"
+                            <TextBox Style="{StaticResource CustomTextBoxStylePequeño}"
                          Tag="edad" Margin="0 10 0 0" x:Name="txtEdad" TextChanged="txtEdad_TextChanged"/>
                             <ComboBox Style="{StaticResource ComboBoxFlatStyle}"                                   
-                                      Height="35"
+                                      Height="25"
                                       SelectionChanged="cmbGenero_SelectionChanged"
                                       x:Name="cmbGenero"
-                                      FontSize="14"                                
+                                      FontSize="13"                                
                                       FontFamily="{StaticResource Outfit-Regular}"
                                       Margin="0,10,0,0"
                                     >
                                 <ComboBoxItem Content="Masculino" FontFamily="{StaticResource Outfit-Regular}" Foreground="#A59EA5" FontSize="12"/>
                                 <ComboBoxItem Content="Feminino" FontFamily="{StaticResource Outfit-Regular}" Foreground="#A59EA5" FontSize="12"/>
-
-
                             </ComboBox>
-                            <TextBox Style="{StaticResource CustomTextBoxStyle}"
+                            <TextBox Style="{StaticResource CustomTextBoxStylePequeño}"
                          Tag="direccion" Margin="0 10 0 0" x:Name="txtDireccion" TextChanged="txtDireccion_TextChanged"/>
-                            <TextBox Style="{StaticResource CustomTextBoxStyle}" TextChanged="txtTelefono_TextChanged"
+                            <TextBox Style="{StaticResource CustomTextBoxStylePequeño}" TextChanged="txtTelefono_TextChanged"
                          Tag="telefono" Margin="0 10 0 0" x:Name="txtTelefono"/>
-                            <TextBox Style="{StaticResource CustomTextBoxStyle}" TextChanged="txtGmail_TextChanged"
+                            <TextBox Style="{StaticResource CustomTextBoxStylePequeño}" TextChanged="txtGmail_TextChanged"
                          Tag="gmail" Margin="0 10 0 0" x:Name="txtGmail"/>
-                            <TextBox Style="{StaticResource CustomTextBoxStyle}" TextChanged="txtOcupacion_TextChanged"
+                            <TextBox Style="{StaticResource CustomTextBoxStylePequeño}" TextChanged="txtOcupacion_TextChanged"
                          Tag="ocupación" Margin="0 10 0 0" x:Name="txtOcupacion"/>
 
                         </StackPanel>

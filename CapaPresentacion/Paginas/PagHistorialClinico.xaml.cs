@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace CapaPresentacion.Paginas
 {
@@ -40,40 +41,46 @@ namespace CapaPresentacion.Paginas
             this.NavigationService.Navigate(new Pag01());
         }
 
+
+        //Editar y guardar el caso del paciente
         private void btnEditarCasoPaciente_Click(object sender, RoutedEventArgs e)
         {
             btnEditarCasoPaciente.Visibility = Visibility.Collapsed;
             btnGuardarCasoPaciente.Visibility = Visibility.Visible;
+
+            TextMensajeCasoPaciente.Visibility = Visibility.Visible;
+            TextMensajeCasoPaciente.Text = "¡Modo Editar!";
+            TextMensajeCasoPaciente.Foreground = new SolidColorBrush(Colors.Orange);
+            borderCasoPaciente.BorderBrush = (Brush)new SolidColorBrush(Colors.Orange);
+
         }
 
         private void btnGuardarCasoPaciente_Click(object sender, RoutedEventArgs e)
         {
             btnGuardarCasoPaciente.Visibility = Visibility.Collapsed;
             btnEditarCasoPaciente.Visibility = Visibility.Visible;
+            MostrarMensaje("¡Cambios Aplicado!", Colors.Green, 2);
+            borderCasoPaciente.BorderBrush = (Brush)new SolidColorBrush(Colors.Green);
         }
 
-        private void btnGuardarFactura_Click(object sender, RoutedEventArgs e)
+
+        public void MostrarMensaje(string texto, Color color, int duracionSegundos)
         {
-            btnGuardarFactura.Visibility = Visibility.Collapsed;
-            btnEditaFactura.Visibility = Visibility.Visible;
+            TextMensajeCasoPaciente.Text = texto;
+            TextMensajeCasoPaciente.Foreground = new SolidColorBrush(color);
+
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(duracionSegundos);
+            timer.Tick += (sender, args) =>
+            {
+                TextMensajeCasoPaciente.Text = "";
+                TextMensajeCasoPaciente.Visibility = Visibility.Collapsed;
+                borderCasoPaciente.BorderBrush = (Brush)new BrushConverter().ConvertFromString("#d4d5d6");
+                timer.Stop();
+            };
+            timer.Start();
         }
 
-        private void btnEditaFactura_Click(object sender, RoutedEventArgs e)
-        {
-            btnEditaFactura.Visibility = Visibility.Collapsed;
-            btnGuardarFactura.Visibility = Visibility.Visible;
-        }
 
-        private void btnEditarReceta_Click(object sender, RoutedEventArgs e)
-        {
-            btnEditarReceta.Visibility = Visibility.Collapsed;
-            btnGuardarReceta.Visibility = Visibility.Visible;
-        }
-
-        private void btnGuardarReceta_Click(object sender, RoutedEventArgs e)
-        {
-            btnGuardarReceta.Visibility = Visibility.Collapsed;
-            btnEditarReceta.Visibility = Visibility.Visible;
-        }
     }
 }

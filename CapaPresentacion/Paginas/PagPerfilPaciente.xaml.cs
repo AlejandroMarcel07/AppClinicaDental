@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace CapaPresentacion.Paginas
 {
@@ -40,26 +41,24 @@ namespace CapaPresentacion.Paginas
 
         private void MostrarDatosPaciente()
         {
-            string GeneroVer;
+            txtNombreCompleto.Text = paciente.NombreCompleto;
+            txtCedula.Text = paciente.Cedula;
+            txtEdad.Text = paciente.Edad.ToString();
+            txtDireccion.Text = paciente.Direccino;
+            txtTelefono.Text = paciente.Telefono.ToString();
+            txtOcupacion.Text = paciente.Ocupacion;
+            txtAntecedentes.Text = "Ninguno";
 
-            if (paciente.IdGenero.ToString() == "1")
-            {
-                GeneroVer = "Masculino";
-            }
-            else
-            {
-                GeneroVer = "Femenino";
-            }
-        
 
-            // Ejemplo: Mostrar los datos del paciente en los controles de la página
-            NombreTextBlock.Text =  paciente.NombreCompleto;
-            CedulaTextBlock.Text = "Cedula: " + paciente.Cedula;
-            EdadTextBlock.Text = "Edad: " + paciente.Edad.ToString();
-            GeneroTextBlock.Text = "Genero: " + GeneroVer;
-            DireccionTextBlock.Text = "Dirección: " + paciente.Direccino;
-            TelefonoTextBlock.Text = "Telefono: " + paciente.Telefono.ToString();
-            OcupacionTextBlock.Text = "Ocupación: " + paciente.Ocupacion;
+            // Seleccionar el valor correcto en el ComboBox
+            foreach (ComboBoxItem item in GeneroComboBox.Items)
+            {
+                if (item.Tag.ToString() == paciente.IdGenero.ToString())
+                {
+                    GeneroComboBox.SelectedItem = item;
+                    break;
+                }
+            }
         }
 
 
@@ -95,6 +94,80 @@ namespace CapaPresentacion.Paginas
         private void toggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
             popup.IsOpen = false;
+        }
+
+        private void btnMostrarCitaEspecifica_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new PagHistorialClinico(paciente));
+        }
+
+        private void btnEditarPaciente_Click(object sender, RoutedEventArgs e)
+        {
+            btnEditarPaciente.Visibility = Visibility.Collapsed;
+            btnGuardarCambiosPaciente.Visibility = Visibility.Visible;
+
+            TextMensajeInformacion.Visibility = Visibility.Visible;
+            TextMensajeInformacion.Text = "¡Modo Editar!";
+            TextMensajeInformacion.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#C58D1C"));
+            TextMensajeInformacion.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FEDB9B"));
+            borderInformacionPersonal.BorderBrush = (Brush)new SolidColorBrush(Colors.Orange);
+
+            HabilitarCampos();
+        }
+
+        private void HabilitarCampos()
+        {
+            txtNombreCompleto.IsEnabled = true;
+            txtCedula.IsEnabled = true;
+            txtEdad.IsEnabled = true;
+            txtDireccion.IsEnabled = true;
+            txtTelefono.IsEnabled = true;
+            txtOcupacion.IsEnabled = true;
+            txtAntecedentes.IsEnabled = true;
+            GeneroComboBox.IsEnabled = true;
+
+        }
+
+        private void DesahabilitarCampos()
+        {
+            txtNombreCompleto.IsEnabled = false;
+            txtCedula.IsEnabled = false;
+            txtEdad.IsEnabled = false;
+            txtDireccion.IsEnabled = false;
+            txtTelefono.IsEnabled = false;
+            txtOcupacion.IsEnabled = false;
+            txtAntecedentes.IsEnabled = false;
+            GeneroComboBox.IsEnabled = false;
+
+        }
+
+        private void btnGuardarCambiosPaciente_Click(object sender, RoutedEventArgs e)
+        {
+            btnGuardarCambiosPaciente.Visibility = Visibility.Collapsed;
+            btnEditarPaciente.Visibility = Visibility.Visible;
+            MostrarMensaje("¡Cambios Aplicado!", Colors.Green, 2, Colors.LightGreen);
+            borderInformacionPersonal.BorderBrush = (Brush)new SolidColorBrush(Colors.Green);
+
+            DesahabilitarCampos();
+        }
+
+
+        public void MostrarMensaje(string texto, Color color, int duracionSegundos, Color Background)
+        {
+            TextMensajeInformacion.Text = texto;
+            TextMensajeInformacion.Foreground = new SolidColorBrush(color);
+            TextMensajeInformacion.Background = new SolidColorBrush(Background);
+
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(duracionSegundos);
+            timer.Tick += (sender, args) =>
+            {
+                TextMensajeInformacion.Text = "";
+                TextMensajeInformacion.Visibility = Visibility.Collapsed;
+                borderInformacionPersonal.BorderBrush = (Brush)new BrushConverter().ConvertFromString("#d4d5d6");
+                timer.Stop();
+            };
+            timer.Start();
         }
     }
 }

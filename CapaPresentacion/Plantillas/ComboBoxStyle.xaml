@@ -14,8 +14,8 @@
                 <ColumnDefinition Width="20" />
             </Grid.ColumnDefinitions>
             <Border Grid.ColumnSpan="2" Name="Border"
-           BorderBrush="#d4d5d6" 
-           CornerRadius="2" BorderThickness="1, 1, 1, 1" 
+           BorderBrush="LightGray" 
+           CornerRadius="2" BorderThickness="1 1 1 1" 
            Background="{StaticResource ComboBoxNormalBackgroundBrush}" />
             <Border Grid.Column="1" Margin="1, 1, 1, 1" BorderBrush="#d4d5d6" Name="ButtonBorder"
            CornerRadius="5" BorderThickness="0, 0, 0, 0" 
@@ -35,8 +35,8 @@
                 <Setter Property="Shape.Fill" TargetName="Arrow" Value="#FF8D979E"/>
             </Trigger>
             <Trigger Property="UIElement.IsEnabled" Value="False">
-                <Setter Property="Panel.Background" TargetName="Border" Value="{StaticResource ComboBoxDisabledBackgroundBrush}"/>
-                <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="{StaticResource ComboBoxDisabledBackgroundBrush}"/>
+                <Setter Property="Panel.Background" TargetName="Border" Value="Transparent"/>
+                <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="Transparent"/>
                 <Setter Property="Border.BorderBrush" TargetName="ButtonBorder" Value="#A59EA5"/>
                 <Setter Property="TextElement.Foreground" Value="{StaticResource ComboBoxDisabledForegroundBrush}"/>
                 <Setter Property="Shape.Fill" TargetName="Arrow" Value="#999"/>
@@ -68,7 +68,7 @@
                                    ContentTemplate="{TemplateBinding ComboBox.SelectionBoxItemTemplate}"
                                    ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>
 
-                        <TextBlock x:Name="Placeholder" Text="genero" Foreground="#A59EA5" Margin="0,0,0,0" VerticalAlignment="Center"
+                        <TextBlock x:Name="Placeholder" Text="Seleccione" Foreground="#A59EA5" Margin="0,0,0,0" VerticalAlignment="Center"
                                 Padding="14,8,0,0" Width="190" Height="35" HorizontalAlignment="Left"
                                    
                                    
@@ -134,7 +134,7 @@
                             <Setter Property="TextElement.Foreground" Value="#A59EA5"/>
                         </Trigger>
                         <Trigger Property="UIElement.IsEnabled" Value="False">
-                            <Setter Property="TextElement.Foreground" Value="#A59EA5"/>
+                            <Setter Property="TextElement.Foreground" Value="Black"/>
                         </Trigger>
                         <Trigger Property="ItemsControl.IsGrouping" Value="True">
                             <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
@@ -150,4 +150,6 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    
 </ResourceDictionary>
