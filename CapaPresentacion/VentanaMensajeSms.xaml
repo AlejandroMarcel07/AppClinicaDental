@@ -1,0 +1,120 @@
+﻿<Window x:Class="CapaPresentacion.VentanaMensajeSms"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CapaPresentacion"
+        mc:Ignorable="d"
+        Title="VentanaMensajeSms" Height="373" Width="550"
+        WindowStyle="None"
+        Background="Transparent" 
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        
+        MouseDown="Window_MouseDown" 
+        >
+    <Border Background="#FBFBFB"
+            CornerRadius="10"
+            BorderThickness="2"
+            BorderBrush="#d1cdcd"
+            Margin="30">
+
+        <Border.Effect>
+            <DropShadowEffect Opacity="0.4" ShadowDepth="5" BlurRadius="35"
+               Direction="150" Color="#545A68"/>
+        </Border.Effect>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="55"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel     Grid.Column="2"
+                            Orientation="Horizontal"
+                            FlowDirection="RightToLeft">
+                <Button 
+                            Height="10"
+                            Width="10"
+                            x:Name="btnCerrarAplicacion"
+                            Click="btnCerrarAplicacion_Click"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            Margin="15 0 7 0"
+                            VerticalAlignment="Bottom"
+                           >
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="50"
+                                        Background="red"></Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button 
+                            x:Name="btnMinimizarAplicacion"
+                            Height="10"
+                            Click="btnMinimizarAplicacion_Click"
+                            Width="10"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            VerticalAlignment="Bottom"
+                           >
+                    <!--Agregnado un comentario para probar versiones de github-->
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="50"
+                                        Background="Orange"></Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Margin="20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock VerticalAlignment="Center" Text="- Envio de Mensajes" FontSize="15" FontFamily="{StaticResource Outfit-Regular}"/>
+                    <TextBlock x:Name="textMensaje" HorizontalAlignment="Right"
+                               Grid.Column="1"
+                               Text="Etiqueta de mensaje"
+                               Height="25"
+                               VerticalAlignment="Center"
+                               Padding="5 3 5 0"
+                               Visibility="Collapsed"
+                               Background="LightGreen"
+                               Foreground="Green"
+                                Margin="0 0 0 0"
+                                   FontFamily="{StaticResource Outfit-Regular}" FontSize="13" />
+                    
+                </Grid>
+                <Separator Background="#d4d5d6" Margin="0 10 0 0"/>
+                <StackPanel Orientation="Vertical" Margin="0 10 0 0">
+                    <TextBlock Text="Para: Alejandro Marcel Zuniga Perez" x:Name="txtNombrePaciente" Margin="0 0 0 0" FontSize="13" FontFamily="{StaticResource Outfit-Regular}"/>
+                    <TextBlock Text="Numero: 76196417" x:Name="txtNumeroPaciente" Margin="0 5 0 0" FontSize="13" FontFamily="{StaticResource Outfit-Regular}"/>
+                </StackPanel>
+
+                <TextBlock Text="Escribe un mensaje:" Margin="0 10 0 0" FontSize="13" FontFamily="{StaticResource Outfit-Regular}"/>
+                <StackPanel Orientation="Vertical" Margin="0 5 0 0 ">
+                    <TextBox Style="{StaticResource CustomTextBoxStylePequeño}" Background="white" Height="auto" MaxHeight="80" AcceptsReturn="True" 
+                             TextWrapping="Wrap"  Tag="Cuerpo del mensaje"
+                             VerticalScrollBarVisibility="Hidden" x:Name="txtMensajeIngresado"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Row="2" >
+                <Separator Background="#d4d5d6" Margin="0 0 0 0"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Height="25" Style="{StaticResource BtnLogin}" Background="{StaticResource ColorAzulon}" Content="Cancelar" Width="70"
+                            Margin="0 15 10 0" x:Name="btnCancelarPantalla" Click="btnCancelarPantalla_Click"/>
+                    <Button Height="25" Style="{StaticResource BtnLogin}" Background="{StaticResource ColorCeleste}" Content="Enviar" Width="70"
+                            Margin="0 15 20 0" x:Name="btnEnviarMesnaje" Click="btnEnviarMesnaje_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

@@ -103,40 +103,130 @@ namespace CapaDatos.CRUD
             }
         }
 
-        public bool RegistrarPaciente(Paciente paciente)
+        public bool ValidarExistenteModificada(string cedulaActual, string cedulaNueva)
         {
-            using (SqlConnection connectio = conexioncd.ObtenerConexion())
+            using (SqlConnection connection = conexioncd.ObtenerConexion())
             {
                 try
                 {
-                    connectio.Open();
-                    SqlCommand command = new SqlCommand("INSERT INTO Tb_Paciente (NombreCompleto, Cedula, Edad, IdGenero, Direccion, Telefono, Gmail, Ocupacion) VALUES (@nombrecompleto, @cedula, @edad , @genero, @direccion, @telefono, @gmail, @ocupacion)", connectio);
-                    command.CommandType = CommandType.Text;
-                    command.Parameters.AddWithValue("@nombrecompleto", paciente.NombreCompleto);
-                    command.Parameters.AddWithValue("@cedula", paciente.Cedula);
-                    command.Parameters.AddWithValue("@edad", paciente.Edad);
-                    command.Parameters.AddWithValue("@genero", paciente.IdGenero);
-                    command.Parameters.AddWithValue("@direccion", paciente.Direccino);
-                    command.Parameters.AddWithValue("@telefono", paciente.Telefono);
-                    command.Parameters.AddWithValue("@gmail", paciente.Gmail);
-                    command.Parameters.AddWithValue("@ocupacion", paciente.Ocupacion);
-                    bool agregado = false;
-                    agregado = command.ExecuteNonQuery() > 0;
-                    command.Parameters.Clear();
-                    return agregado;
-
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("ValidarExistenciaCedulaModificada", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@cedulaActual", cedulaActual);
+                    command.Parameters.AddWithValue("@cedulaNueva", cedulaNueva);
+                    int count = (int)command.ExecuteScalar();
+                    return count > 0;
                 }
                 catch (Exception ex)
                 {
-                    string msj = ex.ToString();
+                    // Manejo de la excepción, puedes mostrar un mensaje de error o registrar el error en algún lugar
                     return false;
                 }
             }
         }
 
 
-        //Mostrar informacion
-        //Editar informacion
+        public bool RegistrarPaciente(Paciente paciente)
+        {
+            using (SqlConnection connection = conexioncd.ObtenerConexion())
+            {
+                try
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("InsertarPacienteNuevo", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@nombrecompleto", paciente.NombreCompleto);
+                    command.Parameters.AddWithValue("@cedula", paciente.Cedula);
+                    command.Parameters.AddWithValue("@edad", paciente.Edad);
+                    command.Parameters.AddWithValue("@genero", paciente.IdGenero);
+                    command.Parameters.AddWithValue("@direccion", paciente.Direccion);
+                    command.Parameters.AddWithValue("@telefono", paciente.Telefono);
+                    command.Parameters.AddWithValue("@ocupacion", paciente.Ocupacion);
+                    command.Parameters.AddWithValue("@antecedentes", paciente.Antecedentes);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+                catch (Exception ex)
+                {
+                    // Manejo de la excepción, puedes mostrar un mensaje de error o registrar el error en algún lugar
+                    return false;
+                }
+            }
+        }
+
+        public bool ActualizarPaciente(Paciente paciente)
+        {
+            using (SqlConnection connection = conexioncd.ObtenerConexion())
+            {
+                try
+                {
+                    connection.Open();
+
+                    SqlCommand command = new SqlCommand("ActualizarPaciente", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@id", paciente.Id);
+                    command.Parameters.AddWithValue("@nombrecompleto", paciente.NombreCompleto);
+                    command.Parameters.AddWithValue("@cedula", paciente.Cedula);
+                    command.Parameters.AddWithValue("@edad", paciente.Edad);
+                    command.Parameters.AddWithValue("@genero", paciente.IdGenero);
+                    command.Parameters.AddWithValue("@direccion", paciente.Direccion);
+                    command.Parameters.AddWithValue("@telefono", paciente.Telefono);
+                    command.Parameters.AddWithValue("@ocupacion", paciente.Ocupacion);
+                    command.Parameters.AddWithValue("@antecedentes", paciente.Antecedentes);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+                catch (ArgumentException ex)
+                {
+                    throw new ArgumentException(ex.Message);
+                }
+            }
+        }
+
+
+        public Paciente ObtenerPacienteCompleto(string cedula)
+        {
+            Paciente paciente = null;
+
+            using (SqlConnection connection = conexioncd.ObtenerConexion())
+            {
+                try
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("ObtenerPacienteCompleto", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@cedula", cedula);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            paciente = new Paciente
+                            {
+                                Id = (int)reader["Id"],
+                                NombreCompleto = (string)reader["NombreCompleto"],
+                                Cedula = (string)reader["Cedula"],
+                                Edad = (int)reader["Edad"],
+                                IdGenero = (int)reader["IdGenero"],
+                                Direccion = (string)reader["Direccion"],
+                                Telefono = (int)reader["Telefono"],
+                                Ocupacion = (string)reader["Ocupacion"],
+                                Antecedentes = (string)reader["Antecedentes"],
+                                Activo = (bool)reader["IsDeleted"]
+                            };
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
+            return paciente;
+        }
+
+
     }
 }
 

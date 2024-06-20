@@ -79,11 +79,11 @@
     <Compile Include="Paginas\PagRegistroPaciente.xaml.cs">
       <DependentUpon>PagRegistroPaciente.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VentanaMensajeSms.xaml.cs">
+      <DependentUpon>VentanaMensajeSms.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VentanaModalPaciente.xaml.cs">
       <DependentUpon>VentanaModalPaciente.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="VentanaRegistroPaciente.xaml.cs">
-      <DependentUpon>VentanaRegistroPaciente.xaml</DependentUpon>
     </Compile>
     <Compile Include="VentanEmergente.xaml.cs">
       <DependentUpon>VentanEmergente.xaml</DependentUpon>
@@ -227,11 +227,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="VentanaModalPaciente.xaml">
+    <Page Include="VentanaMensajeSms.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="VentanaRegistroPaciente.xaml">
+    <Page Include="VentanaModalPaciente.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

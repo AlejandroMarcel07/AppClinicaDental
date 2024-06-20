@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
 using System.Globalization;
+using System.Windows.Threading;
 
 namespace CapaPresentacion.Paginas
 {
@@ -32,10 +33,6 @@ namespace CapaPresentacion.Paginas
             this.paciente = paciente;
 
             MostrarDatosPaciente();
-
-            ObtenerPacientes();
-
-            PopulateTimeComboBox();
 
             ConfigureCalendar();
         }
@@ -59,32 +56,10 @@ namespace CapaPresentacion.Paginas
 
         private PacienteCN pacientecn = new PacienteCN();
 
-        public void ObtenerPacientes()
-        {
-
-            DataTable tabla = new DataTable();
-            tabla = pacientecn.ObtenerPacientes();
-            DataView dataview = new DataView(tabla);
-
-            ListBoxCitas.ItemsSource = dataview;
-        }
 
 
         //Permitir manipular nuestrar hora y mostrarla en un combo
-        private void PopulateTimeComboBox()
-        {
-            var timeList = new List<string>();
-            for (DateTime dt = DateTime.Today.AddHours(8); dt <= DateTime.Today.AddHours(17); dt = dt.AddMinutes(30))
-            {
-                timeList.Add(dt.ToString("hh:mm tt"));
-            }
 
-            timeComboBox01.ItemsSource = timeList;
-            timeComboBox01.SelectedIndex = 0; // Selecciona la primera hora por defecto
-
-            timeComboBox.ItemsSource = timeList;
-            timeComboBox.SelectedIndex = 0; // Selecciona la primera hora por defecto
-        }
 
 
         //Metodo que permitira renderizar nuestro calendario en la cual mostrara fecha actual y a futuro, fechas anteriores no
@@ -99,20 +74,114 @@ namespace CapaPresentacion.Paginas
 
         private void btnCrearCitaYA_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new PagHistorialClinico(paciente));
-        }
-
-
-        //Obtener la fecha seleccionada en el caledario y comvertirla en otro tipo de formato y mostrarla en un textbox
-        private void ClendarName_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (ClendarName.SelectedDate.HasValue)
+            //Validamos Campos
+            if (!ValidarCampos(out string mensajeError))
             {
-                DateTime selectedDate = ClendarName.SelectedDate.Value;
-                string formattedDate = selectedDate.ToString("dd 'de' MMMM 'de' yyyy", new CultureInfo("es-ES"));
+                MensajeError(mensajeError);
+                return;
+            }
 
-                txtFechaSeleccionada.Text = formattedDate;
+            //Instania de la clase
+            CitaCN citacn = new CitaCN();
+
+            //Obtenemos datos de los controles
+            Cita citaObtenido = ObtenrDatosControles();
+
+            try
+            {
+                //Si todo esta bien lo mandamos a la capa negocio para evaluar que haiga citas con el mismo dia y la misma hora 
+                //Y sale bien en la capa negocio creamos la cita y obtenemos el objeto de ella.
+                Cita citaRegistrada = citacn.RegistrarCita(citaObtenido);
+                //Hacemos el siguiente paso a realizar
+                this.NavigationService.Navigate(new PagHistorialClinico(paciente, citaRegistrada));
+            }
+            catch (ArgumentException ex)
+            {
+                MensajeError(ex.Message);
             }
         }
+
+        private Cita ObtenrDatosControles()
+        {
+
+            string horaSeleccionadaStringEntrada = ((ComboBoxItem)timeComboBox.SelectedItem).Content.ToString();
+
+            string horaSeleccionadaStringSalida = ((ComboBoxItem)timeComboBox01.SelectedItem).Content.ToString();
+
+
+            // Fecha seleccionada
+            DateTime fechaSeleccionada = (ClendarName.SelectedDate ?? DateTime.MinValue).Date;
+
+
+            DateTime dateTimeEntrada = DateTime.ParseExact(horaSeleccionadaStringEntrada, "hh:mm tt", CultureInfo.InvariantCulture);
+            TimeSpan HoraEntrada = dateTimeEntrada.TimeOfDay;
+
+            DateTime dateTimeSalida = DateTime.ParseExact(horaSeleccionadaStringSalida, "hh:mm tt", CultureInfo.InvariantCulture);
+            TimeSpan HoraSalida = dateTimeSalida.TimeOfDay;
+
+
+            // Crear instancia de Cita con los datos obtenidos
+            Cita nuevaCita = new Cita
+            {
+                IdPaciente = paciente.Id,
+                Fecha = fechaSeleccionada,
+                HoraEntrada = HoraEntrada,
+                HoraSalida = HoraSalida
+            };
+
+            return nuevaCita;
+        }
+
+
+        private bool ValidarCampos(out string mensajeError)
+        {
+            mensajeError = string.Empty;
+
+            if (string.IsNullOrEmpty(txtFechaSeleccionada.Text))
+            {
+                mensajeError = "¡Seleccionar Fecha!";
+                return false;
+            }
+
+            if (timeComboBox.SelectedItem == null)
+            {
+                mensajeError = "¡Seleccione Hora de Entrada!";
+                return false;
+            }
+
+            if (timeComboBox01.SelectedItem == null)
+            {
+                mensajeError = "¡Seleccione Hora de Salida!";
+                return false;
+            }
+
+            return true;
+        }
+
+        private void MensajeError(string Mensaje)
+        {
+            textMensaje.Text = Mensaje;
+            textMensaje.Visibility = Visibility.Visible;
+            textMensaje.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FA465B"));
+            textMensaje.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFE2E0"));
+
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Tick += (sender, args) =>
+            {
+                textMensaje.Visibility = Visibility.Collapsed;
+                timer.Stop();
+            };
+            timer.Start();
+        }
+
+        //Obtener la fecha seleccionada en el caledario y comvertirla en otro tipo de formato y mostrarla en un textbox
+        // Obtener la fecha seleccionada en el calendario y convertirla en otro tipo de formato y mostrarla en un TextBox
+        private void ClendarName_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DateTime fechaSeleccionada = (ClendarName.SelectedDate ?? DateTime.MinValue).Date;
+            txtFechaSeleccionada.Text = fechaSeleccionada.ToString("yyyy-MM-dd");
+        }
+
     }
 }

@@ -366,7 +366,7 @@
                         <Border Background="#FBFBFB" CornerRadius="0" Padding="0" BorderThickness="1" BorderBrush="#d4d5d6">
                             <StackPanel Background="Transparent">
                                 <Button Content="Mostrar"  Click="btnMostrarRegistroPaciente_Click" Height="30" Style="{StaticResource TransparentButton}" Cursor="Hand" BorderThickness="0 0 0 1" BorderBrush="#d4d5d6"/>
-                                <Button Content="Mensaje" Height="30" Margin="0 0 0 0" Style="{StaticResource TransparentButton}" Cursor="Hand"/>
+                                <Button Content="Mensaje" x:Name="btnMostrarPantallaMensaje" Click="btnMostrarPantallaMensaje_Click" Height="30" Margin="0 0 0 0" Style="{StaticResource TransparentButton}" Cursor="Hand"/>
                             </StackPanel>
                         </Border>
                     </Popup>

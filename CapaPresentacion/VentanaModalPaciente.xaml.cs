@@ -54,246 +54,164 @@ namespace CapaPresentacion
             this.Close();
         }
 
-
-        private void EvaluarCamposCompletos()
+        private bool ValidarCampos(out string mensajeError)
         {
+            mensajeError = string.Empty;
 
-            if (!string.IsNullOrEmpty(txtNombreCompleto.Text) && !string.IsNullOrEmpty(txtEdad.Text) && cmbGenero.SelectedItem != null
-                && !string.IsNullOrEmpty(txtDireccion.Text) && !string.IsNullOrEmpty(txtCedula.Text) && !string.IsNullOrEmpty(txtTelefono.Text)
-                && !string.IsNullOrEmpty(txtGmail.Text) && !string.IsNullOrEmpty(txtOcupacion.Text))
+            if (string.IsNullOrEmpty(txtNombreCompleto.Text))
             {
-                textMensaje.Text = "Completado*";
-                textMensaje.Foreground = new SolidColorBrush(Colors.Green);
+                mensajeError = "¡Nombre!";
+                return false;
             }
-            else
+
+            if (string.IsNullOrEmpty(txtCedula.Text))
             {
-                textMensaje.Text = "Incompleto*";
-                textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
+                mensajeError = "¡Cedula!";
+                return false;
             }
+
+            if (string.IsNullOrEmpty(txtEdad.Text))
+            {
+                mensajeError = "¡Edad!";
+                return false;
+            }
+
+            if (!txtEdad.Text.All(char.IsDigit))
+            {
+                mensajeError = "¡Edad Invalida!";
+                return false;
+            }
+
+            if (GeneroComboBox.SelectedItem == null)
+            {
+                mensajeError = "¡Genero!";
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(txtDireccion.Text))
+            {
+                mensajeError = "¡Dirección!";
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(txtTelefono.Text))
+            {
+                mensajeError = "¡Telefono!";
+                return false;
+            }
+
+            if (!txtTelefono.Text.All(char.IsDigit))
+            {
+                mensajeError = "¡Numero Invalido!";
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(txtOcupacion.Text))
+            {
+                mensajeError = "¡Ocupación!";
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(txtAntecedentes.Text))
+            {
+                mensajeError = "¡Antecedentes!";
+                return false;
+            }
+
+            return true;
         }
 
         private void btnGuardarPaciente_Click(object sender, RoutedEventArgs e)
         {
-            string MensajeNombre = "¡Nombre!";
-            string MensajeCedula = "¡Cedula!";
-            string MensajeEdad = "¡Edad!";
-            string MensajeGenero = "¡Genero!";
-            string MensajeDireccion = "¡Dirección!";
-            string MensajeTelefono = "¡Telefono!";
-            string MensajeTelefono1 = "¡Numero Invalido!";
-            string MensajeEmail = "¡Gmail!";
-            string MensajeOcupacion = "¡Ocupación!";
-
-            if (!string.IsNullOrEmpty(txtNombreCompleto.Text))
+            //Valirdar campos vacios
+            if (!ValidarCampos(out string mensajeError))
             {
-                if (!string.IsNullOrEmpty(txtCedula.Text))
-                {
-                    if (!string.IsNullOrEmpty(txtEdad.Text))
-                    {
-                        if (cmbGenero.SelectedItem != null)
-                        {
-                            if (!string.IsNullOrEmpty(txtDireccion.Text))
-                            {
-                                if (!string.IsNullOrEmpty(txtTelefono.Text))
-                                {
-                                    if (txtTelefono.Text.All(char.IsDigit))
-                                    {
-                                        if (!string.IsNullOrEmpty(txtGmail.Text))
-                                        {
-                                            if (!string.IsNullOrEmpty(txtOcupacion.Text))
-                                            {
-
-                                                PacienteCN pacientecn = new PacienteCN();
-
-                                                //Si sale todo bien el proceso continuara
-                                                string generoSeleccionado = cmbGenero.SelectedValue.ToString();
-                                                int valorAlmacenado;
-
-                                                if (generoSeleccionado == "Masculino")
-                                                {
-                                                    valorAlmacenado = 1;
-                                                }
-                                                else
-                                                {
-                                                    valorAlmacenado = 2;
-                                                }
-
-                                                Paciente paciente = new Paciente();
-                                                paciente.NombreCompleto = txtNombreCompleto.Text;
-                                                paciente.Cedula = txtCedula.Text;
-                                                paciente.Edad = int.Parse(txtEdad.Text);
-                                                paciente.IdGenero = valorAlmacenado;
-                                                paciente.Direccino = txtDireccion.Text;
-                                                paciente.Telefono = int.Parse(txtTelefono.Text);
-                                                paciente.Gmail = txtGmail.Text;
-                                                paciente.Ocupacion = txtOcupacion.Text;
-
-                                                try
-                                                {
-                                                    //Validamos reglas de campos
-                                                    pacientecn.ValidacionCamposReglas(paciente);
-
-                                                    //Mandamos los datos y se validara existencia de este usuario
-                                                    bool registroExitoso = pacientecn.RegistrarPaciente(paciente);
-
-                                                    //Verificamos si hubo error al registrar el paciente
-                                                    if (registroExitoso)
-                                                    {
-                                                        LimpiarCampos();
-                                                        EtiquetaExitoso.Text = "¡Registro Exitoso!";
-                                                        EtiquetaExitoso.Foreground = Brushes.Red;
-                                                        _pag01.ObtenerPacientes();
-                                                        MostrarMensaje("¡Registro Exitoso!", Colors.Green, 1);
-                                                    }
-                                                    else
-                                                    {
-                                                        MostrarMensaje("¡Error al registrar paciente!", Colors.Red, 3);
-                                                    }
-                                                }
-                                                catch (ArgumentException ex)
-                                                {
-
-                                                    textMensaje.Text = ex.Message;
-                                                    textMensaje.Foreground = new SolidColorBrush(Colors.Red);
-                                                    return; // Sale del método si el gmail no es válido
-                                                }
-                                            }
-                                            else
-                                            {
-                                                textMensaje.Text = MensajeOcupacion;
-                                                textMensaje.Foreground = new SolidColorBrush(Colors.Red);
-                                                return; // Sale del método si el gmail no es válido
-                                            }
-
-                                        }
-                                        else
-                                        {
-                                            textMensaje.Text = MensajeEmail;
-                                            textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
-                                            return;
-
-                                        }
-                                    }
-                                    else
-                                    {
-                                        textMensaje.Text = MensajeTelefono1;
-                                        textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
-                                        return;
-                                    }
-                                }
-                                else
-                                {
-                                    textMensaje.Text = MensajeTelefono;
-                                    textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
-                                    return;
-                                }
-                            }
-                            else
-                            {
-                                textMensaje.Text = MensajeDireccion;
-                                textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
-                                return;
-                            }
-                        }
-                        else
-                        {
-                            textMensaje.Text = MensajeGenero;
-                            textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
-                            return;
-                        }
-                    }
-
-                    else
-                    {
-                        textMensaje.Text = MensajeEdad;
-                        textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
-                        return;
-                    }
-                }
-
-                else
-                {
-                    textMensaje.Text = MensajeCedula;
-                    textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
-                    return;
-                }
-            }
-            else
-            {
-                textMensaje.Text = MensajeNombre;
-                textMensaje.Foreground = new SolidColorBrush(Colors.OrangeRed);
+                MensajeError(mensajeError);
                 return;
             }
 
-            EvaluarCamposCompletos();
+            //Intanciamos clase de capa negocio y creamos un objeto de ella
+            PacienteCN pacientecn = new PacienteCN();
+
+            // Si sale todo bien el proceso continuará
+            string generoSeleccionado = ((ComboBoxItem)GeneroComboBox.SelectedItem).Content.ToString();
+            int valorAlmacenado = generoSeleccionado == "Masculino" ? 1 : 2;
+
+            // Validamos reglas de campos
+
+            Paciente paciente = new Paciente
+            {
+                NombreCompleto = txtNombreCompleto.Text,
+                Cedula = txtCedula.Text,
+                Edad = int.Parse(txtEdad.Text),
+                IdGenero = valorAlmacenado,
+                Telefono = int.Parse(txtTelefono.Text),
+                Ocupacion = txtOcupacion.Text,
+                Direccion = txtDireccion.Text,
+                Antecedentes = txtAntecedentes.Text
+            };
+
+
+            try
+            {
+                pacientecn.ValidacionCamposReglas(paciente);
+
+                // Mandamos los datos y se validará existencia de este usuario
+                bool registroExitoso = pacientecn.RegistrarPaciente(paciente);
+
+                // Verificamos si hubo error al registrar el paciente
+                if (registroExitoso)
+                {
+                    LimpiarCampos();
+                    textMensaje.Text = "¡Registro Exitoso!";
+                    textMensaje.Foreground = Brushes.Green;
+                    _pag01.ObtenerPacientes();
+                    textMensaje.Visibility = Visibility.Collapsed;
+                    _pag01.ObtenerPacienteCompleto(paciente);
+                    this.Close();
+
+                }
+                else
+                {
+                    textMensaje.Text = "¡Error de insercción!";                 
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                string Mensaje = ex.Message;
+                MensajeError(Mensaje);
+            }
         }
 
-        public void MostrarMensaje(string texto, Color color, int duracionSegundos)
+
+        private void MensajeError(string Mensaje)
         {
-            EtiquetaExitoso.Text = texto;
-            EtiquetaExitoso.Foreground = new SolidColorBrush(color);
+            textMensaje.Visibility = Visibility.Visible;
+            textMensaje.Text = Mensaje;
 
             DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(duracionSegundos);
+            timer.Interval = TimeSpan.FromSeconds(3);
             timer.Tick += (sender, args) =>
             {
-                EtiquetaExitoso.Text = "";
+                textMensaje.Visibility = Visibility.Collapsed;
                 timer.Stop();
-                this.Close();
             };
             timer.Start();
         }
+
 
         private void LimpiarCampos()
         {
             txtNombreCompleto.Clear();
             txtEdad.Clear();
-            cmbGenero.SelectedIndex = -1;
+            GeneroComboBox.SelectedIndex = -1;
             txtDireccion.Clear();
             txtCedula.Clear();
             txtTelefono.Clear();
-            txtGmail.Clear();
             txtOcupacion.Clear();
+            txtAntecedentes.Clear();
         }
 
-        private void txtNombreCompleto_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            EvaluarCamposCompletos();
-        }
 
-        private void txtEdad_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            EvaluarCamposCompletos();
-        }
-
-        private void cmbGenero_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            EvaluarCamposCompletos();
-        }
-
-        private void txtDireccion_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            EvaluarCamposCompletos();
-        }
-
-        private void txtCedula_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            EvaluarCamposCompletos();
-        }
-
-        private void txtTelefono_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            EvaluarCamposCompletos();
-        }
-
-        private void txtGmail_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            EvaluarCamposCompletos();
-        }
-
-        private void txtOcupacion_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            EvaluarCamposCompletos();
-        }
     }
 }

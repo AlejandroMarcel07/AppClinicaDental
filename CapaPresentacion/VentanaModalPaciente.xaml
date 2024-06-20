@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion"
         mc:Ignorable="d"
-        Title="VentanaModalPaciente" Height="525" Width="350"
+        Title="VentanaModalPaciente" Height="505" Width="550"
         WindowStyle="None"
         Background="Transparent" 
         AllowsTransparency="True"
@@ -30,7 +30,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Column="2"
+            <StackPanel     Grid.Column="2"
                             Orientation="Horizontal"
                             FlowDirection="RightToLeft">
                 <Button 
@@ -71,82 +71,107 @@
                 </Button>
             </StackPanel>
             <StackPanel Grid.Row="1" Orientation="Vertical"
-                        Margin="20 0 20 10">
+                        Margin="25 10 25 10">
                 
-                <!--Paso de acceso-->
-                <TextBlock Text="| Nuevo paciente"
-                               FontFamily="{StaticResource Outfit-Bold}"
+                <!--Titulo de la ventana-->
+                <Grid Margin="0 0 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="- Nuevo paciente"
+                               FontFamily="{StaticResource Outfit-Regular}"
                                FontSize="15"
+                               Height="25"
                                Margin="0 10 0 0"/>
-                <TextBlock
-                        FontFamily="{StaticResource Outfit-Regular}"
-                        FontSize="13"
-                        TextWrapping="Wrap"
-                        Margin="0 10 0 0"
-                        Text="Por favor, completa todos los campos ya que son obligatorios para continuar."/>
-                <TextBlock x:Name="textMensaje" HorizontalAlignment="Left"
-                           Margin="0 5 0 0"
-                                   FontFamily="{StaticResource Outfit-Regular}" FontSize="13"
-                                   />
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="240"/>
-                        <RowDefinition Height="35"/>
-                        <RowDefinition Height="25"/>
-                    </Grid.RowDefinitions>
-                    <ScrollViewer Grid.Row="0" Margin="0 20 0 0">
-                        <StackPanel Orientation="Vertical"  Margin="0 0 10 0">
-                            <TextBox Style="{StaticResource CustomTextBoxStylePequeño}" TextChanged="txtNombreCompleto_TextChanged"
-                         Tag="nombre completo" Margin="0 0 0 0" x:Name="txtNombreCompleto"/>
-                            <TextBox Style="{StaticResource CustomTextBoxStylePequeño}" TextChanged="txtCedula_TextChanged"
-                         Tag="cedula" Margin="0 10 0 0" x:Name="txtCedula"/>
-                            <TextBox Style="{StaticResource CustomTextBoxStylePequeño}"
-                         Tag="edad" Margin="0 10 0 0" x:Name="txtEdad" TextChanged="txtEdad_TextChanged"/>
-                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}"                                   
-                                      Height="25"
-                                      SelectionChanged="cmbGenero_SelectionChanged"
-                                      x:Name="cmbGenero"
-                                      FontSize="13"                                
-                                      FontFamily="{StaticResource Outfit-Regular}"
-                                      Margin="0,10,0,0"
-                                    >
-                                <ComboBoxItem Content="Masculino" FontFamily="{StaticResource Outfit-Regular}" Foreground="#A59EA5" FontSize="12"/>
-                                <ComboBoxItem Content="Feminino" FontFamily="{StaticResource Outfit-Regular}" Foreground="#A59EA5" FontSize="12"/>
-                            </ComboBox>
-                            <TextBox Style="{StaticResource CustomTextBoxStylePequeño}"
-                         Tag="direccion" Margin="0 10 0 0" x:Name="txtDireccion" TextChanged="txtDireccion_TextChanged"/>
-                            <TextBox Style="{StaticResource CustomTextBoxStylePequeño}" TextChanged="txtTelefono_TextChanged"
-                         Tag="telefono" Margin="0 10 0 0" x:Name="txtTelefono"/>
-                            <TextBox Style="{StaticResource CustomTextBoxStylePequeño}" TextChanged="txtGmail_TextChanged"
-                         Tag="gmail" Margin="0 10 0 0" x:Name="txtGmail"/>
-                            <TextBox Style="{StaticResource CustomTextBoxStylePequeño}" TextChanged="txtOcupacion_TextChanged"
-                         Tag="ocupación" Margin="0 10 0 0" x:Name="txtOcupacion"/>
-
-                        </StackPanel>
-                    </ScrollViewer>
-                    <Grid Grid.Row="1">
-
-                        <TextBlock VerticalAlignment="top"
-                                   x:Name="EtiquetaExitoso"  
-                                   Margin="0 10 0 0"
-                                   FontFamily="{StaticResource Outfit-Regular}" FontSize="14"
-                                   />
-                    </Grid>
-                    <StackPanel Grid.Row="2" Orientation="Horizontal" FlowDirection="RightToLeft">
-
-                        <Button Style="{StaticResource BtnLogin}" Width="70" Height="25"
-                                Click="btnGuardarPaciente_Click"
-                                  IsDefault="True"
-                                Content="Guardar" FontFamily="{StaticResource Outfit-Regular}"
-                                Margin="0 0 10 0" VerticalAlignment="Bottom" Cursor="Hand" x:Name="btnGuardarPaciente"/>
-                        <Button Style="{StaticResource BtnLogin}" Width="70" Height="25"
-                                Content="Cancelar" FontFamily="{StaticResource Outfit-Regular}"
-                                Background="{StaticResource ColorAzulon}"
-                                VerticalAlignment="Bottom" Margin="0 0 15 0" x:Name="btnCancelar"
-                                Click="btnCancelar_Click"/>
-                    </StackPanel>
-                       
+                    <TextBlock x:Name="textMensaje" HorizontalAlignment="Right"
+                               Grid.Column="1"
+                               Text=""
+                               Height="25"
+                               VerticalAlignment="Center"
+                               Padding="5 3 5 0"
+                               Visibility="Collapsed"
+                               Background="#FFE2E0"
+                               Foreground="#FA465B"
+                                Margin="0 10 0 0"
+                                   FontFamily="{StaticResource Outfit-Regular}" FontSize="13" />
                 </Grid>
+                <Separator Background="#d4d5d6" Margin="0 10 0 0"/>
+
+                <Grid Margin="0 10 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical" Grid.Column="0">
+                        <TextBlock Text="Nombre:" FontSize="13" FontFamily="{StaticResource Outfit-Regular}" Margin="0 10 0 0"/>
+                        <TextBox x:Name="txtNombreCompleto" IsEnabled="True" Margin="0 5 20 0" Style="{StaticResource CustomTextBoxStylePequeño}" Height="25" Tag="Ingrese nombre completo"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Grid.Column="1">
+                        <TextBlock Text="Cedula:" FontSize="13" FontFamily="{StaticResource Outfit-Regular}" Margin="0 10 0 0"/>
+                        <TextBox x:Name="txtCedula" IsEnabled="True" Margin="0 5 0 0" Style="{StaticResource CustomTextBoxStylePequeño}" Height="25" Tag="Ingrese un numero cedula"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Margin="0 10 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical" Grid.Column="0">
+                        <TextBlock Text="Edad:" FontSize="13" FontFamily="{StaticResource Outfit-Regular}" Margin="0 10 0 0"/>
+                        <TextBox x:Name="txtEdad" IsEnabled="true" Margin="0 5 20 0" Style="{StaticResource CustomTextBoxStylePequeño}" Height="25" Tag="Ingrese una edad"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Grid.Column="1">
+                        <TextBlock Text="Genero:" FontSize="13" FontFamily="{StaticResource Outfit-Regular}" Margin="0 10 0 0"/>
+                        <ComboBox x:Name="GeneroComboBox" IsEnabled="true" Style="{StaticResource ComboBoxFlatStyle}" Height="25" Margin="0 5 0 0">
+                            <ComboBoxItem Content="Masculino" Tag="1"/>
+                            <ComboBoxItem Content="Femenino" Tag="2"/>
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+                <Grid Margin="0 10 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical" Grid.Column="0">
+                        <TextBlock Text="Telefono:" FontSize="13" FontFamily="{StaticResource Outfit-Regular}" Margin="0 10 0 0"/>
+                        <TextBox x:Name="txtTelefono" IsEnabled="True" Margin="0 5 20 0" Style="{StaticResource CustomTextBoxStylePequeño}" Height="25" Tag="Ingrese un telefono"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Grid.Column="1">
+                        <TextBlock Text="Ocupación:" FontSize="13" FontFamily="{StaticResource Outfit-Regular}" Margin="0 10 0 0"/>
+                        <TextBox x:Name="txtOcupacion" IsEnabled="True" Margin="0 5 0 0" Style="{StaticResource CustomTextBoxStylePequeño}" Height="25" Tag="Ingrese una ocupación"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Margin="0 10 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical" Grid.Column="0">
+                        <TextBlock Text="Dirección:" FontSize="13" FontFamily="{StaticResource Outfit-Regular}" Margin="0 10 0 0"/>
+                        <TextBox x:Name="txtDireccion" IsEnabled="True" Margin="0 5 20 0" Style="{StaticResource CustomTextBoxStylePequeño}" Height="25" Tag="Ingrese una dirección"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Grid.Column="1">
+                        <TextBlock Text="Antecedentes:" FontSize="13" FontFamily="{StaticResource Outfit-Regular}" Margin="0 10 0 0"/>
+                        <TextBox x:Name="txtAntecedentes" IsEnabled="True" Margin="0 5 0 0" Style="{StaticResource CustomTextBoxStylePequeño}" Height="25" Tag="Ingrese antecedentes"/>
+                    </StackPanel>
+                </Grid>
+                <Separator Background="#d4d5d6" Margin="0 30 0 0"/>
+                <Grid Margin="0 20 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                       
+                        <Button Style="{StaticResource BtnLogin1}" Height="25" Background="{StaticResource ColorAzulon}"
+                               Content="Cancelar" Width="80" Click="btnCancelar_Click"/>
+                        <Button Style="{StaticResource BtnLogin1}" Height="25" Background="{StaticResource ColorCeleste}"
+                               Content="Guardar" Width="80" Margin="10 0 0 0" Click="btnGuardarPaciente_Click"/>
+                    </StackPanel>
+                </Grid>
+
 
             </StackPanel>
 

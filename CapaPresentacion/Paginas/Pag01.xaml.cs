@@ -73,6 +73,14 @@ namespace CapaPresentacion.Paginas
             ListBoxPacientes.ItemsSource = dataview;
         }
 
+        public void ObtenerPacienteCompleto (Paciente paciente)
+        {
+            string Cedula = paciente.Cedula;
+            Paciente paciente1 = pacientecn.ObtenerPacienteCompleto(Cedula);
+            this.NavigationService.Navigate(new PagPerfilPaciente(paciente1));
+        }
+             
+
         public void RefrescarListbox()
         {
             ListBoxPacientes.Items.Refresh();
@@ -145,10 +153,11 @@ namespace CapaPresentacion.Paginas
                     Cedula = selecItem["Cedula"].ToString(),
                     Edad = Convert.ToInt32(selecItem["Edad"]),
                     IdGenero = Convert.ToInt32(selecItem["IdGenero"]),
-                    Direccino = selecItem["Direccion"].ToString(),
+                    Direccion = selecItem["Direccion"].ToString(),
                     Telefono = Convert.ToInt32(selecItem["Telefono"]),
-                    Gmail = selecItem["Gmail"].ToString(),
-                    Ocupacion = selecItem["Ocupacion"].ToString()
+                    Ocupacion = selecItem["Ocupacion"].ToString(),
+                    Antecedentes = selecItem["Antecedentes"].ToString(),
+                    Activo = Convert.ToBoolean(selecItem["IsDeleted"])
                 };
             }
 
@@ -172,5 +181,10 @@ namespace CapaPresentacion.Paginas
             popup.IsOpen = false;
         }
 
+        private void btnMostrarPantallaMensaje_Click(object sender, RoutedEventArgs e)
+        {
+            VentanaMensajeSms ventanaMensaje = new VentanaMensajeSms(pacienteSeleccionado);
+            ventanaMensaje.ShowDialog();
+        }
     }
 }
